@@ -1,6 +1,6 @@
 <img src="./assets/logo.svg" alt="image" width="256" height="auto" />
 
-# MassProspecting - Multi-Channel Leads Scraping, Enrichment and Outreach Platform
+# AI-Driven, Multi-Channel Outreach System
 
 **Outline:**
 
