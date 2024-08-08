@@ -1,4 +1,4 @@
-## How to Add Your AdsPower Profiles to MassProspecting
+# How to Add Your AdsPower Profiles to MassProspecting
 
 Follow the steps below if you want to add your own AdsPower profiles to your [MassProspecting](https://massprospecting.com) account.
 
