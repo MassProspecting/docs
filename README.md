@@ -31,8 +31,9 @@
 
 **Internal Documentation:**
 
-Documentation for Massdevelopers only.
+Documentation for MassProspecting developers only.
 
-1. [Environment Installation](/internal/1-environment-installation)
-2. [Configuration.](/internal/2-configuration)
-3. [Deployment.](/internal/3-deployment)
+1. [Architecture](/internal/1-architecture)
+2. [Installetion](/internal/2-installation)
+3. [Configuration.](/internal/2-configuration)
+4. [Deployment.](/internal/3-deployment)

@@ -1,14 +1,14 @@
-# Environment Installation
+# Architecture
+
+First thing first, you need to have the whole picture of MassProspecting's architecture.
 
 In this section we review the architecture of MassProspecting, and how to install it in both: **development** and **production** environments.
 
-1. [Architecture](#1-architecture)
+1. [Overview](#1-overview)
 2. [Processes](#2-processes)
-3. [Development](#3-development)
 
-## 1. Architecture
+## 1. Overview
 
-First thing first, you need to have the whole picture of MassProspecting's architecture.
 
 ![MassProspecting Architecture](/assets/internal/1-1.png)
 
@@ -116,4 +116,4 @@ As an additional note, that instance of mass.slave shouldn't be running in a wor
 | extensions/mass.subaccount/p/launch1.rb | This process get the list of basic profiles assisgned to the worker node, and launch one `basic.rb` process for each one.             |
 | extensions/mass.subaccount/p/launch2.rb | This process get the list of mta, api or rpa profiles assisgned to the worker node, and launch one `profile.rb` process for each one. |
 
-## 3. 
+
