@@ -2,12 +2,7 @@
 
 # AI-Driven, Multi-Channel Outreach System
 
-**Internal Documentation:**
-
-1. [Architecture](/internal/1-architecture.md)
-2. [Installation](/internal/2-installation.md)
-
-**User Documentation:**
+**User Documentation**
 
 1. [Getting Started.](/user/1-getting-started.md)
 2. [Leasing Profiles.](/user/2-leasing-profiles.md)
@@ -24,7 +19,20 @@
 13. [Setting up a LinkedIn Follow Up Series.](/user/13-setting-up-a-linkedin-follow-up-series.md)
 14. [Setting up a Facebook Follow Up Series.](/user/14-setting-up-a-facebook-follow-up-series.md)
 
-**Case Studies:**
+**Integrations**
+
+1. [GMail or GSuite](/integrations/1-gmail-or-gsuite.md)
+2. PostMark
+3. Generic MTA
+4. LinkedIn
+5. Facebook
+6. Apollo
+7. Reoon
+8. ZeroBounce
+9. Zyte
+10. OpenAI
+
+**Case Studies**
 
 1. [Case Study 1: Building Lists with Apollo RPA.](/case-studies/1-case-study-1:-building-lists-with-apollo-rpa.md)
 2. [Case Study 2: Scraping Indeed, Enriching with Apollo RPA, Verifying, Sending Outreach.](/case-studies/2-case-study-2:-scraping-indeed,-enriching-with-apollo-rpa,-verifying,-sending-outreach.md)
@@ -34,3 +42,7 @@
 6. [Case Study 5: Double Email Verification.](/case-studies/6-case-study-5:-double-email-verification.md)
 7. [Case Study 6: Catch-All Re-Verification.](/case-studies/7-case-study-6:-catch-all-re-verification.md)
 
+**Internal Documentation**
+
+1. [Architecture](/internal/1-architecture.md)
+2. [Installation](/internal/2-installation.md)
