@@ -138,14 +138,14 @@ ruby install.rb github_username=<your github username here> github_password=<you
 
 | Name            | Mandatory | Description                                                                                                          | Type                                             | Default             |
 |-----------------|-----------|----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|---------------------|
-| `component`     | false     | Name of the component you want to install. Leave blank to install all components. E.g., `master`. Default: `'-'`.     | `BlackStack::SimpleCommandLineParser::STRING`    | `'-'`               |
-| `ask`           | false     | Show warning messages and ask the user to continue or not. Default: `true`.                                          | `BlackStack::SimpleCommandLineParser::BOOL`      | `true`              |
-| `secrets`       | false     | Download the configuration file of the component. Existing configuration file will be overwritten. Default: `true`.   | `BlackStack::SimpleCommandLineParser::BOOL`      | `true`              |
-| `update`        | false     | Update source code by running `git fetch` and `git update` commands. Default: `false`.                               | `BlackStack::SimpleCommandLineParser::BOOL`      | `false`             |
-| `verbose`       | false     | Show the output of the commands executed. Default: `false`.                                                           | `BlackStack::SimpleCommandLineParser::BOOL`      | `false`             |
-| `output`        | false     | File where to redirect the output of all the commands executed. Default: `deploy-output.log`.                         | `BlackStack::SimpleCommandLineParser::STRING`    | `deploy-output.log` |
-| `github_username`| true     | GitHub username to access the private repositories. Mandatory.                                                       | `BlackStack::SimpleCommandLineParser::STRING`    | N/A                 |
-| `github_password`| true     | GitHub password to access the private repositories. Mandatory.                                                       | `BlackStack::SimpleCommandLineParser::STRING`    | N/A                 |
+| `component`     | false     | Name of the component you want to install. Leave blank to install all components. E.g., `master`. Default: `'-'`.     | `STRING`    | `'-'`               |
+| `ask`           | false     | Show warning messages and ask the user to continue or not. Default: `true`.                                          | `BOOL`      | `true`              |
+| `secrets`       | false     | Download the configuration file of the component. Existing configuration file will be overwritten. Default: `true`.   | `BOOL`      | `true`              |
+| `update`        | false     | Update source code by running `git fetch` and `git update` commands. Default: `false`.                               | `BOOL`      | `false`             |
+| `verbose`       | false     | Show the output of the commands executed. Default: `false`.                                                           | `BOOL`      | `false`             |
+| `output`        | false     | File where to redirect the output of all the commands executed. Default: `deploy-output.log`.                         | `STRING`    | `deploy-output.log` |
+| `github_username`| true     | GitHub username to access the private repositories. Mandatory.                                                       | `STRING`    | N/A                 |
+| `github_password`| true     | GitHub password to access the private repositories. Mandatory.                                                       | `STRING`    | N/A                 |
 
 
 ## 4. Secrets
