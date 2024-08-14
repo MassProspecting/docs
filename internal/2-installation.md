@@ -222,6 +222,13 @@ Note that master is listening port `3000` and slave is listening port `3001`.
 
 ![MySaaS services in a local environment of MassProspecting](/assets/internal/2-6.png)
 
+Open a browser and go to [https://127.0.0.1:3000](https://127.0.0.1:3000).
+
+Default user and password are: `su` and `Testing123`.
+
+![MassProspecting running in your local environment](/assets/internal/2-7.png)
+
+
 ## 6. Setup Integrations
 
 ## 7. Setup Marketplace
