@@ -100,33 +100,64 @@ wget https://raw.githubusercontent.com/MassProspecting/docs/main/scripts/install
 
 **Local Environments**
 
-In your local environment, all the components will be stored in the `~/code` folder.
+In your local environment, all the component will be stored in the `~/code` folder.
 
 ```
-ruby install.rb git_username=<your github username here> git_password=<your github password here>
+ruby install.rb github_username=<your github username here> github_password=<your github password here>
 ```
 
 **Production Environments**
 
-In production environments, you have to choose which components you install on each node.
+In production environments, you have to choose which component you install on each node.
 
 In the master node, run this command:
 
 ```
-ruby install.rb git_username=<your github username here> git_password=<your github password here> component=mass.master
+ruby install.rb github_username=<your github username here> github_password=<your github password here> component=master
 ```
 
 In the slave nodes, run this command:
 
 ```
-ruby install.rb git_username=<your github username here> git_password=<your github password here> component=mass.slave
+ruby install.rb github_username=<your github username here> github_password=<your github password here> component=slave
 ```
 
 In the worker nodes, run these command:
 
 ```
-ruby install.rb git_username=<your github username here> git_password=<your github password here> component=mass.slave
-ruby install.rb git_username=<your github username here> git_password=<your github password here> component=mass-sdk
+ruby install.rb github_username=<your github username here> github_password=<your github password here> component=slave
 ```
 
-## 4. Running Servers
+```
+ruby install.rb github_username=<your github username here> github_password=<your github password here> component=sdk
+```
+
+**Command Line Parameters**
+
+| **Parameter**      | **Mandatory** | **Description**                                                                                           | **Type**                                    | **Default**              |
+|--------------------|---------------|-----------------------------------------------------------------------------------------------------------|--------------------------------------------|--------------------------|
+| `component`       | No            | Regular expression with the name of the component you want to install. E.g.: master. Default: `.*`.       | `STRING`                                   | `.*`                     |
+| `update`           | No            | Update source code by running `git fetch` and `git update` commands.                                       | `BOOL`                                     | `false`                  |
+| `verbose`          | No            | Show the output of the commands executed. Default: no.                                                     | `BOOL`                                     | `false`                  |
+| `output`           | No            | File where to redirect the output of all the commands executed. Default: deploy-output.log.                | `STRING`                                   | `deploy-output.log`       |
+| `github_username`  | Yes           | Github username to access the private repositories. Mandatory.                                             | `STRING`                                   | N/A                      |
+| `github_password`  | Yes           | Github password to access the private repositories. Mandatory.                                             | `STRING`                                   | N/A                      |
+
+## 4. Configuration
+
+MassProspecting manages 3 configuration files:
+
+- One `config.rb` file for the master nodes, inside the mass.master folder;
+- One `config.rb` file for the slave nodes, inside the mass.slave folder;
+- One `config.rb` file for the workers nodes, inside the mass-sdk folder.
+
+The `config.rb` files are always included in the `.gitignore` files, and never submitted to the repository.
+
+Instead, they are stored into the [secret](https://github.com/massprospecting/secret) repository, where very specific people should have access to.
+
+## 5. Running Servers
+
+## 6. Setup Integrations
+
+## 7. Setup Marketplace
+

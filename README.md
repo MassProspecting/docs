@@ -2,6 +2,11 @@
 
 # AI-Driven, Multi-Channel Outreach System
 
+**Internal Documentation:**
+
+1. [Architecture](/internal/1-architecture.md)
+2. [Installation](/internal/2-installation.md)
+
 **User Documentation:**
 
 1. [Getting Started.](/user/1-getting-started.md)
@@ -29,11 +34,3 @@
 6. [Case Study 5: Double Email Verification.](/case-studies/6-case-study-5:-double-email-verification.md)
 7. [Case Study 6: Catch-All Re-Verification.](/case-studies/7-case-study-6:-catch-all-re-verification.md)
 
-**Internal Documentation:**
-
-Documentation for MassProspecting developers only.
-
-1. [Architecture](/internal/1-architecture.md)
-2. [Installetion](/internal/2-installation.md)
-3. [Configuration.](/internal/2-configuration.md)
-4. [Deployment.](/internal/3-deployment.md)

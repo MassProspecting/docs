@@ -1,4 +1,4 @@
-# This script clone the source code of all the components of massprospecting in the local computer.
+# This script clone the source code of all the component of massprospecting in the local computer.
 #
 # For installing the source code you need access to all the repostiories of https://github.com/MassProspecting.
 # The required repositories of https://github.com/leandrosardi are alrady public.
@@ -8,14 +8,11 @@
 
 require 'simple_cloud_logging'
 require 'simple_command_line_parser'
-#require 'config'
 
 h = {
-    :git_username => '***',
-    :git_password => '***',
-    :components => [
+    :component => [
         {
-            :name => 'mass.master',
+            :name => 'master',
             :repo => 'leandrosardi/my.saas', 
             :branch => 'main',
             :extensions => [
@@ -28,7 +25,7 @@ h = {
                 { :name => 'dropbox-token-helper', :repo => 'leandrosardi/dropbox-token-helper', :branch => 'main' },
             ]    
         }, {
-            :name => 'mass.slave',
+            :name => 'slave',
             :repo => 'leandrosardi/my.saas', 
             :branch => 'main',
             :extensions => [
@@ -38,13 +35,8 @@ h = {
                 { :name => 'filtersjs', :repo => 'leandrosardi/filtersjs', :branch => 'main' },
             ]    
         }, {
-            :name => 'mass-sdk',
+            :name => 'sdk',
             :repo => 'massprospecting/mass-sdk', 
-            :branch => 'main',
-            :extensions => []
-        }, {
-            :name => 'secret',
-            :repo => 'massprospecting/secret', 
             :branch => 'main',
             :extensions => []
         }        
@@ -54,11 +46,17 @@ h = {
 parser = BlackStack::SimpleCommandLineParser.new(
     :description => 'This command will run automation of one specific profile.', 
     :configuration => [{
-        :name=>'sandbox', 
+        :name=>'component', 
         :mandatory=>false, 
-        :description=>"Add the .sandbox flag into the root folder of each component, the `/cli` folders and the `/p` folders. Default: no.", 
+        :description=>"Name of the component you want to install. Keep in blank to install all components. E.g.: master. Default: `''`.", 
+        :type=>BlackStack::SimpleCommandLineParser::STRING,
+        :default=>'',
+    }, {
+        :name=>'secrets', 
+        :mandatory=>false, 
+        :description=>"Regular expr. Default: true.", 
         :type=>BlackStack::SimpleCommandLineParser::BOOL,
-        :default=>false,
+        :default=>true,
     }, {
         :name=>'update', 
         :mandatory=>false, 
@@ -77,14 +75,24 @@ parser = BlackStack::SimpleCommandLineParser.new(
         :description=>'File where redirect the output of all the commands executed. Default: deploy-output.log.', 
         :type=>BlackStack::SimpleCommandLineParser::STRING,
         :default=>'deploy-output.log',
+    }, {
+        :name=>'github_username',
+        :mandatory=>true,
+        :description=>'Github username to access the private repositories. Mandatory.', 
+        :type=>BlackStack::SimpleCommandLineParser::STRING,
+    }, {
+        :name=>'github_password',
+        :mandatory=>true,
+        :description=>'Github password to access the private repositories. Mandatory.', 
+        :type=>BlackStack::SimpleCommandLineParser::STRING,
     }]
 )
 
 l = BlackStack::LocalLogger.new('install.log')
 dirname = File.expand_path(File.dirname(File.dirname(__FILE__)))
 
-gitu = h[:git_username]
-gitp = h[:git_password]
+gitu = parser.value('github_username')
+gitp = parser.value('github_password')
 
 update = parser.value('update')
 verbose = parser.value('verbose')
@@ -92,8 +100,22 @@ output = parser.value('output')
 
 redirect = verbose ? nil : " >> #{output} 2>&1"
 
-## Master
-h[:components].each { |c|
+## Secret
+folder = "#{dirname}/secret"
+l.logs "Clonning #{folder.blue}... "
+if !parser.value('secrets')
+    l.skip
+else
+    success = system("git clone https://#{gitu}:#{gitp}@github.com/massprospecting/secret --single-branch --branch main #{folder} #{redirect}")
+    success ||= File.exists?(folder)
+    l.done if success
+    l.error if !success
+end
+
+## Components
+h[:component].select { |c|
+    c[:name] == parser.value('component') || parser.value('component') == ''
+}.each { |c|
     folder = "#{dirname}/#{c[:name]}"
     l.logs "Clonning #{folder.blue}... "
     success = system("git clone https://#{gitu}:#{gitp}@github.com/#{c[:repo]} --single-branch --branch #{c[:branch]} #{folder} #{redirect}")
