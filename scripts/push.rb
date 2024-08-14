@@ -44,12 +44,12 @@ redirect = verbose ? nil : " >> #{output} 2>&1"
     
 
     l.logs "Copying #{from.blue} to #{to.blue}... "
-    success = system("cp #{from} #{to}")
+    success = system("cp #{from} #{to} #{redirect}")
     l.done if success
     l.error if !success
 
     l.logs "Push #{to.blue} to secret repository... "
-    success = system("cd #{secret_folder}; git add config-#{c[:name]}.rb; git commit -m 'Update config-#{c[:name]}.rb'; git push")
+    success = system("cd #{secret_folder}; git add config-#{c[:name]}.rb #{redirect}; git commit -m 'Update config-#{c[:name]}.rb' #{redirect}; git push #{redirect}")
     l.done if success
     l.error if !success
 }

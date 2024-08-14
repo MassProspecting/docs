@@ -118,7 +118,7 @@ end
     end
 
     l.logs "Updating gems for #{folder.blue}... "
-    success = system("cd #{folder};bundler update #{redirect} #{redirect}")
+    success = system("cd #{folder};bundler update #{redirect}")
     l.done if success
     l.error if !success
 
