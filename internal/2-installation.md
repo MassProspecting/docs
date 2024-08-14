@@ -13,6 +13,7 @@ For **development environment**, you can run master, slaves and workers in your 
 1. [Environment](#1-environment)
 2. [Databases](#2-databases)
 3. [Source Code](#3-source-code)
+4. [Secrets](#4-secrets)
 
 ## 1. Environment
 
@@ -152,9 +153,9 @@ ruby install.rb github_username=<your github username here> github_password=<you
 
 MassProspecting manages 3 configuration files:
 
-- One `config.rb` file for the master nodes, inside the mass.master folder;
-- One `config.rb` file for the slave nodes, inside the mass.slave folder;
-- One `config.rb` file for the workers nodes, inside the mass-sdk folder.
+- One `config.rb` file for the master nodes, inside the `master` folder;
+- One `config.rb` file for the slave nodes, inside the `slave` folder;
+- One `config.rb` file for the workers nodes, inside the `sdk` folder.
 
 The `config.rb` files are always included in the `.gitignore` files, and never submitted to the project repositories.
 
@@ -167,6 +168,45 @@ ruby install.rb github_username=<your github username here> github_password=<you
 ```
 
 ## 5. Running Servers
+
+**Local Environments**
+
+In your local environment, you will manage 6 terminals, from where you will handle the 6 more relevant folders:
+
+- `~/code1/master`,
+- `~/code1/master/extensions/mass.account`,
+- `~/code1/master/extensions/mass.commons`,
+- `~/code1/slave`,
+- `~/code1/slave/extensions/mass.subaccount`,
+- `~/code1/slave/extensions/mass.commons`,
+
+Note that source code of `mass.commons` is replicated in the master and slave.
+
+![Terminals in a local environment of MassProspecting](/assets/internal/2-5.png)
+
+For running the my.saas services in both, the master and the slave, you have to setup the `RUBYLIB` environment variable first:
+
+- I the folder `~/code/master` you will run:
+
+```
+touch .sandbox
+export RUBYLIB=~/code1/master
+ruby app.rb port=3000
+```
+
+- I the folder `~/code/slave` you will run:
+
+```
+touch .sandbox
+export RUBYLIB=~/code1/slave
+ruby app.rb port=3001
+```
+
+Note that you are cleating the `.sandbox` flag to tell my.saas that it is running in a local environment, and it must connect to the development database (among other things).
+
+Note that master is listening port `3000` and slave is listening port `3001`.
+
+![MySaaS services in a local environment of MassProspecting](/assets/internal/2-6.png)
 
 ## 6. Setup Integrations
 
