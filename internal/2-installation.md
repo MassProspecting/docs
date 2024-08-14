@@ -91,11 +91,25 @@ The required repositories of https://github.com/leandrosardi are alrady public.
 
 The computer where you run this script should be a fresh Ubuntu 20.04 with our [standard environment](https://github.com/leandrosardi/environment) installed.
 
-Download the script for installing the environment:
+Follow the steps below to install the source code:
+
+- Download the `Gemfile` with the gems requird to run the the commands below:
 
 ```
 mkdir ~/code
 cd ~/code
+wget https://raw.githubusercontent.com/MassProspecting/docs/main/scripts/Gemfile
+```
+
+- Update Ruby gems:
+
+```
+bundler update
+```
+
+- Download the script for installing the environment:
+
+```
 wget https://raw.githubusercontent.com/MassProspecting/docs/main/scripts/install.rb
 ```
 
