@@ -9,27 +9,6 @@
 require 'simple_cloud_logging'
 require 'simple_command_line_parser'
 require 'highline'
-=begin
-# This is a reasonably well-behaved helper for command-line scripts needing to ask a simple yes/no question.
-# It optionally accepts a prompt and a default answer that will be returned on enter keypress.
-# It keeps asking and echoes the answer on the same line until it gets y/n/Y/N or enter.
-# I tried to get Highline to behave like this directly, but even though it's sophisticated, I didn't like the result.
-# This isn't especially elegant, but it is straightforward and gets the job done.
-#
-# reference: https://gist.github.com/botimer/2891186
-#
-def yesno(prompt = 'Continue?')
-    print "#{prompt} (y/n) "
-    a = ['yes', 'no', 'n', 'y']
-    s = ''
-    while !a.include? s.downcase
-        s = gets.chomp
-    end
-    s.downcase!
-    return true if s == 'yes' || s == 'y'
-    return false if s == 'no' || s == 'n'
-end
-=end
 
 h = {
     :component => [
@@ -143,6 +122,11 @@ else
     success ||= File.exists?(folder)
     l.done if success
     l.error if !success
+
+    l.logs "Updating #{folder.blue}... "
+    success = system("cd #{folder};git fetch --all #{redirect};git reset --hard origin/main #{redirect}")
+    l.done if success
+    l.error if !success
 end
 
 ## Components
@@ -161,6 +145,16 @@ h[:component].select { |c|
         l.skip
     else
         success = system("cd #{folder};git fetch --all #{redirect};git reset --hard origin/#{c[:branch]} #{redirect}")
+        l.done if success
+        l.error if !success
+    end
+
+    l.logs "Creating secret for #{folder.blue}... "
+    if !secrets
+        l.skip
+    else
+        # copy file from dirname/secret/config-#{c[:name]}.rb to #{folder}/config.rb
+        success = system("cp #{dirname}/secret/config-#{c[:name]}.rb #{folder}/config.rb #{redirect}")
         l.done if success
         l.error if !success
     end

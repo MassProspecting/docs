@@ -103,8 +103,10 @@ wget https://raw.githubusercontent.com/MassProspecting/docs/main/scripts/install
 In your local environment, all the component will be stored in the `~/code` folder.
 
 ```
-ruby install.rb github_username=<your github username here> github_password=<your github password here>
+ruby install.rb github_username=<your github username here> github_password=<your github password here> secrets=yes
 ```
+
+The `secrets` parameter will clone the [secret](https://github.com/massprospecting/secret) repository and copy the configuration file of each component. This is explaned better in the next section.
 
 **Production Environments**
 
@@ -113,37 +115,40 @@ In production environments, you have to choose which component you install on ea
 In the master node, run this command:
 
 ```
-ruby install.rb github_username=<your github username here> github_password=<your github password here> component=master
+ruby install.rb github_username=<your github username here> github_password=<your github password here> component=master secrets=yes
 ```
 
 In the slave nodes, run this command:
 
 ```
-ruby install.rb github_username=<your github username here> github_password=<your github password here> component=slave
+ruby install.rb github_username=<your github username here> github_password=<your github password here> component=slave secrets=yes
 ```
 
 In the worker nodes, run these command:
 
 ```
-ruby install.rb github_username=<your github username here> github_password=<your github password here> component=slave
+ruby install.rb github_username=<your github username here> github_password=<your github password here> component=slave secrets=yes
 ```
 
 ```
-ruby install.rb github_username=<your github username here> github_password=<your github password here> component=sdk
+ruby install.rb github_username=<your github username here> github_password=<your github password here> component=sdk secrets=yes
 ```
 
 **Command Line Parameters**
 
-| **Parameter**      | **Mandatory** | **Description**                                                                                           | **Type**                                    | **Default**              |
-|--------------------|---------------|-----------------------------------------------------------------------------------------------------------|--------------------------------------------|--------------------------|
-| `component`       | No            | Regular expression with the name of the component you want to install. E.g.: master. Default: `.*`.       | `STRING`                                   | `.*`                     |
-| `update`           | No            | Update source code by running `git fetch` and `git update` commands.                                       | `BOOL`                                     | `false`                  |
-| `verbose`          | No            | Show the output of the commands executed. Default: no.                                                     | `BOOL`                                     | `false`                  |
-| `output`           | No            | File where to redirect the output of all the commands executed. Default: deploy-output.log.                | `STRING`                                   | `deploy-output.log`       |
-| `github_username`  | Yes           | Github username to access the private repositories. Mandatory.                                             | `STRING`                                   | N/A                      |
-| `github_password`  | Yes           | Github password to access the private repositories. Mandatory.                                             | `STRING`                                   | N/A                      |
+| Name            | Mandatory | Description                                                                                                          | Type                                             | Default             |
+|-----------------|-----------|----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|---------------------|
+| `component`     | false     | Name of the component you want to install. Leave blank to install all components. E.g., `master`. Default: `'-'`.     | `BlackStack::SimpleCommandLineParser::STRING`    | `'-'`               |
+| `ask`           | false     | Show warning messages and ask the user to continue or not. Default: `true`.                                          | `BlackStack::SimpleCommandLineParser::BOOL`      | `true`              |
+| `secrets`       | false     | Download the configuration file of the component. Existing configuration file will be overwritten. Default: `true`.   | `BlackStack::SimpleCommandLineParser::BOOL`      | `true`              |
+| `update`        | false     | Update source code by running `git fetch` and `git update` commands. Default: `false`.                               | `BlackStack::SimpleCommandLineParser::BOOL`      | `false`             |
+| `verbose`       | false     | Show the output of the commands executed. Default: `false`.                                                           | `BlackStack::SimpleCommandLineParser::BOOL`      | `false`             |
+| `output`        | false     | File where to redirect the output of all the commands executed. Default: `deploy-output.log`.                         | `BlackStack::SimpleCommandLineParser::STRING`    | `deploy-output.log` |
+| `github_username`| true     | GitHub username to access the private repositories. Mandatory.                                                       | `BlackStack::SimpleCommandLineParser::STRING`    | N/A                 |
+| `github_password`| true     | GitHub password to access the private repositories. Mandatory.                                                       | `BlackStack::SimpleCommandLineParser::STRING`    | N/A                 |
 
-## 4. Configuration
+
+## 4. Secrets
 
 MassProspecting manages 3 configuration files:
 
@@ -151,9 +156,15 @@ MassProspecting manages 3 configuration files:
 - One `config.rb` file for the slave nodes, inside the mass.slave folder;
 - One `config.rb` file for the workers nodes, inside the mass-sdk folder.
 
-The `config.rb` files are always included in the `.gitignore` files, and never submitted to the repository.
+The `config.rb` files are always included in the `.gitignore` files, and never submitted to the project repositories.
 
-Instead, they are stored into the [secret](https://github.com/massprospecting/secret) repository, where very specific people should have access to.
+Instead, `config.rb` files are stored into the [secret](https://github.com/massprospecting/secret) repository, where very specific people should have access to.
+
+To install the `config.rb` file with a component, you have to activate the `secrets` parameter when calling the `install.rb` command.
+
+```
+ruby install.rb github_username=<your github username here> github_password=<your github password here> component=master secrets=yes
+```
 
 ## 5. Running Servers
 
