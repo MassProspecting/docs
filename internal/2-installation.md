@@ -187,12 +187,12 @@ ruby install.rb github_username=<your github username here> github_password=<you
 
 In your local environment, you will manage 6 terminals, from where you will handle the 6 more relevant folders:
 
-- `~/code1/master`,
-- `~/code1/master/extensions/mass.account`,
-- `~/code1/master/extensions/mass.commons`,
-- `~/code1/slave`,
-- `~/code1/slave/extensions/mass.subaccount`,
-- `~/code1/slave/extensions/mass.commons`,
+- `~/code/master`,
+- `~/code/master/extensions/mass.account`,
+- `~/code/master/extensions/mass.commons`,
+- `~/code/slave`,
+- `~/code/slave/extensions/mass.subaccount`,
+- `~/code/slave/extensions/mass.commons`,
 
 Note that source code of `mass.commons` is replicated in the master and slave.
 
@@ -204,7 +204,7 @@ For running the my.saas services in both, the master and the slave, you have to 
 
 ```
 touch .sandbox
-export RUBYLIB=~/code1/master
+export RUBYLIB=~/code/master
 ruby app.rb port=3000
 ```
 
@@ -212,7 +212,7 @@ ruby app.rb port=3000
 
 ```
 touch .sandbox
-export RUBYLIB=~/code1/slave
+export RUBYLIB=~/code/slave
 ruby app.rb port=3001
 ```
 
@@ -228,10 +228,20 @@ Default user and password are: `su` and `Testing123`.
 
 ![MassProspecting running in your local environment](/assets/internal/2-7.png)
 
-
 ## 6. Setup Integrations
 
+Open a new terminal and run the 
+
+```
+export RUBYLIB=~/code1/sdk
+cd ~/code1/sdk/p
+touch .sandbox
+ruby submit1.rb
+```
+
 ## 7. Setup Marketplace
+
+
 
 ## 8. Update Secrets
 
