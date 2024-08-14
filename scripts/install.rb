@@ -109,8 +109,9 @@ ask = parser.value('ask')
 
 redirect = verbose ? nil : " >> #{output} 2>&1"
 
-# Warning
+# Warnings
 exit(0) if ask && secrets && !HighLine.agree("Warning: The secrets will be overwritten. Do you want to continue?".red)
+exit(0) if ask && update && !HighLine.agree("Warning: Any change to the source code that is not pushed to the repositories will be removed. Do you want to continue?".red)
 
 ## Secret
 folder = "#{dirname}/secret"
@@ -123,7 +124,7 @@ else
     l.done if success
     l.error if !success
 
-    l.logs "Updating #{folder.blue}... "
+    l.logs "Updating code of #{folder.blue}... "
     success = system("cd #{folder};git fetch --all #{redirect};git reset --hard origin/main #{redirect}")
     l.done if success
     l.error if !success
@@ -140,7 +141,7 @@ h[:component].select { |c|
     l.done if success
     l.error if !success
 
-    l.logs "Updating #{folder.blue}... "
+    l.logs "Updating code of #{folder.blue}... "
     if !update
         l.skip
     else
@@ -148,6 +149,11 @@ h[:component].select { |c|
         l.done if success
         l.error if !success
     end
+
+    l.logs "Updating gems for #{folder.blue}... "
+    success = system("cd #{folder};bundler update #{redirect} #{redirect}")
+    l.done if success
+    l.error if !success
 
     l.logs "Creating secret for #{folder.blue}... "
     if !secrets
@@ -170,7 +176,7 @@ h[:component].select { |c|
 
     c[:extensions].each { |e|
         folder = "#{dirname}/#{c[:name]}/extensions/#{e[:name]}"
-        l.logs "Updating #{folder.blue}... "
+        l.logs "Updating code of #{folder.blue}... "
         if !update
             l.skip
         else

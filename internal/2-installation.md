@@ -212,3 +212,5 @@ Note that master is listening port `3000` and slave is listening port `3001`.
 
 ## 7. Setup Marketplace
 
+## 8. Update Secrets
+
