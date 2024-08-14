@@ -281,6 +281,6 @@ ruby push.rb
 
 | Name            | Mandatory | Description                                                                                                          | Type                                             | Default             |
 |-----------------|-----------|----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|---------------------|
-| `component`     | false     | Name of the component you want to install. Leave blank to install all components. E.g., `master`. Default: `'-'`.     | `BlackStack::SimpleCommandLineParser::STRING`    | `'-'`               |
-| `verbose`       | false     | Show the output of the commands executed. Default: `false`.                                                           | `BlackStack::SimpleCommandLineParser::BOOL`      | `false`             |
-| `output`        | false     | File where to redirect the output of all the commands executed. Default: `deploy-output.log`.                         | `BlackStack::SimpleCommandLineParser::STRING`    | `deploy-output.log` |
+| `component`     | false     | Name of the component you want to install. Leave blank to install all components. E.g., `master`. Default: `'-'`.     | `STRING`    | `'-'`               |
+| `verbose`       | false     | Show the output of the commands executed. Default: `false`.                                                           | `BOOL`      | `false`             |
+| `output`        | false     | File where to redirect the output of all the commands executed. Default: `deploy-output.log`.                         | `STRING`    | `deploy-output.log` |
