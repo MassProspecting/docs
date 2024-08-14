@@ -1,29 +1,55 @@
-require 'config.rb'
 require 'simple_cloud_logging'
+require 'simple_command_line_parser'
+require 'highline'
+require_relative 'config.rb'
+
+parser = BlackStack::SimpleCommandLineParser.new(
+    :description => 'This command will run automation of one specific profile.', 
+    :configuration => [{
+        :name=>'component', 
+        :mandatory=>false, 
+        :description=>"Name of the component you want to install. Keep in blank to install all components. E.g.: master. Default: `'-'`.", 
+        :type=>BlackStack::SimpleCommandLineParser::STRING,
+        :default=>'-',
+    }, {
+        :name=>'verbose',
+        :mandatory=>false,
+        :description=>'Show the output of the commands executed.. Default: no.', 
+        :type=>BlackStack::SimpleCommandLineParser::BOOL,
+        :default=>false,
+    }, {
+        :name=>'output',
+        :mandatory=>false,
+        :description=>'File where redirect the output of all the commands executed. Default: deploy-output.log.', 
+        :type=>BlackStack::SimpleCommandLineParser::STRING,
+        :default=>'deploy-output.log',
+    }]
+)
 
 l = BlackStack::LocalLogger.new('push.log')
+dirname = File.expand_path(File.dirname(File.dirname(__FILE__)))
 
-@secrets.each do |secret|
-    begin
-        l.logs "Copying #{secret[:name].to_s.blue} to local folder... "
-        `cp #{secret[:filename]} ./#{secret[:alias]}`
-        l.done
+verbose = parser.value('verbose')
+output = parser.value('output')
+component = parser.value('component')
+redirect = verbose ? nil : " >> #{output} 2>&1"
 
-        l.logs "Git add... "
-        `git add #{secret[:alias]}`
-        l.done
+@config[:component].select { |c|
+    c[:name] == parser.value('component') || parser.value('component') == '-'
+}.each { |c|
+    from = "#{dirname}/#{c[:name]}/config.rb"
+    
+    secret_folder = "#{dirname}/secret"
+    to = "#{secret_folder}/config-#{c[:name]}.rb"
+    
 
-    rescue => e
-        l.reset
-        l.error e
-        exit(1)
-    end
-end
+    l.logs "Copying #{from.blue} to #{to.blue}... "
+    success = system("cp #{from} #{to}")
+    l.done if success
+    l.error if !success
 
-l.logs "Git commit... "
-`git commit -m "Update secrets"`
-l.done
-
-l.logs "Git push... "
-`git push`
-l.done
+    l.logs "Push #{to.blue} to secret repository... "
+    success = system("cd #{secret_folder}; git add config-#{c[:name]}.rb; git commit -m 'Update config-#{c[:name]}.rb'; git push")
+    l.done if success
+    l.error if !success
+}
