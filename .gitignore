@@ -1,6 +1,6 @@
 # anything inside the /scripts folder, except the install.rb file.
 /scripts/*
-!/scripts/config.rb
+!/scripts/components.rb
 !/scripts/install.rb
 !/scripts/push.rb
 !/scripts/pull.rb

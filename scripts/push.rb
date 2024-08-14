@@ -1,7 +1,7 @@
 require 'simple_cloud_logging'
 require 'simple_command_line_parser'
 require 'highline'
-require_relative 'config.rb'
+require_relative 'components.rb'
 
 parser = BlackStack::SimpleCommandLineParser.new(
     :description => 'This command will run automation of one specific profile.', 
@@ -42,7 +42,6 @@ redirect = verbose ? nil : " >> #{output} 2>&1"
     secret_folder = "#{dirname}/secret"
     to = "#{secret_folder}/config-#{c[:name]}.rb"
     
-
     l.logs "Copying #{from.blue} to #{to.blue}... "
     success = system("cp #{from} #{to} #{redirect}")
     l.done if success

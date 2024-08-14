@@ -9,7 +9,7 @@
 require 'simple_cloud_logging'
 require 'simple_command_line_parser'
 require 'highline'
-require_relative 'config.rb'
+require_relative 'components.rb'
 
 parser = BlackStack::SimpleCommandLineParser.new(
     :description => 'This command will run automation of one specific profile.', 

@@ -14,6 +14,10 @@ For **development environment**, you can run master, slaves and workers in your 
 2. [Databases](#2-databases)
 3. [Source Code](#3-source-code)
 4. [Secrets](#4-secrets)
+5. [Running Servers](#5-running-servers)
+6. [Setup Integrations](#6-setup-integrations)
+7. [Setup Marketplace](#7-setup-marketplace)
+8. [Save Secrets](#8-save-secrets)
 
 ## 1. Environment
 
@@ -105,6 +109,12 @@ wget https://raw.githubusercontent.com/MassProspecting/docs/main/scripts/Gemfile
 
 ```
 bundler update
+```
+
+- Download the `components`` file:
+
+```
+wget https://raw.githubusercontent.com/MassProspecting/docs/main/scripts/components.rb
 ```
 
 - Download the script for installing the environment:
@@ -252,4 +262,25 @@ ruby submit2.rb
 
 ## 8. Save Secrets
 
-If you made changes to any `config.rb` file, you should push it into the [secret repository](https://github.com/massprospecting/secret)
+If you made changes to any `config.rb` file, you should push it into the [secret repository](https://github.com/massprospecting/secret), use the `push` command to submit.
+
+- Download the `push.rb` script:
+
+```
+cd ~/code
+wget https://raw.githubusercontent.com/MassProspecting/docs/main/scripts/push.rb
+```
+
+- Push the `config.rb` files into secret repository:
+
+```
+ruby push.rb
+```
+
+**Command Line Parameters**
+
+| Name            | Mandatory | Description                                                                                                          | Type                                             | Default             |
+|-----------------|-----------|----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|---------------------|
+| `component`     | false     | Name of the component you want to install. Leave blank to install all components. E.g., `master`. Default: `'-'`.     | `BlackStack::SimpleCommandLineParser::STRING`    | `'-'`               |
+| `verbose`       | false     | Show the output of the commands executed. Default: `false`.                                                           | `BlackStack::SimpleCommandLineParser::BOOL`      | `false`             |
+| `output`        | false     | File where to redirect the output of all the commands executed. Default: `deploy-output.log`.                         | `BlackStack::SimpleCommandLineParser::STRING`    | `deploy-output.log` |
