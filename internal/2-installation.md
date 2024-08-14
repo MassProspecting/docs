@@ -230,18 +230,25 @@ Default user and password are: `su` and `Testing123`.
 
 ## 6. Setup Integrations
 
-Open a new terminal and run the 
+Open a new terminal and run the script below to install the different integrations supported by MassProspecting:
 
 ```
-export RUBYLIB=~/code1/sdk
-cd ~/code1/sdk/p
+export RUBYLIB=~/code/sdk
+cd ~/code/sdk/p
 touch .sandbox
 ruby submit1.rb
 ```
 
 ## 7. Setup Marketplace
 
+Open a new terminal and run the script below to install the different profiles offered in the marketplace of MassProspecting:
 
+```
+export RUBYLIB=~/code/sdk
+cd ~/code/sdk/p
+touch .sandbox
+ruby submit2.rb
+```
 
 ## 8. Update Secrets
 
