@@ -98,14 +98,35 @@ cd ~/code
 wget https://raw.githubusercontent.com/MassProspecting/docs/main/scripts/install.rb
 ```
 
-**Development Environment**
+**Local Environments**
+
+In your local environment, all the components will be stored in the `~/code` folder.
 
 ```
 ruby install.rb git_username=<your github username here> git_password=<your github password here>
 ```
 
-**Development Environment**
+**Production Environments**
 
+In production environments, you have to choose which components you install on each node.
 
+In the master node, run this command:
+
+```
+ruby install.rb git_username=<your github username here> git_password=<your github password here> component=mass.master
+```
+
+In the slave nodes, run this command:
+
+```
+ruby install.rb git_username=<your github username here> git_password=<your github password here> component=mass.slave
+```
+
+In the worker nodes, run these command:
+
+```
+ruby install.rb git_username=<your github username here> git_password=<your github password here> component=mass.slave
+ruby install.rb git_username=<your github username here> git_password=<your github password here> component=mass-sdk
+```
 
 ## 4. Running Servers
