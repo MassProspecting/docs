@@ -30,7 +30,7 @@ l = BlackStack::LocalLogger.new('push.log')
 dirname = File.expand_path(File.dirname(File.dirname(__FILE__)))
 
 verbose = parser.value('verbose')
-output = parser.value('output')
+output = "#{dirname}/#{parser.value('output')}"
 component = parser.value('component')
 redirect = verbose ? nil : " >> #{output} 2>&1"
 

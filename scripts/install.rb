@@ -70,7 +70,7 @@ gitp = parser.value('github_password')
 
 update = parser.value('update')
 verbose = parser.value('verbose')
-output = parser.value('output')
+output = "#{dirname}/#{parser.value('output')}"
 secrets = parser.value('secrets')
 ask = parser.value('ask')
 
