@@ -250,5 +250,6 @@ touch .sandbox
 ruby submit2.rb
 ```
 
-## 8. Update Secrets
+## 8. Save Secrets
 
+If you made changes to any `config.rb` file, you should push it into the [secret repository](https://github.com/massprospecting/secret)
