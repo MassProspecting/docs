@@ -1,3 +1,4 @@
 # anything inside the /scripts folder, except the install.rb file.
 /scripts/*
 !/scripts/install.rb
+!/scripts/Gemfile
