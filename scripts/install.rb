@@ -8,6 +8,28 @@
 
 require 'simple_cloud_logging'
 require 'simple_command_line_parser'
+require 'highline'
+=begin
+# This is a reasonably well-behaved helper for command-line scripts needing to ask a simple yes/no question.
+# It optionally accepts a prompt and a default answer that will be returned on enter keypress.
+# It keeps asking and echoes the answer on the same line until it gets y/n/Y/N or enter.
+# I tried to get Highline to behave like this directly, but even though it's sophisticated, I didn't like the result.
+# This isn't especially elegant, but it is straightforward and gets the job done.
+#
+# reference: https://gist.github.com/botimer/2891186
+#
+def yesno(prompt = 'Continue?')
+    print "#{prompt} (y/n) "
+    a = ['yes', 'no', 'n', 'y']
+    s = ''
+    while !a.include? s.downcase
+        s = gets.chomp
+    end
+    s.downcase!
+    return true if s == 'yes' || s == 'y'
+    return false if s == 'no' || s == 'n'
+end
+=end
 
 h = {
     :component => [
@@ -48,13 +70,19 @@ parser = BlackStack::SimpleCommandLineParser.new(
     :configuration => [{
         :name=>'component', 
         :mandatory=>false, 
-        :description=>"Name of the component you want to install. Keep in blank to install all components. E.g.: master. Default: `''`.", 
+        :description=>"Name of the component you want to install. Keep in blank to install all components. E.g.: master. Default: `'-'`.", 
         :type=>BlackStack::SimpleCommandLineParser::STRING,
-        :default=>'',
+        :default=>'-',
+    }, {
+        :name=>'ask', 
+        :mandatory=>false, 
+        :description=>"Show warning messages and ask the user to continue or not. Default: true.", 
+        :type=>BlackStack::SimpleCommandLineParser::BOOL,
+        :default=>true,
     }, {
         :name=>'secrets', 
         :mandatory=>false, 
-        :description=>"Regular expr. Default: true.", 
+        :description=>"Download the configuration file of the component. Warning: Existing configuration file will be overwritten. Default: false.", 
         :type=>BlackStack::SimpleCommandLineParser::BOOL,
         :default=>true,
     }, {
@@ -97,13 +125,18 @@ gitp = parser.value('github_password')
 update = parser.value('update')
 verbose = parser.value('verbose')
 output = parser.value('output')
+secrets = parser.value('secrets')
+ask = parser.value('ask')
 
 redirect = verbose ? nil : " >> #{output} 2>&1"
+
+# Warning
+exit(0) if ask && secrets && !HighLine.agree("Warning: The secrets will be overwritten. Do you want to continue?".red)
 
 ## Secret
 folder = "#{dirname}/secret"
 l.logs "Clonning #{folder.blue}... "
-if !parser.value('secrets')
+if !secrets
     l.skip
 else
     success = system("git clone https://#{gitu}:#{gitp}@github.com/massprospecting/secret --single-branch --branch main #{folder} #{redirect}")
@@ -114,7 +147,7 @@ end
 
 ## Components
 h[:component].select { |c|
-    c[:name] == parser.value('component') || parser.value('component') == ''
+    c[:name] == parser.value('component') || parser.value('component') == '-'
 }.each { |c|
     folder = "#{dirname}/#{c[:name]}"
     l.logs "Clonning #{folder.blue}... "
