@@ -11,7 +11,7 @@ For **production environment**, you will need 3 nodes as minimum:
 For **development environment**, you can run master, slaves and workers in your local computer.
 
 1. [Environment](#1-environment)
-2. [Database](#2-database)
+2. [Databases](#2-databases)
 3. [Source Code](#3-source-code)
 
 ## 1. Environment
