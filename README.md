@@ -4,6 +4,8 @@
 
 **User Documentation**
 
+Step by step tutorials about how to use the user interface of MassProspecting.
+
 1. [Getting Started.](/user/1-getting-started.md)
 2. [Leasing Profiles.](/user/2-leasing-profiles.md)
 3. [Registering Your Profiles.](/user/3-registering-your-profiles.md)
@@ -21,6 +23,8 @@
 
 **Integrations**
 
+Tutorials about how to connect MassProspecting with other platforms.
+
 1. [GMail or GSuite](/integrations/1-gmail-or-gsuite.md)
 2. PostMark
 3. Generic MTA
@@ -34,6 +38,8 @@
 
 **Case Studies**
 
+Workflow examples about how to connect different sources of data with different outreach channels.
+
 1. [Case Study 1: Building Lists with Apollo RPA.](/case-studies/1-case-study-1:-building-lists-with-apollo-rpa.md)
 2. [Case Study 2: Scraping Indeed, Enriching with Apollo RPA, Verifying, Sending Outreach.](/case-studies/2-case-study-2:-scraping-indeed,-enriching-with-apollo-rpa,-verifying,-sending-outreach.md)
 3. [Case Study 3: Scraping LinkedIn Public Feed, Enriching with Apollo RPA, Verifying, Sending Outreach.](/case-studies/3-case-study-3:-scraping-linkedin-public-feed,-enriching-with-apollo-rpa,-verifying,-sending-outreach.md)
@@ -42,7 +48,9 @@
 6. [Case Study 5: Double Email Verification.](/case-studies/6-case-study-5:-double-email-verification.md)
 7. [Case Study 6: Catch-All Re-Verification.](/case-studies/7-case-study-6:-catch-all-re-verification.md)
 
-**Internal Documentation**
+**Internals**
+
+How does MassPropspecting work internally.
 
 1. [Architecture](/internal/1-architecture.md)
 2. [Installation](/internal/2-installation.md)
