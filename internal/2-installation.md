@@ -100,8 +100,8 @@ Follow the steps below to install the source code:
 - Download the `Gemfile` with the gems requird to run the the commands below:
 
 ```
-mkdir ~/code
-cd ~/code
+mkdir ~/code1
+cd ~/code1
 wget https://raw.githubusercontent.com/MassProspecting/docs/main/scripts/Gemfile
 ```
 
@@ -125,7 +125,7 @@ wget https://raw.githubusercontent.com/MassProspecting/docs/main/scripts/install
 
 **Local Environments**
 
-In your local environment, all the component will be stored in the `~/code` folder.
+In your local environment, all the component will be stored in the `~/code1` folder.
 
 ```
 ruby install.rb github_username=<your github username here> github_password=<your github password here> secrets=yes
@@ -197,12 +197,12 @@ ruby install.rb github_username=<your github username here> github_password=<you
 
 In your local environment, you will manage 6 terminals, from where you will handle the 6 more relevant folders:
 
-- `~/code/master`,
-- `~/code/master/extensions/mass.account`,
-- `~/code/master/extensions/mass.commons`,
-- `~/code/slave`,
-- `~/code/slave/extensions/mass.subaccount`,
-- `~/code/slave/extensions/mass.commons`,
+- `~/code1/master`,
+- `~/code1/master/extensions/mass.account`,
+- `~/code1/master/extensions/mass.commons`,
+- `~/code1/slave`,
+- `~/code1/slave/extensions/mass.subaccount`,
+- `~/code1/slave/extensions/mass.commons`,
 
 Note that source code of `mass.commons` is replicated in the master and slave.
 
@@ -210,19 +210,19 @@ Note that source code of `mass.commons` is replicated in the master and slave.
 
 For running the my.saas services in both, the master and the slave, you have to setup the `RUBYLIB` environment variable first:
 
-- I the folder `~/code/master` you will run:
+- I the folder `~/code1/master` you will run:
 
 ```
 touch .sandbox
-export RUBYLIB=~/code/master
+export RUBYLIB=~/code1/master
 ruby app.rb port=3000
 ```
 
-- I the folder `~/code/slave` you will run:
+- I the folder `~/code1/slave` you will run:
 
 ```
 touch .sandbox
-export RUBYLIB=~/code/slave
+export RUBYLIB=~/code1/slave
 ruby app.rb port=3001
 ```
 
@@ -243,8 +243,8 @@ Default user and password are: `su` and `Testing123`.
 Open a new terminal and run the script below to install the different integrations supported by MassProspecting:
 
 ```
-export RUBYLIB=~/code/sdk
-cd ~/code/sdk/p
+export RUBYLIB=~/code1/sdk
+cd ~/code1/sdk/p
 touch .sandbox
 ruby submit1.rb
 ```
@@ -254,8 +254,8 @@ ruby submit1.rb
 Open a new terminal and run the script below to install the different profiles offered in the marketplace of MassProspecting:
 
 ```
-export RUBYLIB=~/code/sdk
-cd ~/code/sdk/p
+export RUBYLIB=~/code1/sdk
+cd ~/code1/sdk/p
 touch .sandbox
 ruby submit2.rb
 ```
@@ -267,7 +267,7 @@ If you made changes to any `config.rb` file, you should push it into the [secret
 - Download the `push.rb` script:
 
 ```
-cd ~/code
+cd ~/code1
 wget https://raw.githubusercontent.com/MassProspecting/docs/main/scripts/push.rb
 ```
 
