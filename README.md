@@ -2,7 +2,13 @@
 
 # AI-Driven, Multi-Channel Outreach System
 
-**User Documentation**
+- [User Documentation](#user-documentation)
+- [Integrations](#integrations)
+- [API](#api)
+- [Case Studies](#case-studies)
+- [Internals](#internals)
+
+## User Documentation
 
 Step by step tutorials about how to use the user interface of MassProspecting.
 
@@ -21,7 +27,7 @@ Step by step tutorials about how to use the user interface of MassProspecting.
 13. [Setting up a LinkedIn Follow Up Series.](/user/13-setting-up-a-linkedin-follow-up-series.md)
 14. [Setting up a Facebook Follow Up Series.](/user/14-setting-up-a-facebook-follow-up-series.md)
 
-**Integrations**
+## Integrations
 
 Tutorials about how to connect MassProspecting with other platforms.
 
@@ -36,7 +42,11 @@ Tutorials about how to connect MassProspecting with other platforms.
 9. Zyte
 10. OpenAI
 
-**Case Studies**
+## API
+
+1. [Getting API key](/api/1-getting-api-key.md)
+
+## Case Studies
 
 Workflow examples about how to connect different sources of data with different outreach channels.
 
@@ -48,7 +58,7 @@ Workflow examples about how to connect different sources of data with different 
 6. [Case Study 5: Double Email Verification.](/case-studies/6-case-study-5:-double-email-verification.md)
 7. [Case Study 6: Catch-All Re-Verification.](/case-studies/7-case-study-6:-catch-all-re-verification.md)
 
-**Internals**
+## Internals
 
 How does MassPropspecting work internally.
 
