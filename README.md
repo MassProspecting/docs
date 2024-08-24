@@ -1,6 +1,16 @@
 <img src="./assets/logo.svg" alt="image" width="256" height="auto" />
 
-# AI-Driven, Multi-Channel Outreach System
+# Done for You, Multi-Channel Outreach System
+
+With [**MassProspecting**](https://massprospecting.com) it is very simple to outreach campaigns on **LinkedIn**, **Facebook** and **Email**.
+
+**Example:**
+
+The picture below is an example of a very simple workflow that scrapes emails from [Apollo](https://www.apollo.io), verify them using [Reoon](https://emailverifier.reoon.com), and sending an email with [GMail](https://gmail.com).
+
+![Example Workflow](./assets/main/1.png)
+
+**Documentation Outline:**
 
 - [User Documentation](#user-documentation)
 - [Integrations](#integrations)
@@ -62,6 +72,6 @@ Workflow examples about how to connect different sources of data with different 
 
 How does MassPropspecting work internally.
 
-1. [Architecture](/internal/1-architecture.md)
-2. [Installation](/internal/2-installation.md)
-3. [Checlist: Profiles Revision Procedure](/internal/3-checklist-profiles-revision-procedure.md)
+1. [Architecture](/internals/1-architecture.md)
+2. [Installation](/internals/2-installation.md)
+3. [Checlist: Profiles Revision Procedure](/internals/3-checklist-profiles-revision-procedure.md)

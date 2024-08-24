@@ -35,17 +35,17 @@ Such a username and password is also valid to access the PostgreSQL installed in
 
 You can use a database tool like [DBeaver](https://dbeaver.io/) to connect PostgreSQL.
 
-![Connecting MassProspecting Database with DBeaver](/assets/internal/2-1.png)
+![Connecting MassProspecting Database with DBeaver](/assets/internals/2-1.png)
 
 Setup your connection to see all databases running in the server.
 
-![Connecting MassProspecting Database with DBeaver](/assets/internal/2-2.png)
+![Connecting MassProspecting Database with DBeaver](/assets/internals/2-2.png)
 
 **Local Environments**
 
 If you are installing your local environment, both databases (master and slave) are hosted by your local PostgreSQL, with names **mass.master** and **mass.slave** respectively.
 
-![MassProspecting - Local Environment Configuration](/assets/internal/2-3.png)
+![MassProspecting - Local Environment Configuration](/assets/internals/2-3.png)
 
 **Production Environments**
 
@@ -57,7 +57,7 @@ If you are installing in production,
 
 The name for both databases is **blackstack**.
 
-![MassProspecting - Production Environment Configuration](/assets/internal/2-4.png)
+![MassProspecting - Production Environment Configuration](/assets/internals/2-4.png)
 
 **Initialization**
 
@@ -206,7 +206,7 @@ In your local environment, you will manage 6 terminals, from where you will hand
 
 Note that source code of `mass.commons` is replicated in the master and slave.
 
-![Terminals in a local environment of MassProspecting](/assets/internal/2-5.png)
+![Terminals in a local environment of MassProspecting](/assets/internals/2-5.png)
 
 For running the my.saas services in both, the master and the slave, you have to setup the `RUBYLIB` environment variable first:
 
@@ -230,13 +230,13 @@ Note that you are cleating the `.sandbox` flag to tell my.saas that it is runnin
 
 Note that master is listening port `3000` and slave is listening port `3001`.
 
-![MySaaS services in a local environment of MassProspecting](/assets/internal/2-6.png)
+![MySaaS services in a local environment of MassProspecting](/assets/internals/2-6.png)
 
 Open a browser and go to [https://127.0.0.1:3000](https://127.0.0.1:3000).
 
 Default user and password are: `su` and `Testing123`.
 
-![MassProspecting running in your local environment](/assets/internal/2-7.png)
+![MassProspecting running in your local environment](/assets/internals/2-7.png)
 
 ## 6. Setup Integrations
 

@@ -9,7 +9,7 @@ In this section we review the architecture of MassProspecting, and how to instal
 
 ## 1. Overview
 
-![MassProspecting Architecture](/assets/internal/1-1.png)
+![MassProspecting Architecture](/assets/internals/1-1.png)
 
 **Master Node**
 
