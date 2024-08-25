@@ -1,8 +1,8 @@
 # Registering Your Profiles
 
-If you want to connect your own profiles instead of [leasing them](/docs/user/2-leasing-profiles.md), MassPropsecting allows you to do that, as it is explained in this article.
+If you want to connect your own profiles instead of [leasing them](/user/2-leasing-profiles.md), MassPropsecting allows you to do that, as it is explained in this article.
 
-Profiles are added into one of your  [sub-accounts](/docs/user/1-getting-started.md#2-setup-your-sub-account). So you have to access a sub-account first:
+Profiles are added into one of your  [sub-accounts](/user/1-getting-started.md#2-setup-your-sub-account). So you have to access a sub-account first:
 
 1. Login to your MassProspecting account [here](https://massprospecting.com/login).
 
@@ -14,27 +14,51 @@ Once in your sub-account:
 
 1. In the left-bar, click on **integrations**.
 
-2. Click on the plus button to integrate a new profile.
+2. Click on the plus button.
 
 You will be redirected to the integrations screen, from where you can connect your profiles of LinkedIn, Facebook, Apollo, Reoon, etc.
 
-![MassProspecting Integrations](/docs/assets/user/3-1.png)
+![MassProspecting Integrations](/assets/user/3-1.png)
 
-## 1. Profile Types 
+There are 2 types of integrations:
 
-There are many different type of profiles that you can connect to 
+1. Native Integrations, and
+2. Profile Integrations.
 
-## 2. Profile Access
+## 1. Native Integrations
 
-There are :
+A **native integration** is the ability to connect MassPropsecting to a third-party service like [OpenAI](https://openai.com) or [Zyte](https://zyte.com).
 
-1. Basic.
-2. API.
-3. MTA.
-4. RPA.
+Native integrations are not used to perform any operation, but they are used by **Profile Integrations**.
 
-## 1. Basic Profile Types
+## 2. Profile Integrations 
 
+A **profile integration** is a **social account** like LinkedIn or Facebook; or a **SaaS accounts** like Apollo, Reoon, FindyMail, ZeroBounce, Targetron, etc.
+
+Profile integrations are used for **scraping**, **enrichment** and **outreach** operations. 
+
+Unlike native integrations; profile integrations are **open source**, and any **software developer** can create new profile integrations using our [MassProspecting SDK](https://github.com/massprospecting/mass-sdk) and [MassProspecting API](https://github.com/massprospecting/mass-client).
+
+There are 4 types of profiles integrations:
+
+1. **basic** access,
+2. **API** access,
+3. **MTA** access; and
+4. **RPA** access.
+
+## 3. Basic Access
+
+Basic profiles manage public pages, and they don't require login credentials or api keys.
+
+Basic profiles usally uses the native integration to perform their operations.
+
+**E.g.:** Our [Indeed](https://indeed.com) integration will require your [Zyte](https://zyte.com) API key to scrape Indeed pages.
+
+![MassPropsecting Indeed Integration](/assets/user/3-2.png)
+
+## 4. API Access
+
+API profiles connect to a third-party service through an API key.
 
 
 

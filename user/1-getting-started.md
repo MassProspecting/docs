@@ -14,7 +14,7 @@ In this article we are going to:
 
 Create a new **MassProspecting** account [here](https://massprospecting.com/signup).
 
-![MassProspecting SignUp](/docs/assets/user/1-1.png)
+![MassProspecting SignUp](/assets/user/1-1.png)
 
 After you signed up, you will be asked to create your first **sub-account**.
 
@@ -28,7 +28,7 @@ Sub-accounts are a great way keep your campaigns divided and isolated.
 
 You can create a new sub-account [here](https://massprospecting.com/subaccounts/new).
 
-![MassProspecting Sub-Account Creation](/docs/assets/user/1-2.png)
+![MassProspecting Sub-Account Creation](/assets/user/1-2.png)
 
 In the picture above, you are creating a **free** sub-account.
 
@@ -46,7 +46,7 @@ In order to start your outreach campaing in a matter of minutes, MassProspecting
 
 You can find the marketplace [here](https://massprospecting.com/marketplace).
 
-![MassProspecting Marketplace](/docs/assets/user/1-3.jpeg)
+![MassProspecting Marketplace](/assets/user/1-3.jpeg)
 
 In the marketplace you can find:
 
@@ -58,7 +58,7 @@ In the marketplace you can find:
 
 4. leads data source like Apollo.
 
-If you still want to connect your own profiles, MassPropsecting allows you to connect them, as it is explained [here](/docs/user/3-registering-your-profiles.md).
+If you still want to connect your own profiles, MassPropsecting allows you to connect them, as it is explained [here](/user/3-registering-your-profiles.md).
 
 ## 4. Accessing Your Sub-Account
 

@@ -42,15 +42,15 @@ Step by step tutorials about how to use the user interface of MassProspecting.
 Tutorials about how to connect MassProspecting with other platforms.
 
 1. [GMail or GSuite](/integrations/1-gmail-or-gsuite.md)
-2. PostMark
-3. Generic MTA
-4. LinkedIn
-5. Facebook
-6. Apollo
-7. Reoon
-8. ZeroBounce
-9. Zyte
-10. OpenAI
+2. [PostMark](/integrations/2-postmark.md)
+3. [Generic MTA](/integrations/3-generic mta.md)
+4. [LinkedIn](/integrations/4-linkedin.md)
+5. [Facebook](/integrations/5-facebook.md)
+6. [Apollo](/integrations/6-apollo.md)
+7. [Reoon](/integrations/7-reoon.md)
+8. [ZeroBounce](/integrations/8-zerobounce.md)
+9. [Zyte](/integrations/9-zyte.md)
+10. [OpenAI](/integrations/10-openai.md)
 
 ## API
 

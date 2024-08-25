@@ -4,7 +4,7 @@ In order to start your outreach campaing in a matter of minutes, MassProspecting
 
 You can find the marketplace [here](https://massprospecting.com/marketplace).
 
-![MassProspecting Marketplace](/docs/assets/user/2-1.jpeg)
+![MassProspecting Marketplace](/assets/user/2-1.jpeg)
 
 In the marketplace you can find:
 
@@ -16,5 +16,5 @@ In the marketplace you can find:
 
 4. leads data source like Apollo.
 
-If you still want to connect your own profiles, MassPropsecting allows you to connect them, as it is explained [here](/docs/user/3-registering-your-profiles.md).
+If you still want to connect your own profiles, MassPropsecting allows you to connect them, as it is explained [here](/user/3-registering-your-profiles.md).
 
