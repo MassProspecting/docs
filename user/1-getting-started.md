@@ -60,3 +60,12 @@ In the marketplace you can find:
 
 If you still want to connect your own profiles, MassPropsecting allows you to connect them, as it is explained [here](/docs/user/3-registering-your-profiles.md).
 
+## 4. Accessing Your Sub-Account
+
+After you have created a sub-account and leased some profiles to work, you can find your subaccounts [here](https://massprospecting.com/subaccounts)
+
+_picture pending_
+
+Click on the link to access your subaccount in a new tab of the browser.
+
+Sub-accounts are hosted in a sub-domain of `massprospecting.com` (e.g.: [my-company-name.massprospecting.com](https://s01.massprospecting.com))
