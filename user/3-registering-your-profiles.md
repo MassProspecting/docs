@@ -39,7 +39,7 @@ Profile integrations are used for **scraping**, **enrichment** and **outreach** 
 
 Unlike native integrations; profile integrations are **open source**, and any **software developer** can create new profile integrations using our [MassProspecting SDK](https://github.com/massprospecting/mass-sdk) and [MassProspecting API](https://github.com/massprospecting/mass-client).
 
-There are 4 types of profiles integrations:
+There are 4 types of profile integrations:
 
 1. **basic** access,
 2. **API** access,
@@ -60,10 +60,27 @@ Basic profiles usally uses the native integration to perform their operations.
 
 API profiles connect to a third-party service through an API key.
 
-As of today, there are 4 different
+To create an API profile, you have to define:
 
-- 
+1. a name (e.g.: `Reoon LTD 1`); and
 
-You can create an API profile
+2. its API key.
 
+![MassPropsecting Reoon Integration trough API key](/assets/user/3-3.png)
+
+## 5. MTA Access
+
+MTA profiles connect to an email outreach using SMTA/IMAP credentials.
+
+To create a MTA profile, you have to define:
+
+1. a name (e.g.: `GMail 1`),
+
+2. the email address that you want to connect; and
+
+3. the SMTP/IMAP password.
+
+![MassPropsecting GMail Integration trough MTA credentials](/assets/user/3-3.png)
+
+## 6. RPA Access
 
