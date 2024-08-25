@@ -75,4 +75,4 @@ How does MassPropspecting work internally.
 
 1. [Architecture](/internals/1-architecture.md)
 2. [Installation](/internals/2-installation.md)
-3. [Checlist: Profiles Revision Procedure](/internals/3-checklist-profiles-revision-procedure.md)
+3. [Checklist: Profiles Revision Procedure](/internals/3-checklist-profiles-revision-procedure.md)
