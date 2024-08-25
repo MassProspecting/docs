@@ -51,6 +51,7 @@ Tutorials about how to connect MassProspecting with other platforms.
 8. [ZeroBounce](/integrations/8-zerobounce.md)
 9. [Zyte](/integrations/9-zyte.md)
 10. [OpenAI](/integrations/10-openai.md)
+11. [AdsPower](/integrations/11-adspower.md)
 
 ## API
 

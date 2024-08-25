@@ -31,6 +31,11 @@ A **native integration** is the ability to connect MassPropsecting to a third-pa
 
 Native integrations are not used to perform any operation, but they are used by **Profile Integrations**.
 
+Here are some examples of native integrations and how to get their API keys:
+
+- [OpenAI](/integrations/10-openai.md).
+- [Zyte](/integrations/9-zyte.md).
+
 ## 2. Profile Integrations 
 
 A **profile integration** is a **social account** like LinkedIn or Facebook; or a **SaaS accounts** like Apollo, Reoon, FindyMail, ZeroBounce, Targetron, etc.
@@ -41,7 +46,7 @@ Unlike native integrations; profile integrations are **open source**, and any **
 
 There are 4 types of profile integrations:
 
-1. **basic** access,
+1. **Basic** access,
 2. **API** access,
 3. **MTA** access; and
 4. **RPA** access.
@@ -68,6 +73,11 @@ To create an API profile, you have to define:
 
 ![MassPropsecting Reoon Integration trough API key](/assets/user/3-3.png)
 
+Here are some examples of API integrations and how to get their API keys:
+
+- [Reoon](/integrations/7-reoon.md).
+- [ZeroBounce](/integrations/8-zerobounce.md).
+
 ## 5. MTA Access
 
 MTA profiles connect to an email outreach using SMTA/IMAP credentials.
@@ -80,7 +90,39 @@ To create a MTA profile, you have to define:
 
 3. the SMTP/IMAP password.
 
-![MassPropsecting GMail Integration trough MTA credentials](/assets/user/3-3.png)
+![MassPropsecting GMail Integration trough MTA credentials](/assets/user/3-4.png)
+
+Here are some examples of MTA integrations and how to get their credentials:
+
+- [GMail or GSuite](/integrations/1-gmail-or-gsuite.md).
+- [PostMark](/integrations/2-postmark.md).
 
 ## 6. RPA Access
+
+RPA profiles open a browser and operate social accounts or SaaS accounts like a human.
+
+RPA profiles are typically used to perform operations that are not possible with the API.
+
+**Examples:**
+
+- It is not possible to send Facebook Friend Requests through its API.
+
+- Emails scraped from Apollo on the user interface are 10x cheaper than using Apollo's API.
+
+To create a RPA profile, you have to define:
+
+1. a name (e.g.: `LinkedIn 1`); and
+
+2. the email address of the profile.
+
+![MassPropsecting GMail Integration trough MTA credentials](/assets/user/3-5.png)
+
+Additionally, you have to [share an AdsPower profile](/integrations/11-adspower.md) from where we can access your profile
+
+Here are some examples of RPA integrations:
+
+- [Facebook](/integrations/5-facebook.md).
+- [LinkedIn](/integrations/4-linkedin.md).
+- [Apollo](/integrations/6-apollo.md).
+
 
