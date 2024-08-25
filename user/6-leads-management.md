@@ -10,11 +10,6 @@ You have to access a sub-account first:
 
 3. Click on the sub-account where you want to add your profiles.
 
-Once in your sub-account:
+Once in your sub-account, in the left-bar, click on **leads**.
 
-1. In the left-bar, click on **sources**.
-
-2. In the top-bar, click on the **plus button**.
-
-You will be redirected to the **new source** screen, from where you can:
 
