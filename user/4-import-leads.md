@@ -70,4 +70,3 @@ Then clock on the **import button**.
 
 ![MassProspecting Import Mapping](/assets/user/4-5.png)
 
-
