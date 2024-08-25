@@ -28,7 +28,7 @@ Sub-accounts are a great way keep your campaigns divided and isolated.
 
 You can create a new sub-account [here](https://massprospecting.com/subaccounts/new).
 
-![MassProspecting Sub-Account Creation](/docs/assets/user/2-1.png)
+![MassProspecting Sub-Account Creation](/docs/assets/user/1-2.png)
 
 In the picture above, you are creating a **free** sub-account.
 
@@ -43,6 +43,10 @@ After you have created your subaccount, you will be redirected to the **marketpl
 ## 3. Connect Apollo, Reoon and GMail
 
 In order to start your outreach campaing in a matter of minutes, MassProspecting provides you with a **marketplace** of other people's profiles that you can use for a monthly fee.
+
+You can find the marketplace [here](https://massprospecting.com/marketplace).
+
+![MassProspecting Marketplace](/docs/assets/user/1-3.jpeg)
 
 In the marketplace you can find:
 
