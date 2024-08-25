@@ -35,3 +35,5 @@ and define:
 )).
 
 ![MassProspecting Scraping LinkedIn Public Feed](/assets/user/5-4.png)
+
+Click on the **add button** to create the new source.

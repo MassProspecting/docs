@@ -37,6 +37,11 @@ Step by step tutorials about how to use the user interface of MassProspecting.
 13. [Setting up a LinkedIn Follow Up Series.](/user/13-setting-up-a-linkedin-follow-up-series.md)
 14. [Setting up a Facebook Follow Up Series.](/user/14-setting-up-a-facebook-follow-up-series.md)
 
+**Advanced:**
+
+15. Advanced Sources Configuration
+
+
 ## Integrations
 
 Tutorials about how to connect MassProspecting with other platforms.
