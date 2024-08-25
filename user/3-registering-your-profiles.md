@@ -60,5 +60,10 @@ Basic profiles usally uses the native integration to perform their operations.
 
 API profiles connect to a third-party service through an API key.
 
+As of today, there are 4 different
+
+- 
+
+You can create an API profile
 
 

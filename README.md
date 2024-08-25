@@ -43,7 +43,7 @@ Tutorials about how to connect MassProspecting with other platforms.
 
 1. [GMail or GSuite](/integrations/1-gmail-or-gsuite.md)
 2. [PostMark](/integrations/2-postmark.md)
-3. [Generic MTA](/integrations/3-generic mta.md)
+3. [Generic MTA](/integrations/3-generic-mta.md)
 4. [LinkedIn](/integrations/4-linkedin.md)
 5. [Facebook](/integrations/5-facebook.md)
 6. [Apollo](/integrations/6-apollo.md)
