@@ -14,7 +14,7 @@ Once in your sub-account:
 
 1. In the left-bar, click on **integrations**.
 
-2. Click on the plus button.
+2. In the top-bar, click on the **plus button**.
 
 You will be redirected to the integrations screen, from where you can connect your profiles of LinkedIn, Facebook, Apollo, Reoon, etc.
 
@@ -117,7 +117,7 @@ To create a RPA profile, you have to define:
 
 ![MassPropsecting GMail Integration trough MTA credentials](/assets/user/3-5.png)
 
-Additionally, you have to [share an AdsPower profile](/integrations/11-adspower.md) from where we can access your profile
+Additionally, you have to [share an AdsPower profile](/integrations/11-adspower.md) from where we can access your profile.
 
 Here are some examples of RPA integrations:
 
