@@ -1,0 +1,34 @@
+# Case Study 8: Bulk Tags Removing Using Rules
+
+So I messed up...
+
+When I access to the [imports screen](/user/04-import-leads.md) of my [subaccount](/user/01-getting-started.md#2-setup-your-sub-account) I see I imported 268 leads, but assigned to the tag `cold-apollo` instad of `group members`.
+
+In short, I chosen the wrong tag when I submited my CSV file.
+
+![MassProspecting Import with the wrong tag](/assets/case-studies/case-study-bulk-tags-removing-using-rules/1.png).
+
+So, followed the steps below to fix my mistake:
+
+1. I imported the same CSV again, but this time I assigned the right tag.
+
+![MassProspecting Import with the right tag](/assets/case-studies/case-study-bulk-tags-removing-using-rules/2.png).
+
+
+2. I configured a new [rule](/user/15-rules.md) called `Remove tag 'test-apollo' from leads with tag 'group members`, and it looks like follow:
+
+| Name                     | Remove tag 'test-apollo' from leads with tag 'group members' |
+|--------------------------|--------------------------------------------------------------|
+| Apply to Previous Events | `true`                                                       |
+| Delay                    | N/A                                                          |
+| Trigger name             | `"When a lead is tagged as 'Group members'"`                 |
+| Trigger type             | `:tag_added`                                                 |
+| Trigger parameter.tag    | `:'Group members'`                                           |
+| Filters                  | N/A                                                          |
+| Action name              | `"Remove the tag 'cold-apollo'"`                             |
+| Action type              | `:remove_tag`                                                |
+| Action parameter.tag     | `:'Cold-apollo`                                              |
+
+![MassProspecting Rule to Remove a Second Tag](/assets/case-studies/case-study-bulk-tags-removing-using-rules/3.png).
+
+
