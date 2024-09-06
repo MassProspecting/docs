@@ -31,4 +31,6 @@ So, followed the steps below to fix my mistake:
 
 ![MassProspecting Rule to Remove a Second Tag](/assets/case-studies/case-study-bulk-tags-removing-using-rules/3.png)
 
+3. I turned the rule `off` after it ran, so I know it won't affect any further work.
 
+![MassProspecting Turning Rule Off](/assets/case-studies/case-study-bulk-tags-removing-using-rules/4.png)
