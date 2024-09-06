@@ -6,13 +6,13 @@ When I access to the [imports screen](/user/04-import-leads.md) of my [subaccoun
 
 In short, I chosen the wrong tag when I submited my CSV file.
 
-![MassProspecting Import with the wrong tag](/assets/case-studies/case-study-bulk-tags-removing-using-rules/1.png).
+![MassProspecting Import with the wrong tag](/assets/case-studies/case-study-bulk-tags-removing-using-rules/1.png)
 
 So, followed the steps below to fix my mistake:
 
 1. I imported the same CSV again, but this time I assigned the right tag.
 
-![MassProspecting Import with the right tag](/assets/case-studies/case-study-bulk-tags-removing-using-rules/2.png).
+![MassProspecting Import with the right tag](/assets/case-studies/case-study-bulk-tags-removing-using-rules/2.png)
 
 
 2. I configured a new [rule](/user/15-rules.md) called `Remove tag 'test-apollo' from leads with tag 'group members`, and it looks like follow:
@@ -29,6 +29,6 @@ So, followed the steps below to fix my mistake:
 | Action type              | `:remove_tag`                                                |
 | Action parameter.tag     | `:'Cold-apollo`                                              |
 
-![MassProspecting Rule to Remove a Second Tag](/assets/case-studies/case-study-bulk-tags-removing-using-rules/3.png).
+![MassProspecting Rule to Remove a Second Tag](/assets/case-studies/case-study-bulk-tags-removing-using-rules/3.png)
 
 
