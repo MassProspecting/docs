@@ -6,7 +6,7 @@ ruby '~>3.1.2'
 # BlackStack framework gems
 gem 'blackstack-db', '~>1.0.9'
 gem 'blackstack-core', '~>1.2.26'
-gem 'blackstack-nodes', '~>1.2.12'
+gem 'blackstack-nodes', '~>1.2.14'
 gem 'simple_cloud_logging', '~>1.2.7'
 gem 'simple_command_line_parser', '~>1.1.2'
 gem 'highline', '~>3.1.0'
