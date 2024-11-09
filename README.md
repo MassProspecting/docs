@@ -60,7 +60,7 @@ Tutorials about how to connect MassProspecting with other platforms.
 
 ## API
 
-1. [Getting API key](/api/01-getting-api-key.md)
+1. [Getting API key](/api/001-getting-api-key.md)
 
 ## Case Studies
 
