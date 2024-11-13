@@ -1,119 +1,99 @@
 # Architecture
 
-First thing first, you need to have the whole picture of MassProspecting's architecture.
-
-In this section we review the architecture of MassProspecting, and how to install it in both: **development** and **production** environments.
+This document provides an overview of MassProspecting's architecture.
 
 1. [Overview](#1-overview)
 2. [Processes](#2-processes)
 
 ## 1. Overview
 
+MassProspecting has 3 keys components:
+
+1. the **master** node,
+2. the **slave** nodes, and
+3. the **worker** nodes.
+
+The picture below shows the stack running on each one of them, and the communication between them too.
+
 ![MassProspecting Architecture](/assets/internals/1-1.png)
 
-**Master Node**
+### Master Node
 
-The **master node** is where users signup and login (among other use cases).
+The **master node** is the main server where users sign up, log in, and access the platform. There is only one master node running at any time. The master node performs several key functions:
 
-There is one, and only one, **master node** running.
+- Hosts user accounts for the platform.
+- Manages the marketplace for available profiles.
+- Controls sub-accounts on **slave servers** (explained below).
+- Handles invoicing and payment processing.
+- Manages security, including login, logout, password reset, and recovery.
 
-The **master** is one server running a [my.saas](https://github.com/leandrosardi/my.saas) platform with the following [my.saas extensions](https://github.com/leandrosardi/my.saas/tree/1.6.8?tab=readme-ov-file#4-extensions):
+The master node runs a [my.saas](https://github.com/leandrosardi/my.saas) platform with the following extensions:
 
-- [mass.commons](https://github.com/massprospecting/mass.commons) _(private access)_,
-- [mass.account](https://github.com/massprospecting/mass.account) _(private access)_,
-- [i2p](https://github.com/leandrosardi/i2p),
-- [content](https://github.com/leandrosardi/content),
-- [monitoring](https://github.com/leandrosardi/monitoring),
-and
-- [dropbox-token-helper](https://github.com/leandrosardi/dropbox-token-helper).
+- [mass.commons](https://github.com/massprospecting/mass.commons) _(private access)_
+- [mass.account](https://github.com/massprospecting/mass.account) _(private access)_
+- [i2p](https://github.com/leandrosardi/i2p) (invoicing & payments processing)
+- [content](https://github.com/leandrosardi/content) (a CMS)
+- [monitoring](https://github.com/leandrosardi/monitoring)
+- [dropbox-token-helper](https://github.com/leandrosardi/dropbox-token-helper)
 
-The my.saas platform running into the master has its own `config.rb` file, and its own PostgreSQL database running locally.
+The master node's `my.saas` platform uses a `config.rb` configuration file and runs its own local PostgreSQL database.
 
-The master node:
+Users can create **sub-accounts** that are hosted on **slave nodes**.
 
-- hosts all the user accounts of the platform,
-- publishes the marketplace of profiles,
-- manage the sub-accounts hosted in **salve servers** (read about slave servers below),
-- manage invoicing and payments processing; and
-- manage all security use cases like login, logout, password reset and password recovery.
+### Slave Nodes
 
-Users create **sub-accounts** that are stored in **slave nodes**.
+The **slave nodes** are servers where sub-accounts are hosted. There can be one or more slave nodes running at any given time. A sub-account is used for:
 
-**Slave Node**
+- **White-labeling**: Creating a sub-account for each client of a user.
+- **Cost Control**: Creating sub-accounts for different sectors within an organization.
 
-There are one or more **slave nodes** running.
+Sub-accounts allow custom domains with the user's brand, and users can grant access to their clients.
 
-The **slave nodes** are where sub-accounts are hosted.
-
-A sub-account is used for:
-
-- white-labeling, creating one sub-account for each client of the user.
-
-- costs control, creating one sub-account for each sector in an organization.
-
-Also, sub-accounts allow to create custom domains the brand of the user, and grant access to the user's clients too.
-
-The **slaves** run a [my.saas](https://github.com/leandrosardi/my.saas) platform with the following [my.saas extensions](https://github.com/leandrosardi/my.saas/tree/1.6.8?tab=readme-ov-file#4-extensions):
+The slave nodes also run a [my.saas](https://github.com/leandrosardi/my.saas) platform with the following extensions:
 
 - [mass.commons](https://github.com/massprospecting/mass.commons)
 - [mass.subaccount](https://github.com/massprospecting/mass.subaccount)
 
-The my.saas platform running into a slave has its own `config.rb` file, and its own PostgreSQL database running locally.
+Each slave node has its own `config.rb` file and runs a local PostgreSQL database. Communication between the **master** and **slave** nodes is done via APIs.
 
-The communication between the **master** and the **slaves** is is via API only.
+### Worker Nodes
 
-**Worker Nodes**
+The **worker nodes** handle tasks for each profile assigned to them, such as:
 
-The **worker nodes** run one process for each **profiles** assigned to that worker node.
+- Managing **LinkedIn** and **Facebook** profiles.
+- Running **email verification** or **MTA outreach** processes.
 
-**E.g.:**
-
-- LinkedIn profiles,
-- Facebook profiles,
-- an email verification API,
-- an MTA outreach.
-
-The profiles are exectuted by the [mass-sdk](https://github.com/massprospecting/mass-sdk).
-
-The communication between the mass-sdk and the slave node is is via API only.
-
-
-There is an instance of [mass.slave](https://github.com/massprospecting/mass.slave) running with the only goal of connecting the database of the slave to know what are the profiles assigned to that worker node, and launch one process for each one.
-
-As an additional note, that instance of mass.slave shouldn't be running in a worker node. The worker node should get the list of profiles assigned via API. This wrong design is reportd to be fixed [here](https://github.com/MassProspecting/docs/issues/198).
+Profiles are executed by the [mass-sdk](https://github.com/massprospecting/mass-sdk). Communication between the mass-sdk and slave nodes is done via APIs.
 
 ## 2. Processes
 
-**Master Node**
+### Master Node
 
 | Process                               | Description                                                                                       |
 |---------------------------------------|---------------------------------------------------------------------------------------------------|
-| nginx                                 | Nginx is used as a reverse proxy, listining port 443 (https) and redirecting to port 3000 (http). |
-| app.rb port=3000                      | It is a [Sinatra webserver](https://sinatrarb.com/), serving the webpages of the platofrm.        |
-| extensions/mass.account/p/allocate.rb | This process find a slave node with available slots, and signup a sub-account there.              |
-| ipn.rb        | Process belonging to the [my.saas i2p extension](https://github.com/leandrosardi/i2p), for processing PayPal transactions.                                    |
-| expire.rb     | Process belonging to the [my.saas i2p extension](https://github.com/leandrosardi/i2p), for removing credits in the balance of users who are no longer subscribed. |
-| baddebt.rb    | Process belonging to the [my.saas i2p extension](https://github.com/leandrosardi/i2p), for canceling subscriptions that are failing to be charged. More information [here](https://github.com/ConnectionSphere-DEPRECATED/cs-issues/issues/69). |
-| movement.rb   | Process belonging to the [my.saas i2p extension](https://github.com/leandrosardi/i2p), for updating a snapshot table with the net balance of the accounts.     |
+| nginx                                 | Nginx is used as a reverse proxy, listening on port 443 (https) and redirecting to port 3000 (http). |
+| app.rb (port=3000)                    | A [Sinatra web server](https://sinatrarb.com/) that serves the platform's webpages.               |
+| extensions/mass.account/p/allocate.rb | Finds an available slave node and signs up a sub-account there.                                   |
+| ipn.rb                                | Part of the [my.saas i2p extension](https://github.com/leandrosardi/i2p), used for processing PayPal transactions. |
+| expire.rb                             | Removes credits from users who are no longer subscribed (part of the i2p extension).              |
+| baddebt.rb                            | Cancels subscriptions for users failing payment (details [here](https://github.com/ConnectionSphere-DEPRECATED/cs-issues/issues/69)). |
+| movement.rb                           | Updates the snapshot table to show the net balance of accounts.                                   |
 
+### Slave Nodes
 
-**Slave Nodes**
+| Process                                  | Description                                                                                         |
+|------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| nginx                                    | Nginx acts as a reverse proxy, listening on port 443 (https) and redirecting to port 3000 (http).   |
+| app.rb (port=3000)                       | A [Sinatra web server](https://sinatrarb.com/) serving the platform's webpages.                     |
+| extensions/mass.subaccount/p/ingest.rb   | Moves records from the `import` table to the `import_row` table.                                    |
+| extensions/mass.subaccount/p/import.rb   | Processes each record in `import_row` and merges them into the `lead` table.                        |
+| extensions/mass.subaccount/p/plan.rb     | Creates requests for inbox checks, connection checks, jobs, enrichment, and outreach.               |
+| extensions/mass.subaccount/p/rule.rb     | Handles active rules, triggers records, evaluates filters, and manages outreach, enrichment, and tagging actions. |
+| extensions/mass.subaccount/p/timeline.rb | Manages a snapshot of the `timeline` table for tracking performance statistics.                     |
 
-| Process                                  | Description                                                                                                                                                                                                                                                                                                                                                            |
-|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| nginx                                    | Nginx is used as a reverse proxy, listining port 443 (https) and redirecting to port 3000 (http).                                                                                                                                                                                                                                                                      |
-| app.rb port=3000                         | It is a [Sinatra webserver](https://sinatrarb.com/), serving the webpages of the platofrm.                                                                                                                                                                                                                                                                             |
-| extensions/mass.subaccount/p/ingest.rb   | This process take records from the table `import` insert rows into the table `import_row`.                                                                                                                                                                                                                                                                             |
-| extensions/mass.subaccount/p/import.rb   | This process take records from the table `import_row` and processes them one by one, merging into the `lead` table.                                                                                                                                                                                                                                                    |
-| extensions/mass.subaccount/p/plan.rb     | This command create requests in the tables `inboxcheck`, `connectioncheck`, `job`, `enrichment`, and `outreach`.                                                                                                                                                                                                                                                       |
-| extensions/mass.subaccount/p/rule.rb     | This process iterates active rules table; bringing the triggered records, evaluating filters and creating records into the `rule_instance` table.<br>Also, it iterates pending `rule_instance` records and create records in the tables `outreach`, `enrichment`, `lead_tag` and `company_tag`, or mark records as deleted in the tables `lead_tag` and `company_tag`. |
-| extensions/mass.subaccount/p/timeline.rb | This process create manage a snapshot in the table `timeline`, in order to get performance stats online.                                                                                                                                                                                                                                                               |
+### Worker Nodes
 
-**Worker Nodes**
-
-| Process                                 | Description                                                                                                                           |
-|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| extensions/mass.subaccount/p/launch1.rb | This process get the list of basic profiles assisgned to the worker node, and launch one `basic.rb` process for each one.             |
-| extensions/mass.subaccount/p/launch2.rb | This process get the list of mta, api or rpa profiles assisgned to the worker node, and launch one `profile.rb` process for each one. |
-
-
+| Process                                 | Description                                                                                         |
+|-----------------------------------------|-----------------------------------------------------------------------------------------------------|
+| extensions/mass.subaccount/p/launch1.rb | Retrieves a list of basic profiles assigned to the worker node and launches a `basic.rb` process for each profile. |
+| extensions/mass.subaccount/p/launch2.rb | Retrieves a list of MTA, API, or RPA profiles assigned to the worker node and launches a `profile.rb` process for each. |
