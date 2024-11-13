@@ -2,7 +2,7 @@
 
 # Done for You, Multi-Channel Outreach System
 
-With [**MassProspecting**](https://massprospecting.com) it is very simple to outreach campaigns on **LinkedIn**, **Facebook** and **Email**.
+With [**MassProspecting**](https://massprospecting.com) it is very simple to build outreach campaigns on **LinkedIn**, **Facebook** and **Email**.
 
 **Example:**
 

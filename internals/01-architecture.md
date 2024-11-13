@@ -14,19 +14,18 @@ In this section we review the architecture of MassProspecting, and how to instal
 **Master Node**
 
 The **master node** is where users signup and login (among other use cases).
-There is one, and only one, **master node** running.
 
 There is one, and only one, **master node** running.
 
-The **master** is one server running a [my.saas](https://github.com/leandrosardi/my.saas) platform with the following [extensions](https://github.com/leandrosardi/my.saas/tree/1.6.8?tab=readme-ov-file#4-extensions):
+The **master** is one server running a [my.saas](https://github.com/leandrosardi/my.saas) platform with the following [my.saas extensions](https://github.com/leandrosardi/my.saas/tree/1.6.8?tab=readme-ov-file#4-extensions):
 
-- [mass.commons](https://github.com/massprospecting/mass.commons)
-- [mass.account](https://github.com/massprospecting/mass.account)
-- [i2p](https://github.com/leandrosardi/i2p)
-- [content](https://github.com/leandrosardi/content)
-- [affiliates](https://github.com/leandrosardi/affiliates)
-- [monitoring](https://github.com/leandrosardi/monitoring)
-- [dropbox-token-helper](https://github.com/leandrosardi/dropbox-token-helper)
+- [mass.commons](https://github.com/massprospecting/mass.commons) _(private access)_,
+- [mass.account](https://github.com/massprospecting/mass.account) _(private access)_,
+- [i2p](https://github.com/leandrosardi/i2p),
+- [content](https://github.com/leandrosardi/content),
+- [monitoring](https://github.com/leandrosardi/monitoring),
+and
+- [dropbox-token-helper](https://github.com/leandrosardi/dropbox-token-helper).
 
 The my.saas platform running into the master has its own `config.rb` file, and its own PostgreSQL database running locally.
 
@@ -34,7 +33,7 @@ The master node:
 
 - hosts all the user accounts of the platform,
 - publishes the marketplace of profiles,
-- manage the sub-accounts hosted in **salve servers**,
+- manage the sub-accounts hosted in **salve servers** (read about slave servers below),
 - manage invoicing and payments processing; and
 - manage all security use cases like login, logout, password reset and password recovery.
 
@@ -52,18 +51,16 @@ A sub-account is used for:
 
 - costs control, creating one sub-account for each sector in an organization.
 
-Also, sub-accounts allows to create custom domains the brand of the user, and grant access to the user's clients too.
+Also, sub-accounts allow to create custom domains the brand of the user, and grant access to the user's clients too.
 
-The **slaves** run a [my.saas](https://github.com/leandrosardi/my.saas) platform with the following [extensions](https://github.com/leandrosardi/my.saas/tree/1.6.8?tab=readme-ov-file#4-extensions):
+The **slaves** run a [my.saas](https://github.com/leandrosardi/my.saas) platform with the following [my.saas extensions](https://github.com/leandrosardi/my.saas/tree/1.6.8?tab=readme-ov-file#4-extensions):
 
 - [mass.commons](https://github.com/massprospecting/mass.commons)
 - [mass.subaccount](https://github.com/massprospecting/mass.subaccount)
 
-The my.saas platform running into the master has its own `config.rb` file, and its own PostgreSQL database running locally.
+The my.saas platform running into a slave has its own `config.rb` file, and its own PostgreSQL database running locally.
 
 The communication between the **master** and the **slaves** is is via API only.
-
-One **slave node** may have one or more **worker nodes**.
 
 **Worker Nodes**
 
@@ -94,6 +91,10 @@ As an additional note, that instance of mass.slave shouldn't be running in a wor
 | nginx                                 | Nginx is used as a reverse proxy, listining port 443 (https) and redirecting to port 3000 (http). |
 | app.rb port=3000                      | It is a [Sinatra webserver](https://sinatrarb.com/), serving the webpages of the platofrm.        |
 | extensions/mass.account/p/allocate.rb | This process find a slave node with available slots, and signup a sub-account there.              |
+| ipn.rb        | Process belonging to the [my.saas i2p extension](https://github.com/leandrosardi/i2p), for processing PayPal transactions.                                    |
+| expire.rb     | Process belonging to the [my.saas i2p extension](https://github.com/leandrosardi/i2p), for removing credits in the balance of users who are no longer subscribed. |
+| baddebt.rb    | Process belonging to the [my.saas i2p extension](https://github.com/leandrosardi/i2p), for canceling subscriptions that are failing to be charged. More information [here](https://github.com/ConnectionSphere-DEPRECATED/cs-issues/issues/69). |
+| movement.rb   | Process belonging to the [my.saas i2p extension](https://github.com/leandrosardi/i2p), for updating a snapshot table with the net balance of the accounts.     |
 
 
 **Slave Nodes**
