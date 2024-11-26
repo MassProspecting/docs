@@ -4,6 +4,8 @@ This section is about how to install a MassProspecting environment using [BlackO
 
 ## 1. Download BlackOps scripts in your computer
 
+For installing [MassProspecting](https://github.com/massprospecting) in any server, you need the [BlackOps](https://github.com/leandrosardi/blackops) scripts:
+
 ```
 mkdir -p ~/code1
 cd ~/code1
