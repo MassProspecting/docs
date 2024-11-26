@@ -48,10 +48,34 @@ ruby install.rb --root --node=test2
 
 ## 4. Deploy source code in `master`
 
+The command below will update the version of MassProspecting, including:
+
+- source code,
+- Ruby gems.
+
 ```
 cd ~/code1/blackops/cli
 ruby deploy.rb --node=test2
 ```
 
+You have to run database migrations too:
+
+```
+ruby migrations.rb --node=test2
+```
+
 ## 5. Starting `master`
 
+The command below will start the MassProspecting webserver and other backend processes.
+
+```
+cd ~/code1/blackops/cli
+ruby start.rb --node=test2
+```
+
+## 6. Stopping `master`
+
+```
+cd ~/code1/blackops/cli
+ruby stop.rb --node=test2
+```
