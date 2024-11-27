@@ -70,12 +70,12 @@ The command below will start the MassProspecting webserver and other backend pro
 
 ```
 cd ~/code1/blackops/cli
-ruby start.rb --node=test2
+ruby start.rb --node=test2 --root
 ```
 
 ## 6. Stopping `master`
 
 ```
 cd ~/code1/blackops/cli
-ruby stop.rb --node=test2
+ruby stop.rb --node=test2 --root
 ```
