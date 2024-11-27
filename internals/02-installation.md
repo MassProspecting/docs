@@ -58,13 +58,15 @@ cd ~/code1/blackops/cli
 ruby deploy.rb --node=test2
 ```
 
+## 5. Run SQL migrations in `master`
+
 You have to run database migrations too:
 
 ```
 ruby migrations.rb --node=test2
 ```
 
-## 5. Starting `master`
+## 6. Starting `master`
 
 The command below will start the MassProspecting webserver and other backend processes.
 
@@ -85,7 +87,7 @@ and run the following command:
 sudo journalctl -u mysaas_app.service -f
 ```
 
-## 6. Stopping `master`
+## 7. Stopping `master`
 
 ```
 cd ~/code1/blackops/cli
