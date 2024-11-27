@@ -73,6 +73,18 @@ cd ~/code1/blackops/cli
 ruby start.rb --node=test2 --root
 ```
 
+If the website doesn't go online, access to the node via ssh 
+
+```
+ruby ssh.rb test2
+```
+
+and run the following command:
+
+```
+sudo journalctl -u mysaas_app.service -f
+```
+
 ## 6. Stopping `master`
 
 ```
