@@ -171,5 +171,11 @@ cd ~/code1/blackops/cli && \
 
 After the command above is done, you should be able to access MassProspecting in the URL [http://127.0.0.1:3001](http://127.0.0.1:3001).
 
-Aside of a **production environment**, both **master** and **slave** run in the same node.
+Aside of a **production environment**, in a **development environment**:
+
+1. Both **master** and **slave** run in the same node.
 That is why master and slave are listening different ports (`3000` and `3001`).
+
+and
+
+2. Domain and SSL are not configured.
