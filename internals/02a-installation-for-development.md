@@ -2,9 +2,11 @@
 
 This section is about how to install a MassProspecting on your local computer **for development** using [BlackOps](https://github.com/leandrosardi/blackops).
 
-**IMPORTANT:** For a steady installation of MassProspecting, perform this procedure into a FRESH installation of **Ubuntu 20.04**
+**Important:** For a steady installation of MassProspecting, perform this procedure into a FRESH installation of **Ubuntu 20.04**
 
-**NOTE:** If you want to install MassProspecting **on production**, refer to [this article](./02-installation.md).
+**Note:** If you want to install MassProspecting **on production**, refer to [this article](./02-installation.md).
+
+**Note:** In order to understand the whole picture, we recommend you to read this artichle about [the architecture of MassProspecting](https://github.com/MassProspecting/docs/blob/main/internals/01-architecture.md) before starting.
 
 ## 1. Download BlackOps scripts in your computer
 
@@ -153,4 +155,16 @@ sudo journalctl -u mass_master_app.service -f
 ```
 cd ~/code1/blackops/cli
 ruby stop.rb --node=localmaster --root
+```
+
+## 8. Setting up `slave`
+
+For setting up **slave node**, you have to follow the same steps than the master:
+
+```
+cd ~/code1/blackops/cli && \
+	ruby install.rb --root --node=localslave && \
+	ruby deploy.rb --node=localslave && \
+	ruby migrations.rb --node=localslave && \
+	ruby start.rb --node=localslave --root
 ```

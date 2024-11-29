@@ -2,9 +2,11 @@
 
 This section is about how to install a MassProspecting **on production** using [BlackOps](https://github.com/leandrosardi/blackops).
 
-**IMPORTANT:** For a steady installation of MassProspecting, perform this procedure into a FRESH installation of **Ubuntu 20.04**
+**Important:** For a steady installation of MassProspecting, perform this procedure into a FRESH installation of **Ubuntu 20.04**
 
-**NOTE:** If you want to install MassProspecting your local computer **for development**, refer to [this article](./02a-installation-for-development.md).
+**Note:** If you want to install MassProspecting your local computer **for development**, refer to [this article](./02a-installation-for-development.md).
+
+**Note:** In order to understand the whole picture, we recommend you to read this artichle about [the architecture of MassProspecting](https://github.com/MassProspecting/docs/blob/main/internals/01-architecture.md) before starting.
 
 ## 1. Download BlackOps scripts in your computer
 
@@ -47,7 +49,7 @@ The **installation** is for getting all the software pieces required for running
 
 ```
 cd ~/code1/blackops/cli
-ruby install.rb --root --node=test2
+ruby install.rb --root --node=testmaster
 ```
 
 ## 4. Deploy source code in `master`
@@ -59,7 +61,7 @@ The command below will update the version of MassProspecting, including:
 
 ```
 cd ~/code1/blackops/cli
-ruby deploy.rb --node=test2
+ruby deploy.rb --node=testmaster
 ```
 
 ## 5. Run SQL migrations in `master`
@@ -67,7 +69,7 @@ ruby deploy.rb --node=test2
 You have to run database migrations too:
 
 ```
-ruby migrations.rb --node=test2
+ruby migrations.rb --node=testmaster
 ```
 
 ## 6. Starting `master`
@@ -76,13 +78,13 @@ The command below will start the MassProspecting webserver and other backend pro
 
 ```
 cd ~/code1/blackops/cli
-ruby start.rb --node=test2 --root
+ruby start.rb --node=testmaster --root
 ```
 
 If the website doesn't go online, access to the node via ssh 
 
 ```
-ruby ssh.rb test2
+ruby ssh.rb testmaster
 ```
 
 and run the following command:
@@ -95,5 +97,17 @@ sudo journalctl -u mass_master_app.service -f
 
 ```
 cd ~/code1/blackops/cli
-ruby stop.rb --node=test2 --root
+ruby stop.rb --node=testmaster --root
+```
+
+## 8. Setting up `slave`
+
+For setting up **slave node**, you have to follow the same steps than the master:
+
+```
+cd ~/code1/blackops/cli && \
+	ruby install.rb --root --node=testslave && \
+	ruby deploy.rb --node=testslave && \
+	ruby migrations.rb --node=testslave && \
+	ruby start.rb --node=testslave --root
 ```
