@@ -2,7 +2,9 @@
 
 This section is about how to install a MassProspecting **on production** using [BlackOps](https://github.com/leandrosardi/blackops).
 
-If you want to install MassProspecting your local computer **for development**, refer to [this article](./02a-installation-for-development.md).
+**IMPORTANT:** For a steady installation of MassProspecting, perform this procedure into a FRESH installation of **Ubuntu 20.04**
+
+**NOTE:** If you want to install MassProspecting your local computer **for development**, refer to [this article](./02a-installation-for-development.md).
 
 ## 1. Download BlackOps scripts in your computer
 
@@ -86,7 +88,7 @@ ruby ssh.rb test2
 and run the following command:
 
 ```
-sudo journalctl -u mysaas_app.service -f
+sudo journalctl -u mass_master_app.service -f
 ```
 
 ## 7. Stopping `master`

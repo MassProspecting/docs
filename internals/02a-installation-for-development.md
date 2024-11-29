@@ -2,6 +2,10 @@
 
 This section is about how to install a MassProspecting on your local computer **for development** using [BlackOps](https://github.com/leandrosardi/blackops).
 
+**IMPORTANT:** For a steady installation of MassProspecting, perform this procedure into a FRESH installation of **Ubuntu 20.04**
+
+**NOTE:** If you want to install MassProspecting **on production**, refer to [this article](./02a-installation.md).
+
 ## 1. Download BlackOps scripts in your computer
 
 For installing [MassProspecting](https://github.com/massprospecting) in any server, you need the [BlackOps](https://github.com/leandrosardi/blackops) scripts:
@@ -86,12 +90,10 @@ SMTP_PASSWORD = '<write here>'
 ## 3. Setup the path of your `BlackOpsFile`
 
 ```
-export OPSLIB=~/code1/blackops/cli
+export OPSLIB=~/
 ```
 
-**Note:** Such a `BlackOpsFile` will have the parameters of some VPSs rented to [Contabo](https://contabo.com/), with a fresh installation of **Ubuntu 20.04**, and assigned to you for your development tasks.
-
-## 3. Install the `master` node into a Contabo VPS
+## 4. Install the `master` node in your local computer
 
 The **installation** is for getting all the software pieces required for running MassProspecting, like Ruby and PostgreSQL.
 
@@ -103,7 +105,7 @@ The **installation** is for getting all the software pieces required for running
 
 ```
 cd ~/code1/blackops/cli
-ruby install.rb --root --node=test2
+ruby install.rb --root --node=localmaster
 ```
 
 ## 4. Deploy source code in `master`
@@ -115,7 +117,7 @@ The command below will update the version of MassProspecting, including:
 
 ```
 cd ~/code1/blackops/cli
-ruby deploy.rb --node=test2
+ruby deploy.rb --node=localmaster
 ```
 
 ## 5. Run SQL migrations in `master`
@@ -123,7 +125,7 @@ ruby deploy.rb --node=test2
 You have to run database migrations too:
 
 ```
-ruby migrations.rb --node=test2
+ruby migrations.rb --node=localmaster
 ```
 
 ## 6. Starting `master`
@@ -132,24 +134,18 @@ The command below will start the MassProspecting webserver and other backend pro
 
 ```
 cd ~/code1/blackops/cli
-ruby start.rb --node=test2 --root
+ruby start.rb --node=localmaster --root
 ```
 
-If the website doesn't go online, access to the node via ssh 
+If the website doesn't go online, run the following command:
 
 ```
-ruby ssh.rb test2
-```
-
-and run the following command:
-
-```
-sudo journalctl -u mysaas_app.service -f
+sudo journalctl -u mass_master_app.service -f
 ```
 
 ## 7. Stopping `master`
 
 ```
 cd ~/code1/blackops/cli
-ruby stop.rb --node=test2 --root
+ruby stop.rb --node=localmaster --root
 ```
