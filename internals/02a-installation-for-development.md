@@ -58,6 +58,8 @@ SSH_ROOT_PASSWORD = '<write here>'
 SSH_PASSWORD = '<write here>'
 ```
 
+**Note:** If you want to install a *development environment* into a remote computer, replace `127.0.0.1` with the IP of such a remote computer. Otherwise, keep `127.0.0.1`.
+
 4. Also, set the password for your PostgreSQL database:
 
 ```ruby
@@ -125,6 +127,7 @@ ruby deploy.rb --node=localmaster
 You have to run database migrations too:
 
 ```
+cd ~/code1/blackops/cli
 ruby migrations.rb --node=localmaster
 ```
 
