@@ -168,3 +168,8 @@ cd ~/code1/blackops/cli && \
 	ruby migrations.rb --node=localslave && \
 	ruby start.rb --node=localslave --root
 ```
+
+After the command above is done, you should be able to access MassProspecting in the URL [http://127.0.0.1:3001](http://127.0.0.1:3001).
+
+Aside of a **production environment**, both **master** and **slave** run in the same node.
+That is why master and slave are listening different ports (3000 and 3001).
