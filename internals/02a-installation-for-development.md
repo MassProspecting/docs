@@ -1,8 +1,6 @@
-# Installation
+# Installation for Development
 
-This section is about how to install a MassProspecting **on production** using [BlackOps](https://github.com/leandrosardi/blackops).
-
-If you want to install MassProspecting your local computer **for development**, refer to [this article](./02a-installation-for-development.md).
+This section is about how to install a MassProspecting on your local computer **for development** using [BlackOps](https://github.com/leandrosardi/blackops).
 
 ## 1. Download BlackOps scripts in your computer
 
@@ -23,7 +21,7 @@ bundler update
 
 ## 2. Setup your `BlackOpsFile`
 
-Ask your team leader of the `BlackOpsFile`, and place it into your folder `~/code1/blackops/cli`.
+Download a `BlackOpsFile` from [this link](../assets/internals/BlackOpsFile).
 
 Also, setup the path of your `BlackOpsFile`:
 

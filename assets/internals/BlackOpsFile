@@ -1,0 +1,282 @@
+
+
+
+
+# All your secrets are in this file.
+# Keep it safe.
+#
+# This `BlackOpsFile` is an example for installing
+# all MassProspecting components (master, slave, worker)
+# into one single computer.
+#
+
+# Setup the IP of node where you want to install the dev environment.
+#
+# Since BlackOps connect such a node via SSH, you can define the IP 
+# of a remote computer.
+#
+LOCAL_IP = '127.0.0.1'
+
+# Write the root password of your local computer here
+#
+SSH_ROOT_PASSWORD = '<write here>'
+
+# Write the password for the new Linux user `blackstack` that will run your server
+#
+SSH_PASSWORD = '<write here>'
+
+# Write the password for the `blackstack` user of your postgresql
+#
+POSTGRES_PASSWORD = '<write here>'
+
+# Git password is required for cloning/pulling souce code from your private repositories.
+#
+GIT_OASSWORD = '<write here>'
+
+# The following keys are about integrations between
+#
+SU_API_KEY = '<write here>'
+TINYMCE_API_KEY = '<write here>'
+ADSPOWER_API_KEY = '<write here>'
+VYMECO_API_KEY = '<write here>'
+DROPBOX_REFRESH_TOKEN = '<write here>'
+POSTMARK_API_KEY = '<write here>'
+SMTP_USER = '<write here>'
+SMTP_PASSWORD = '<write here>'
+
+# BlackOps Configurations
+#
+BlackOps.set(
+    # Define one or more locations to find the `.op` files.
+    # Locations may be paths in your local disk or URLs.
+    repositories: [
+        'https://raw.githubusercontent.com/leandrosardi/blackops/refs/heads/main/ops',
+    ],
+
+    # Setup Contabo client if you want to merge the instance 
+    # in your hosting with the nodes in this file.
+    #
+    #contabo: ContaboClient.new(  
+    #    client_id: 'INT-11833581',  
+    #    client_secret: '****',  
+    #    api_user: '***',  
+    #    api_password: '***'
+    #),
+)
+
+# Re-usabeTemplates for Node-Descriptions
+#
+@t = {
+    # ssh credentials to production nodes.
+    :ssh => {
+        # SSH credentials.
+        # Root password is required to install the environment at the first time.
+        #
+        # Mandatory. The 4 keys below are mandatory. 
+        #
+        # Allowed values: 
+        # - ssh_username: string with a valid Linus user name,
+        # - ssh_port: integer with a valid port number
+        # 
+        :ssh_username => 'blackstack',
+        :ssh_port => 22,
+
+        # IMPORTANT: for ssh passwords, it is a good practice to define unique values for each node.
+        # 
+        # - ssh_password: string with a valid Linux password.
+        # - ssh_root_password: string with a valid Linux password.
+
+        # NOTE: In a local environment, the master, slave and worker 
+        # share same domain, ssh password and postgres password.
+        #
+        # ssh passwords
+        :ssh_password => SSH_PASSWORD,
+        :ssh_root_password => SSH_ROOT_PASSWORD,
+    },
+
+    # PostgreSQL credentials.
+    :postgres => { 
+        :postgres_port => 5432,
+        :postgres_username => 'blackstack',
+
+        # IMPORTANT: for postgres_password, it is a good practice 
+        # to define unique values for each node.
+        #
+        # NOTE: In a local environment, the master, slave and worker 
+        # share same domain, ssh password and postgres password.
+        #
+        # postgres password
+        :postgres_password => POSTGRES_PASSWORD,
+    },
+
+    # git credentials
+    :git => {
+        :git_username => 'leandrosardi',
+
+        # IMPORTANT: Don't submit/store this secret into any node. 
+        # Use when running operations from your local computer only.
+        # 
+        :git_password => GIT_OASSWORD,
+    },
+
+    # credentials of other commons
+    #
+    # IMPORTANT: Don't submit/store this secret into any node. 
+    # Use when running operations from your local computer only.
+    # 
+    :commons => {
+        :su_api_key => SU_API_KEY,
+        :tinymce_api_key => TINYMCE_API_KEY,
+        :adspower_api_key => ADSPOWER_API_KEY,
+
+        # Integration with DropBox
+        # Reference: https://github.com/leandrosardi/my-dropbox-api
+        :vymeco_api_key => VYMECO_API_KEY,
+        :dropbox_refresh_token => DROPBOX_REFRESH_TOKEN,
+
+        :postmark_api_key => POSTMARK_API_KEY,
+        :smtp_user => SMTP_USER,
+        :smtp_password => SMTP_PASSWORD,
+
+        # NOTE: In a local environment, the master, slave and worker 
+        # share same domain, ssh password and postgres password.
+        #
+        # domain
+        :domain => 'localhost',    
+    },
+
+    # master node parameters
+    :master => {
+        :git_repository => 'leandrosardi/my.saas',
+        :git_branch => 'main',
+        :code_folder => 'master', # folder inside /home/$$ssh_username/code1
+
+        :postgres_database => 'mass.master',
+
+        :cpu_threshold => 50,
+        :ram_threshold => 50,
+        :disk_threshold => 50,
+
+        :procs => [
+            'ruby ./extensions/mass.account/p/allocate.rb',
+            'ruby ./extensions/i2p/p/baddebt.rb',
+            'ruby ./extensions/i2p/p/expire.rb',
+            'ruby ./extensions/i2p/p/ipn.rb',
+            'ruby ./extensions/i2p/p/movement.rb',
+            'puma',
+        ],
+
+        :install_ops => [
+            'mysaas.install.ubuntu_20_04.base.op', 
+            
+            #==> nginx installation is not required in local environment
+            #'mysaas.install.ubuntu_20_04.nginx.op', 
+            
+            'mysaas.install.ubuntu_20_04.postgresql.op',
+            'i2p.install',
+            'mass.master.install',
+        ],
+        
+        :deploy_ops => [
+            'mass.master.deploy.op'
+        ],
+        
+        :migration_folders => [
+            '/home/blackstack/code1/master/sql',
+            '/home/blackstack/code1/master/extensions/content/sql',
+            '/home/blackstack/code1/master/extensions/dropbox-token-helper/sql',
+            '/home/blackstack/code1/master/extensions/i2p/sql',
+            '/home/blackstack/code1/master/extensions/monitoring/sql',
+            '/home/blackstack/code1/master/extensions/mass.commons/sql',
+            '/home/blackstack/code1/master/extensions/mass.account/sql',
+        ],
+        
+        :start_ops => [
+            'mass.master.start.op',
+            'i2p.start.op',
+        ],
+
+        :stop_ops => [
+            'mass.master.stop.op',
+            'i2p.stop.op',
+        ],
+    },
+
+    # slave node parameters
+    :slave => {
+        :git_repository => 'leandrosardi/my.saas',
+        :git_branch => 'main',
+        :code_folder => 'slave', # folder inside /home/$$ssh_username/code1
+
+        :postgres_database => 'mass.slave',
+
+        :cpu_threshold => 50,
+        :ram_threshold => 50,
+        :disk_threshold => 50,
+
+        :master_domain => 'localhost',
+
+        :procs => [
+            'ruby ./extensions/mass.subaccount/p/ingest.rb',
+            'ruby ./extensions/mass.subaccount/p/import.rb',
+            'ruby ./extensions/mass.subaccount/p/plan.rb',
+            'ruby ./extensions/mass.subaccount/p/rule.rb',
+            'ruby ./extensions/mass.subaccount/p/timeline.rb',
+            'puma',
+        ],
+
+        :install_ops => [
+            'mysaas.install.ubuntu_20_04.base.op', 
+            
+            #==> nginx installation is not required in local environment
+            #'mysaas.install.ubuntu_20_04.nginx.op', 
+            
+            'mysaas.install.ubuntu_20_04.postgresql.op',
+            'mass.slave.install',
+        ],
+        
+        :deploy_ops => [
+            'mass.slave.deploy.op'
+        ],
+        
+        :migration_folders => [
+            '/home/blackstack/code1/slave/sql',
+            '/home/blackstack/code1/slave/extensions/dropbox-token-helper/sql',
+            '/home/blackstack/code1/slave/extensions/mass.commons/sql',
+            '/home/blackstack/code1/slave/extensions/mass.subaccount/sql',
+        ],
+        
+        :start_ops => [
+            'mass.slave.start.op',
+        ],
+
+        :stop_ops => [
+            'mass.slave.stop.op',
+        ],
+    },
+
+}
+
+BlackOps.add_node({
+    :name => 'localmaster',
+    :ip => LOCAL_IP,
+    :port => '3000',
+}.merge(
+    @t[:ssh],
+    @t[:postgres],
+    @t[:git],
+    @t[:commons],
+    @t[:master],
+))
+
+BlackOps.add_node({
+    :name => 'localslave',
+    :ip => LOCAL_IP,
+    :port => '3001',
+}.merge(
+    @t[:ssh],
+    @t[:postgres],
+    @t[:git],
+    @t[:commons],
+    @t[:slave],
+))
