@@ -4,7 +4,7 @@ This section is about how to install a MassProspecting on your local computer **
 
 **IMPORTANT:** For a steady installation of MassProspecting, perform this procedure into a FRESH installation of **Ubuntu 20.04**
 
-**NOTE:** If you want to install MassProspecting **on production**, refer to [this article](./02a-installation.md).
+**NOTE:** If you want to install MassProspecting **on production**, refer to [this article](./02-installation.md).
 
 ## 1. Download BlackOps scripts in your computer
 
