@@ -137,7 +137,7 @@ cd ~/code1/blackops/cli
 ruby start.rb --node=localmaster --root
 ```
 
-After the command above is done, you should be able to access MassProspecting in the URL [http://127.0.0.1:300](http://127.0.0.1:300).
+After the command above is done, you should be able to access MassProspecting in the URL [http://127.0.0.1:3000](http://127.0.0.1:3000).
 
 If the website doesn't go online, run the following command:
 
