@@ -149,6 +149,8 @@ BlackOps.set(
 
         :postgres_database => 'mass.master',
 
+        :free_slave_nodes => "['127.0.0.1:3001']",
+
         :cpu_threshold => 50,
         :ram_threshold => 50,
         :disk_threshold => 50,
