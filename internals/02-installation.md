@@ -8,6 +8,24 @@ This section is about how to install a MassProspecting **on production** using [
 
 **Note:** In order to understand the whole picture, we recommend you to read this artichle about [the architecture of MassProspecting](https://github.com/MassProspecting/docs/blob/main/internals/01-architecture.md) before starting.
 
+**Important:** The SSH service in your node must accept `root` connections. 
+To enable `root` connections, follow the steps below in your node:
+
+1. Open `sshd_config` for edition:
+```
+sudo nano /etc/ssh/sshd_config
+```
+
+2. Edit this line in `sshd_config`:
+```
+PermitRootLogin yes
+```
+
+3. Restart SSH
+```
+sudo systemctl restart ssh
+```
+
 ## 1. Download BlackOps scripts in your computer
 
 For installing [MassProspecting](https://github.com/massprospecting) in any server, you need the [BlackOps](https://github.com/leandrosardi/blackops) scripts:
