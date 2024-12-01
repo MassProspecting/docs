@@ -2,13 +2,15 @@
 
 This section is about how to install a MassProspecting on your local computer **for development** using [BlackOps](https://github.com/leandrosardi/blackops).
 
-**Important:** For a steady installation of MassProspecting, perform this procedure into a FRESH installation of **Ubuntu 20.04**
+## Some Notes Before Starting
 
-**Note:** If you want to install MassProspecting **on production**, refer to [this article](./02-installation.md).
+- For a steady installation of MassProspecting, perform this procedure into a FRESH installation of **Ubuntu 20.04**
 
-**Note:** In order to understand the whole picture, we recommend you to read this artichle about [the architecture of MassProspecting](https://github.com/MassProspecting/docs/blob/main/internals/01-architecture.md) before starting.
+- If you want to install MassProspecting **on production**, refer to [this article](./02-installation.md).
 
-**Important:** The SSH service in your node must accept `root` connections. 
+- In order to understand the whole picture, we recommend you to read this artichle about [the architecture of MassProspecting](https://github.com/MassProspecting/docs/blob/main/internals/01-architecture.md) before starting.
+
+- The SSH service in your node must accept `root` connections. 
 To enable `root` connections, follow the steps below in your node:
 
 1. Open `sshd_config` for edition:
