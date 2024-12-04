@@ -10,7 +10,7 @@ This section is about how to install a MassProspecting on your local computer **
 
 - In order to understand the whole picture, we recommend you to read this artichle about [the architecture of MassProspecting](https://github.com/MassProspecting/docs/blob/main/internals/01-architecture.md) before starting.
 
-- The SSH service in your node must accept `root` connections. 
+- The SSH service in your node must accept `root` connections.
 To enable `root` connections, follow the steps below in your node:
 
 1. Open `sshd_config` for edition:
@@ -51,7 +51,7 @@ bundler update
 
 ```
 cd ~
-wget https://raw.githubusercontent.com/MassProspecting/docs/refs/heads/main/assets/internals/BlackOpsFile 
+wget https://raw.githubusercontent.com/MassProspecting/docs/refs/heads/main/assets/internals/BlackOpsFile
 ```
 
 2. Edit the `BlackOpsFile`:
@@ -66,7 +66,7 @@ nano BlackOpsFile
 ```ruby
 # Setup the IP of node where you want to install the dev environment.
 #
-# Since BlackOps connect such a node via SSH, you can define the IP 
+# Since BlackOps connect such a node via SSH, you can define the IP
 # of a remote computer.
 #
 LOCAL_IP = '127.0.0.1'
@@ -121,9 +121,9 @@ export OPSLIB=~/
 
 The **installation** is for getting all the software pieces required for running MassProspecting, like Ruby and PostgreSQL.
 
-**Note:** 
+**Note:**
 
-- The installation requires the `--root` argument to connect the server as `root`. 
+- The installation requires the `--root` argument to connect the server as `root`.
 
 - The installation will create a new Linux user `blackstack` who is the user you will work with furtherly.
 
@@ -199,3 +199,19 @@ That is why master and slave are listening different ports (`3000` and `3001`).
 and
 
 2. Domain and SSL are not configured.
+
+## 9. Setting the `.sandbox` Flag
+
+When you are running a local environment, it is better you set the `.sandbox` flag.
+
+```
+sudo touch /home/blackstack/code1/master/.sandbox && \
+sudo touch /home/blackstack/code1/slave/.sandbox
+```
+
+Remember to restart all services.
+
+```
+ruby start.rb --node=* --root && \
+ruby start.rb --node=* --root
+```
