@@ -212,6 +212,6 @@ sudo touch /home/blackstack/code1/slave/.sandbox
 Remember to restart all services.
 
 ```
-ruby start.rb --node=* --root && \
+ruby stop.rb --node=* --root && \
 ruby start.rb --node=* --root
 ```
