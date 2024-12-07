@@ -1,159 +1,177 @@
-
 # Mass::LeadTag API Documentation
 
-## Overview
+The `Mass::LeadTag` class is an integral part of the MassProspecting API, responsible for managing tags associated with leads. It offers functionalities to insert, update, and list tags for leads. This class ensures data integrity through validations and ownership rules, making it essential for categorizing leads efficiently.
 
-The `Mass::LeadTag` class is responsible for associating tags with leads in the MassProspecting system. It provides validation, error handling, and methods to insert, update, and list lead-tag associations.
+## 1. Insert
 
----
+The `insert.json` endpoint allows the creation of a new LeadTag with specific attributes.
 
-## Insert Operation
+### Required Fields:
+- **id_lead**: The unique identifier of the lead. It must exist and belong to the same account.
+- **name**: The name of the tag. It must be a string and cannot exceed 255 characters.
 
-### Endpoint
+### Optional Fields:
+- **id_user**: The identifier of the user. Must be associated with the account.
 
-```
-POST /api/leadtag/insert
-```
+### Validations:
+- The `id_lead` must refer to an existing lead within the same account.
+- The `name` should be a non-empty string with a maximum length of 255 characters.
+- The `id_user` must exist and belong to the specified account.
 
-### Required Fields
-
-| Field       | Type   | Description                                    |
-|-------------|--------|------------------------------------------------|
-| `id_lead`   | String | The unique identifier of the lead.             |
-| `name`      | String | The name of the tag to associate with the lead.|
-
-### Optional Fields
-
-| Field       | Type   | Description                                         |
-|-------------|--------|-----------------------------------------------------|
-| `id_user`   | String | The unique identifier of the user performing the operation.|
-| `id_account`| String | The unique identifier of the account. This is typically added by access point listeners.|
-
-### Validations
-
-- **Ownership Validation**: Ensures the `id_account` and `id_user` belong to the same account.
-- **Mandatory Validation**: `id_lead` and `name` are required fields.
-- **Existence Validation**: The `id_lead` must refer to a valid lead within the account.
-
-### Error Responses
-
-| Error Message                                 | Description                                                |
-|-----------------------------------------------|------------------------------------------------------------|
-| `Unknown lead ({id_lead}).`                  | The specified lead does not exist for the account.         |
-| `The id_account is required.`                | Missing `id_account` field.                                |
-| `The id_user must belong to the account.`    | The `id_user` does not belong to the specified account.    |
-
-### Example Request
-
+### Example:
 ```json
 {
-    "id_lead": "123e4567-e89b-12d3-a456-426614174000",
-    "name": "VIP Client",
-    "id_user": "987e6543-e21b-34d5-b678-426614174111"
+    "id_lead": "lead-guid",
+    "name": "Prospect",
+    "id_user": "user-guid"
 }
 ```
 
----
+## 2. Page
 
-## Update Operation
+The `page.json` endpoint retrieves a list of LeadTags based on filters and pagination parameters.
 
-### Endpoint
+### Required Fields:
+- None
 
-```
-POST /api/leadtag/update
-```
+### Optional Fields:
+- **filters**: 
+  - `id_lead`: Filter tags by a specific lead.
+  - `id_company`: Filter tags connected to a specific company.
 
-### Required Fields
+- **page**: The page number to retrieve. Defaults to 1.
+- **limit**: The number of entries per page. Defaults to 25.
+- **order**: The field to sort the results by. Defaults to `id`.
+- **asc**: Boolean indicating ascending (`true`) or descending (`false`) order. Defaults to `true`.
 
-| Field       | Type   | Description                                    |
-|-------------|--------|------------------------------------------------|
-| `id_lead`   | String | The unique identifier of the lead.             |
-| `name`      | String | The new tag name to associate with the lead.   |
+### Validations:
+- Filters must adhere to allowed keys (`id_lead`, `id_company`).
+-  `order` should be a valid field in the LeadTag dataset.
 
-### Optional Fields
-
-| Field       | Type   | Description                                         |
-|-------------|--------|-----------------------------------------------------|
-| `id_user`   | String | The unique identifier of the user performing the operation.|
-| `id_account`| String | The unique identifier of the account. This is typically added by access point listeners.|
-
-### Validations
-
-- **Ownership Validation**: Ensures the `id_account` and `id_user` belong to the same account.
-- **Mandatory Validation**: `id_lead` and `name` are required fields.
-- **Existence Validation**: The `id_lead` must refer to a valid lead within the account.
-
-### Example Request
-
+### Example:
 ```json
 {
-    "id_lead": "123e4567-e89b-12d3-a456-426614174000",
-    "name": "High Priority",
-    "id_user": "987e6543-e21b-34d5-b678-426614174111"
+    "filters": {
+        "id_lead": "lead-guid"
+    },
+    "page": 1,
+    "limit": 10,
+    "order": "create_time",
+    "asc": true
 }
 ```
 
----
+## 3. Update
 
-## List Operation
+The `update.json` endpoint modifies the details of an existing LeadTag.
 
-### Endpoint
+### Required Fields:
+- **id**: The identifier of the LeadTag to update.
+- **id_lead**: The new or existing lead identifier.
 
-```
-GET /api/leadtag/list
-```
+### Optional Fields:
+- **name**: The new name for the tag.
 
-### Filters
+### Validations:
+- The `id` must exist and belong to the account.
+- The `id_lead` must reference an existing lead within the account.
+- The `name`, if provided, must be a string no longer than 255 characters.
 
-| Filter       | Type   | Description                             |
-|--------------|--------|-----------------------------------------|
-| `id_lead`   | String | Filter by the unique identifier of a lead.|
-| `id_company`| String | Filter by the unique identifier of a company.|
-
-### Example Request
-
-```
-GET /api/leadtag/list?id_lead=123e4567-e89b-12d3-a456-426614174000
-```
-
-### Example Response
-
+### Example:
 ```json
-[
-    {
-        "id": "321e6547-e89b-56d3-a456-426614174999",
-        "id_account": "111e2227-a89b-34d3-a456-426614174aaa",
-        "id_user": "987e6543-e21b-34d5-b678-426614174111",
-        "id_lead": "123e4567-e89b-12d3-a456-426614174000",
-        "name": "VIP Client",
-        "create_time": "2024-06-07T12:34:56Z",
-        "update_time": "2024-06-07T14:22:33Z",
-        "delete_time": null
-    }
-]
+{
+    "id": "leadtag-guid",
+    "id_lead": "new-lead-guid",
+    "name": "Updated Tag Name"
+}
 ```
 
----
+This structured documentation provides clear instructions on how to interact with the `Mass::LeadTag` class, including field requirements, validation rules, and usage examples for each of the key operations supported by our API.# Mass::LeadTag API Documentation
 
-## Validations Summary
+The `Mass::LeadTag` class is an integral part of the MassProspecting API, responsible for managing tags associated with leads. It offers functionalities to insert, update, and list tags for leads. This class ensures data integrity through validations and ownership rules, making it essential for categorizing leads efficiently.
 
-- **Mandatory Fields**: `id_lead`, `name`
-- **Ownership Checks**: `id_account`, `id_user`
-- **Existence Checks**: `id_lead` must refer to a valid lead.
-- **Allowed Keys**: `id_account`, `id_user`, `id_lead`, `name`
+## 1. Insert
 
----
+The `insert.json` endpoint allows the creation of a new LeadTag with specific attributes.
 
-## Errors
+### Required Fields:
+- **id_lead**: The unique identifier of the lead. It must exist and belong to the same account.
+- **name**: The name of the tag. It must be a string and cannot exceed 255 characters.
 
-- **Key Errors**: Invalid keys will return errors indicating which key is not allowed.
-- **Ownership Errors**: Ensures `id_account` and `id_user` are valid.
-- **Mandatory Errors**: Missing required fields like `id_lead` or `name`.
+### Optional Fields:
+- **id_user**: The identifier of the user. Must be associated with the account.
 
----
+### Validations:
+- The `id_lead` must refer to an existing lead within the same account.
+- The `name` should be a non-empty string with a maximum length of 255 characters.
+- The `id_user` must exist and belong to the specified account.
 
-## Notes
+### Example:
+```json
+{
+    "id_lead": "lead-guid",
+    "name": "Prospect",
+    "id_user": "user-guid"
+}
+```
 
-- The `id_account` is typically managed by access point listeners and should not be included in request examples.
-- Use the `upsert` operation to insert or update a lead tag in a single request.
+## 2. Page
 
+The `page.json` endpoint retrieves a list of LeadTags based on filters and pagination parameters.
+
+### Required Fields:
+- None
+
+### Optional Fields:
+- **filters**: 
+  - `id_lead`: Filter tags by a specific lead.
+  - `id_company`: Filter tags connected to a specific company.
+
+- **page**: The page number to retrieve. Defaults to 1.
+- **limit**: The number of entries per page. Defaults to 25.
+- **order**: The field to sort the results by. Defaults to `id`.
+- **asc**: Boolean indicating ascending (`true`) or descending (`false`) order. Defaults to `true`.
+
+### Validations:
+- Filters must adhere to allowed keys (`id_lead`, `id_company`).
+-  `order` should be a valid field in the LeadTag dataset.
+
+### Example:
+```json
+{
+    "filters": {
+        "id_lead": "lead-guid"
+    },
+    "page": 1,
+    "limit": 10,
+    "order": "create_time",
+    "asc": true
+}
+```
+
+## 3. Update
+
+The `update.json` endpoint modifies the details of an existing LeadTag.
+
+### Required Fields:
+- **id**: The identifier of the LeadTag to update.
+- **id_lead**: The new or existing lead identifier.
+
+### Optional Fields:
+- **name**: The new name for the tag.
+
+### Validations:
+- The `id` must exist and belong to the account.
+- The `id_lead` must reference an existing lead within the account.
+- The `name`, if provided, must be a string no longer than 255 characters.
+
+### Example:
+```json
+{
+    "id": "leadtag-guid",
+    "id_lead": "new-lead-guid",
+    "name": "Updated Tag Name"
+}
+```
+
+This structured documentation provides clear instructions on how to interact with the `Mass::LeadTag` class, including field requirements, validation rules, and usage examples for each of the key operations supported by our API.

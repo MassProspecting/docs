@@ -1,157 +1,173 @@
 # Mass::Company API Documentation
 
-## Overview
+The `Mass::Company` class is designed for managing company-related data within the MassProspecting SaaS. It allows for operations like inserting, updating, paging, and validating company information, including details such as name, domain, contact information, and additional metadata.
 
-The `Mass::Company` class is responsible for managing company-related data in the MassProspecting system. It includes validations, storage handling, and serialization capabilities through various modules. This class supports creating, updating, listing, and retrieving company records.
+## Insert
 
----
+### Required Fields
+- `id_user`: GUID of the user. Must exist and belong to the account.
+- `domain`: String. Must be a valid domain.
 
-## Operations
+### Optional Fields
+- `name`: String. Must be less than 255 characters.
+- `headcount`: Referenced by `Mass::Headcount` and must exist.
+- `revenue`: Referenced by `Mass::Revenue` and must exist.
+- `country`: String. Must be a valid country name.
+- `location`: Referenced by `Mass::Location` and must exist.
+- `timezone`: String. Must be a valid timezone description.
+- `email_verification_result`: Must be one of `any`, `pending`, `valid`, `invalid`, `catchall`, `role`, `unknown`, `disabled`, `disposable`, `inbox_full`, `role_account`, `spamtrap`.
+- `data`: Array of data descriptors.
+- Other URL-validated fields include `picture_url_dropbox`, `email`, `linkedin`, `facebook`, `indeed`, `apollo`, and `snapshot_url`.
 
-### Insert
+### Validations
+- Must pass domain, email, LinkedIn, Facebook, Indeed, and Apollo URL validations.
+- `data` must be an array if provided.
+- Ownership checks to ensure `id_user` belongs to `id_account`.
 
-**Description:**  
-Insert a new company record into the system.
-
-**Required Fields:**
-- `id_account` (string, GUID): The unique identifier for the account.
-- `id_user` (string, GUID): The unique identifier for the user.
-- `name` (string): The name of the company.
-
-**Optional Fields:**
-- `domain` (string): The company's domain.
-- `headcount` (string): The headcount category (must exist in the system).
-- `revenue` (string): The revenue category (must exist in the system).
-- `country` (string): The country name.
-- `location` (string): The location name.
-- `timezone` (string): The timezone description.
-- `data` (array): An array of data descriptors.
-- `tags` (array): An array of tags associated with the company.
-- `industry` (string): The industry name.
-- `sic` (string): The Standard Industrial Classification (SIC) code.
-- `naics` (string): The North American Industry Classification System (NAICS) code.
-- `email_verification_result` (string): Verification result for the email.
-- `picture_url_dropbox` (string): URL for the company picture stored in Dropbox.
-- `email` (string): A valid email address.
-- `phone` (string): The company's phone number.
-- `linkedin` (string): A valid LinkedIn company URL.
-- `facebook` (string): A valid Facebook company URL.
-- `indeed` (string): A valid Indeed company URL.
-- `apollo` (string): A valid Apollo company URL.
-- `snapshot_url` (string): The URL for the company's snapshot.
-
-**Validations:**
-- `domain`: Must be a valid domain.
-- `email`: Must be a valid email.
-- `linkedin`: Must be a valid LinkedIn company URL.
-- `facebook`: Must be a valid Facebook company URL.
-- `indeed`: Must be a valid Indeed URL.
-- `apollo`: Must be a valid Apollo URL.
-- `headcount`: Must exist in the system.
-- `revenue`: Must exist in the system.
-- `country`: Must exist in the system.
-- `location`: Must exist in the system.
-- `timezone`: Must exist in the system.
-
-**Example Request:**
+### Example
 ```json
+POST /ajax/company/insert.json
 {
-  "id_user": "abcd1234-5678-90ef-gh12-34567890ijkl",
-  "name": "Tech Innovations Inc",
-  "domain": "techinnovations.com",
-  "headcount": "100-500",
-  "revenue": "10M-50M",
-  "country": "United States",
-  "location": "San Francisco",
-  "timezone": "Pacific Time (US & Canada)",
-  "email": "contact@techinnovations.com",
-  "phone": "+1 415-555-0100",
-  "linkedin": "https://www.linkedin.com/company/techinnovations",
-  "facebook": "https://web.facebook.com/techinnovations",
-  "indeed": "https://www.indeed.com/cmp/techinnovations",
-  "apollo": "https://app.apollo.io/#/companies/techinnovations",
-  "snapshot_url": "https://snapshot.example.com/techinnovations",
-  "tags": ["technology", "innovation"],
-  "picture_url_dropbox": "https://dropbox.example.com/techinnovations.png"
-}
-```
-
----
-
-### Page
-
-**Description:**  
-Retrieve paginated company records.
-
-**Parameters:**
-- `page` (integer): The page number to retrieve.
-- `limit` (integer): The number of records per page.
-- `filters` (object): Key-value pairs to filter results.
-
-**Allowed Filters:**
-- `name` (string)
-- `country` (string)
-- `location` (string)
-- `timezone` (string)
-- `email` (string)
-- `domain` (string)
-- `phone` (string)
-- `linkedin` (string)
-- `facebook` (string)
-- `indeed` (string)
-- `apollo` (string)
-
-**Example Request:**
-```json
-{
-  "page": 1,
-  "limit": 10,
-  "filters": {
+    "id_user": "user-guid-here",
+    "domain": "example.com",
+    "name": "Example Company",
+    "headcount": "10-50",
     "country": "United States",
-    "name": "Tech"
-  }
+    "email": "contact@example.com"
 }
 ```
 
----
+## Page
 
-### Update
+### Required Fields
+- `page`: Integer. The page number to retrieve (default is 1).
+- `limit`: Integer. The number of records per page (default is 25).
 
-**Description:**  
-Update an existing company record.
+### Optional Fields
+- `filters`: A set of filters can be applied based on `name`, `country`, `location`, `email`, `domain`, `phone`, `linkedin`, `facebook`, `indeed`, and `apollo`.
 
-**Required Fields:**
-- `id_account` (string, GUID): The unique identifier for the account.
-- `id` (string, GUID): The unique identifier for the company record.
+### Validations
+- Filters require valid field names.
+- `order` and `asc` parameters control sorting.
 
-**Optional Fields:**  
-Same as those listed in the Insert operation.
-
-**Example Request:**
+### Example
 ```json
+POST /ajax/company/page.json
 {
-  "id": "12345678-abcd-90ef-1234-567890abcdef",
-  "name": "Tech Innovations Ltd",
-  "email": "info@techinnovations.com"
+    "page": 1,
+    "limit": 10,
+    "filters": {
+        "country": "United States"
+    },
+    "order": "create_time",
+    "asc": true
 }
 ```
 
----
+## Update
 
-## Validations
+### Required Fields
+- `id`: GUID of the company to be updated. Must exist.
 
-### Key Validations:
-- **Domain:** Must be a valid domain.
-- **Email:** Must be a valid email address.
-- **LinkedIn URL:** Must follow the pattern `https://www.linkedin.com/company/{slug}`.
-- **Facebook URL:** Must follow the pattern `https://web.facebook.com/{slug}`.
-- **Indeed URL:** Must be a valid Indeed company profile URL.
-- **Apollo URL:** Must be a valid Apollo company profile URL.
+### Optional Fields
+- Any field that is available during insert can be updated, subject to the same validation rules.
 
----
+### Validations
+- Must conform to the same validation rules as insert.
+- Ownership checks to ensure `id_user` belongs to `id_account`.
 
-## Notes
+### Example
+```json
+POST /ajax/company/update.json
+{
+    "id": "company-guid-here",
+    "name": "Updated Example Company",
+    "email": "newcontact@example.com"
+}
+```# Mass::Company API Documentation
 
-- **Error Handling:** All operations will return validation errors if the input data does not meet the required criteria.
-- **Dropbox Storage:** Images can be stored via Dropbox links provided in `picture_url_dropbox`.
+The `Mass::Company` class is designed for managing company-related data within the MassProspecting SaaS. It allows for operations like inserting, updating, paging, and validating company information, including details such as name, domain, contact information, and additional metadata.
 
+## Insert
+
+### Required Fields
+- `id_user`: GUID of the user. Must exist and belong to the account.
+- `domain`: String. Must be a valid domain.
+
+### Optional Fields
+- `name`: String. Must be less than 255 characters.
+- `headcount`: Referenced by `Mass::Headcount` and must exist.
+- `revenue`: Referenced by `Mass::Revenue` and must exist.
+- `country`: String. Must be a valid country name.
+- `location`: Referenced by `Mass::Location` and must exist.
+- `timezone`: String. Must be a valid timezone description.
+- `email_verification_result`: Must be one of `any`, `pending`, `valid`, `invalid`, `catchall`, `role`, `unknown`, `disabled`, `disposable`, `inbox_full`, `role_account`, `spamtrap`.
+- `data`: Array of data descriptors.
+- Other URL-validated fields include `picture_url_dropbox`, `email`, `linkedin`, `facebook`, `indeed`, `apollo`, and `snapshot_url`.
+
+### Validations
+- Must pass domain, email, LinkedIn, Facebook, Indeed, and Apollo URL validations.
+- `data` must be an array if provided.
+- Ownership checks to ensure `id_user` belongs to `id_account`.
+
+### Example
+```json
+POST /ajax/company/insert.json
+{
+    "id_user": "user-guid-here",
+    "domain": "example.com",
+    "name": "Example Company",
+    "headcount": "10-50",
+    "country": "United States",
+    "email": "contact@example.com"
+}
+```
+
+## Page
+
+### Required Fields
+- `page`: Integer. The page number to retrieve (default is 1).
+- `limit`: Integer. The number of records per page (default is 25).
+
+### Optional Fields
+- `filters`: A set of filters can be applied based on `name`, `country`, `location`, `email`, `domain`, `phone`, `linkedin`, `facebook`, `indeed`, and `apollo`.
+
+### Validations
+- Filters require valid field names.
+- `order` and `asc` parameters control sorting.
+
+### Example
+```json
+POST /ajax/company/page.json
+{
+    "page": 1,
+    "limit": 10,
+    "filters": {
+        "country": "United States"
+    },
+    "order": "create_time",
+    "asc": true
+}
+```
+
+## Update
+
+### Required Fields
+- `id`: GUID of the company to be updated. Must exist.
+
+### Optional Fields
+- Any field that is available during insert can be updated, subject to the same validation rules.
+
+### Validations
+- Must conform to the same validation rules as insert.
+- Ownership checks to ensure `id_user` belongs to `id_account`.
+
+### Example
+```json
+POST /ajax/company/update.json
+{
+    "id": "company-guid-here",
+    "name": "Updated Example Company",
+    "email": "newcontact@example.com"
+}
+```

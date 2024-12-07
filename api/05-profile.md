@@ -1,130 +1,297 @@
-
 # Mass::Profile
 
-## Description
+The `Mass::Profile` class serves as a central component for representing user profiles within the MassProspecting system. It supports the creation, updating, and management of user profiles with varying types and associated parameters, such as hostname, state, and API keys. The class handles validation, storage, and error-checking to ensure data integrity and compliance with specific rules, making it essential for managing user integrations with external services.
 
-The `Mass::Profile` class represents profiles used for managing different types of automation tasks, including RPA (Robotic Process Automation), API integrations, and MTA (Mail Transfer Agent) operations. This class includes validations, configurations for various profile types, and handles tracking, authentication, and scraping options.
+## Insert
 
-### Supported Profile Types
-- **Apollo_API**
-- **Apollo_RPA**
-- **Facebook**
-- **FindyMail**
-- **GMail**
-- **Indeed**
-- **LinkedIn**
-- **Postmark**
-- **Reoon**
-- **Targetron_API**
-- **Targetron_RPA**
-- **ZeroBounce**
+- **Required Fields:**
+  - `profile_type`: Must be one of the allowed profile types, e.g., "Apollo_API", "Facebook", "LinkedIn", etc.
+  - `hostname`: Must be a string.
 
----
+- **Optional Fields:**
+  - `id_user`
+  - `name`
+  - `tag`
+  - `state`
+  - `picture_url`
+  - `picture_url_dropbox`
+  - `ads_power_id`
+  - `api_key`
+  - `allow_tracking_domain`
+  - `tracking_domain`
+  - `tracking_protocol`
+  - `tracking_port`
+  - `smtp_address`
+  - `smtp_port`
+  - `imap_address`
+  - `imap_port`
+  - `authentication`
+  - `enable_starttls_auto`
+  - `openssl_verify_mode`
+  - `inbox_label`
+  - `spam_label`
+  - `search_all_wildcard`
+  - `imap_allowed`
+  - `check_connections_interval`
+  - `check_inbox_interval`
+  - `jobs_interval`
+  - `max_daily_jobs`
+  - `outreach_interval`
+  - `max_daily_processed_outreaches`
+  - `max_daily_aborted_outreaches`
+  - `enrichment_interval`
+  - `max_daily_processed_enrichments`
+  - `max_daily_aborted_enrichments`
+  - `allow_browser_to_download_multiple_files`
+  - `browser_width`
+  - `browser_height`
+  - `linkedin`
+  - `facebook`
+  - `leased`
+  - `under_revision`
+  - `openssl_verify_mode_code`
 
-## Insert Operation
+- **Validations:**
+  - Must comply with naming conventions for `name`.
+  - Must be valid URLs for any provided URLs.
+  - Boolean fields must be true or false.
+  - Integer fields must be within specified ranges.
+  - Strings must be valid and within length limits.
+  - Must check ownership and existence of account and user IDs.
+  - Profile type must be known and valid.
+  - Relationships between fields should comply with RPA and MTA access specifications.
 
-### Required Fields
-- **profile_type** (`String`): The type of profile.
-- **hostname** (`String`): The hostname associated with the profile.
+- **Allowed Values:**
+  - `profile_types`: "Apollo_API", "Apollo_RPA", "Facebook", "FindyMail", "GMail", "Indeed", "LinkedIn", "Postmark", "Reoon", "Targetron_API", "Targetron_RPA", "ZeroBounce".
+  - `tracking_protocol`: "http", "https".
+  - `authentication`: "plain", "login", "cram_md5", "none".
+  - `openssl_verify_modes`: "none", "peer", "fail_if_no_peer_cert", "client_once".
 
-### Optional Fields
-- **name** (`String`): A custom name for the profile.
-- **tag** (`String`): An associated tag.
-- **state** (`String`): The state of the profile.
-- **picture_url** (`String`): URL to the profile's picture.
-- **picture_url_dropbox** (`String`): Dropbox link to the profile's picture.
-- **ads_power_id** (`String`): Applicable for RPA profiles.
-- **api_key** (`String`): API key for API profiles.
-- **allow_tracking_domain** (`Boolean`): Whether tracking domains are allowed.
-- **tracking_domain** (`String`): The tracking domain.
-- **tracking_protocol** (`String`): Protocol for tracking (`http` or `https`).
-- **tracking_port** (`Integer`): Port number for tracking.
-- **smtp_address** (`String`): SMTP address for MTA profiles.
-- **smtp_port** (`Integer`): SMTP port.
-- **imap_port** (`Integer`): IMAP port.
-- **imap_address** (`String`): IMAP address.
-- **authentication** (`String`): Authentication method (`plain`, `login`, `cram_md5`, `none`).
-- **enable_starttls_auto** (`Boolean`): Whether to enable STARTTLS.
-- **openssl_verify_mode** (`String`): SSL verify mode (`none`, `peer`, `client_once`, `fail_if_no_peer_cert`).
-- **inbox_label** (`String`): Label for inbox messages.
-- **spam_label** (`String`): Label for spam messages.
-- **imap_allowed** (`Boolean`): Whether IMAP is allowed.
-- **check_connections_interval** (`Integer`): Interval for checking connections.
-- **max_daily_jobs** (`Integer`): Maximum number of daily jobs.
+- **Example:**
+  ```json
+  {
+      "profile_type": "LinkedIn",
+      "hostname": "example.hostname.com",
+      "name": "User Profile Name",
+      "tag": "VIP",
+      "state": "online",
+      "api_key": "123456789abcdef",
+      "linkedin": "https://www.linkedin.com/in/exampleprofile/"
+  }
+  ```
 
-### Validations
-- **Mandatory Fields**: `profile_type`, `hostname`
-- **String Fields**: `hostname`, `ads_power_id`, `api_key`, `smtp_address`, `imap_address`, `inbox_label`, `spam_label`
-- **Boolean Fields**: `enable_starttls_auto`, `imap_allowed`, `allow_tracking_domain`
-- **Integer Fields**:
-  - `browser_width` (0-1920)
-  - `browser_height` (0-1920)
-  - `smtp_port`, `imap_port`, `tracking_port` (1-65535)
+## Page
 
----
+- **Required Fields:**
+  - `page`: Must be an integer (default is 1).
+  - `limit`: Must be an integer (default is 25).
 
-## Page Operation
+- **Optional Fields:**
+  - `filters`: Object containing filter criteria.
+  - `filters.profile_type`: Filter by profile type.
+  - `filters.tag`: Filter by tag.
+  - `filters.name`: Filter by name.
+  - `filters.state`: Filter by state.
+  - `filters.hostname`: Filter by hostname.
 
-### Usage
-```json
-{
-    "page": 1,
-    "limit": 10,
-    "filters": {
-        "profile_type": "LinkedIn",
-        "tag": "leadgen",
-        "name": "JohnDoeProfile"
-    }
-}
-```
+- **Validations:**
+  - Filters must refer to known profile types and tags.
+  - Filter values must match field types.
 
-### Filters
-- **profile_type**: Filter by profile type.
-- **tag**: Filter by associated tag.
-- **name**: Filter by profile name.
-- **state**: Filter by state.
-- **hostname**: Filter by hostname.
+- **Allowed Values:**
+  - `profile_types`: "Apollo_API", "Apollo_RPA", "Facebook", "FindyMail", "GMail", "Indeed", "LinkedIn", "Postmark", "Reoon", "Targetron_API", "Targetron_RPA", "ZeroBounce".
+  
+- **Example:**
+  ```json
+  {
+      "page": 1,
+      "limit": 10,
+      "filters": {
+          "profile_type": "LinkedIn",
+          "state": "online"
+      },
+      "order": "create_time",
+      "asc": true
+  }
+  ```
 
-### Validations
-- Unknown `profile_type` or `tag` will result in an error.
+## Update
 
----
+- **Required Fields:**
+  - `id`: Must be provided to identify the profile being updated.
 
-## Update Operation
+- **Optional Fields:**
+  - Any field used in Insert can be updated as long as it adheres to the same validation.
 
-### Example Request
-```json
-{
-    "name": "UpdatedProfileName",
-    "profile_type": "GMail",
-    "smtp_address": "smtp.gmail.com",
-    "smtp_port": 587,
-    "enable_starttls_auto": true
-}
-```
+- **Validations:**
+  - Must comply with naming conventions for `name`.
+  - Must be valid URLs for any provided URLs.
+  - Boolean fields must be true or false.
+  - Integer fields must be within specified ranges.
+  - Strings must be valid and within length limits.
+  - Ownership and existence of account and user IDs must be confirmed.
+  - Profile type must be known and valid.
+  - Fields need to comply with RPA and MTA access specifications when applicable.
 
-### Validations
-- **RPA-Specific Fields**: `ads_power_id`, `allow_browser_to_download_multiple_files`, `browser_width`, `browser_height`
-- **API-Specific Fields**: `api_key`
-- **MTA-Specific Fields**: `smtp_address`, `smtp_port`, `imap_address`, `imap_port`, `authentication`
+- **Allowed Values:**
+  - `profile_types`: "Apollo_API", "Apollo_RPA", "Facebook", "FindyMail", "GMail", "Indeed", "LinkedIn", "Postmark", "Reoon", "Targetron_API", "Targetron_RPA", "ZeroBounce".
 
-### Allowed Values
-- **`authentication`**: `plain`, `login`, `cram_md5`, `none`
-- **`openssl_verify_mode`**: `none`, `peer`, `client_once`, `fail_if_no_peer_cert`
-- **`tracking_protocol`**: `http`, `https`
+- **Example:**
+  ```json
+  {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "name": "Updated Profile Name",
+      "state": "idle",
+      "facebook": "https://www.facebook.com/exampleprofile"
+  }
+  ```
 
----
+This documentation provides an overview of the `Mass::Profile` functionality and its API endpoints. Users need to ensure they comply with the field requirements and validations for successful profile management. The examples illustrate typical JSON requests for interacting with the profiles.# Mass::Profile
 
-## Example Error Messages
+The `Mass::Profile` class serves as a central component for representing user profiles within the MassProspecting system. It supports the creation, updating, and management of user profiles with varying types and associated parameters, such as hostname, state, and API keys. The class handles validation, storage, and error-checking to ensure data integrity and compliance with specific rules, making it essential for managing user integrations with external services.
 
-- `The profile_type 'UnknownType' is not valid.`
-- `The smtp_port '99999' for Profile must be less than 65535.`
-- `The hostname is required for Profile.`
+## Insert
 
----
+- **Required Fields:**
+  - `profile_type`: Must be one of the allowed profile types, e.g., "Apollo_API", "Facebook", "LinkedIn", etc.
+  - `hostname`: Must be a string.
 
-## Notes
+- **Optional Fields:**
+  - `id_user`
+  - `name`
+  - `tag`
+  - `state`
+  - `picture_url`
+  - `picture_url_dropbox`
+  - `ads_power_id`
+  - `api_key`
+  - `allow_tracking_domain`
+  - `tracking_domain`
+  - `tracking_protocol`
+  - `tracking_port`
+  - `smtp_address`
+  - `smtp_port`
+  - `imap_address`
+  - `imap_port`
+  - `authentication`
+  - `enable_starttls_auto`
+  - `openssl_verify_mode`
+  - `inbox_label`
+  - `spam_label`
+  - `search_all_wildcard`
+  - `imap_allowed`
+  - `check_connections_interval`
+  - `check_inbox_interval`
+  - `jobs_interval`
+  - `max_daily_jobs`
+  - `outreach_interval`
+  - `max_daily_processed_outreaches`
+  - `max_daily_aborted_outreaches`
+  - `enrichment_interval`
+  - `max_daily_processed_enrichments`
+  - `max_daily_aborted_enrichments`
+  - `allow_browser_to_download_multiple_files`
+  - `browser_width`
+  - `browser_height`
+  - `linkedin`
+  - `facebook`
+  - `leased`
+  - `under_revision`
+  - `openssl_verify_mode_code`
 
-- **State Restrictions**: States like `starting`, `stopping` are valid only for RPA profiles.
-- **Tracking Restrictions**: Tracking configurations are allowed only for MTA profiles.
+- **Validations:**
+  - Must comply with naming conventions for `name`.
+  - Must be valid URLs for any provided URLs.
+  - Boolean fields must be true or false.
+  - Integer fields must be within specified ranges.
+  - Strings must be valid and within length limits.
+  - Must check ownership and existence of account and user IDs.
+  - Profile type must be known and valid.
+  - Relationships between fields should comply with RPA and MTA access specifications.
 
+- **Allowed Values:**
+  - `profile_types`: "Apollo_API", "Apollo_RPA", "Facebook", "FindyMail", "GMail", "Indeed", "LinkedIn", "Postmark", "Reoon", "Targetron_API", "Targetron_RPA", "ZeroBounce".
+  - `tracking_protocol`: "http", "https".
+  - `authentication`: "plain", "login", "cram_md5", "none".
+  - `openssl_verify_modes`: "none", "peer", "fail_if_no_peer_cert", "client_once".
+
+- **Example:**
+  ```json
+  {
+      "profile_type": "LinkedIn",
+      "hostname": "example.hostname.com",
+      "name": "User Profile Name",
+      "tag": "VIP",
+      "state": "online",
+      "api_key": "123456789abcdef",
+      "linkedin": "https://www.linkedin.com/in/exampleprofile/"
+  }
+  ```
+
+## Page
+
+- **Required Fields:**
+  - `page`: Must be an integer (default is 1).
+  - `limit`: Must be an integer (default is 25).
+
+- **Optional Fields:**
+  - `filters`: Object containing filter criteria.
+  - `filters.profile_type`: Filter by profile type.
+  - `filters.tag`: Filter by tag.
+  - `filters.name`: Filter by name.
+  - `filters.state`: Filter by state.
+  - `filters.hostname`: Filter by hostname.
+
+- **Validations:**
+  - Filters must refer to known profile types and tags.
+  - Filter values must match field types.
+
+- **Allowed Values:**
+  - `profile_types`: "Apollo_API", "Apollo_RPA", "Facebook", "FindyMail", "GMail", "Indeed", "LinkedIn", "Postmark", "Reoon", "Targetron_API", "Targetron_RPA", "ZeroBounce".
+  
+- **Example:**
+  ```json
+  {
+      "page": 1,
+      "limit": 10,
+      "filters": {
+          "profile_type": "LinkedIn",
+          "state": "online"
+      },
+      "order": "create_time",
+      "asc": true
+  }
+  ```
+
+## Update
+
+- **Required Fields:**
+  - `id`: Must be provided to identify the profile being updated.
+
+- **Optional Fields:**
+  - Any field used in Insert can be updated as long as it adheres to the same validation.
+
+- **Validations:**
+  - Must comply with naming conventions for `name`.
+  - Must be valid URLs for any provided URLs.
+  - Boolean fields must be true or false.
+  - Integer fields must be within specified ranges.
+  - Strings must be valid and within length limits.
+  - Ownership and existence of account and user IDs must be confirmed.
+  - Profile type must be known and valid.
+  - Fields need to comply with RPA and MTA access specifications when applicable.
+
+- **Allowed Values:**
+  - `profile_types`: "Apollo_API", "Apollo_RPA", "Facebook", "FindyMail", "GMail", "Indeed", "LinkedIn", "Postmark", "Reoon", "Targetron_API", "Targetron_RPA", "ZeroBounce".
+
+- **Example:**
+  ```json
+  {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "name": "Updated Profile Name",
+      "state": "idle",
+      "facebook": "https://www.facebook.com/exampleprofile"
+  }
+  ```
+
+This documentation provides an overview of the `Mass::Profile` functionality and its API endpoints. Users need to ensure they comply with the field requirements and validations for successful profile management. The examples illustrate typical JSON requests for interacting with the profiles.

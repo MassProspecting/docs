@@ -1,91 +1,145 @@
-# MassProspecting API Documentation: `tag` Class
+# Mass::Tag API Documentation
+
+Mass::Tag is a class designed to manage tags within the MassProspecting system. It facilitates the insertion, retrieval, and updating of tag information such as the tag's name and color. It ensures the validation of input data and handles operations like error-checking and normalization. Tags are used to categorize and organize data efficiently.
 
 ## Insert
 
-### Required Fields
+To insert a new tag, the following fields are required:
 
-| Field         | Type    | Description                                     |
-|---------------|---------|-------------------------------------------------|
-| name          | String  | The name of the tag.                            |
+- **name** (string): The name of the tag.
+- **color_code** (string or symbol): The color code representing the tag's color. It should be a valid key from the pre-defined color palette (e.g., `:red`, `:green`, `:blue`, etc.).
 
-### Optional Fields
+Validations include:
+- Name should be a non-empty string.
+- Name must be less than 255 characters.
+- The `color_code` must be either a symbol or string and should exist in the color palette.
 
-| Field         | Type    | Description                                     |
-|---------------|---------|-------------------------------------------------|
-| color_code    | String  | The color code for the tag. Must be a valid key from the palette. |
-
-### Validations
-
-| Field         | Validation                                                  |
-|---------------|-------------------------------------------------------------|
-| name          | Required and must be a string of fewer than 255 characters.|
-| color_code    | Must be a valid color code from the palette.               |
-
-### Allowed Values
-
-- **color_code**: red, green, blue, yellow, orange, cyan, magenta, white, gray, maroon, olive, navy, purple, teal, light_blue, light_green, light_red, black
-
-### Example Request
+Example:
 
 ```json
 {
-    "name": "Important",
-    "color_code": "red"
+    "name": "High Priority",
+    "color_code": ":red"
 }
 ```
-
----
 
 ## Page
 
-### Required Fields
+To retrieve paginated lists of tags, the following fields can be specified:
 
-- None.
+Required fields:
+- None
 
-### Optional Fields
+Optional fields:
+- **filters** (object): Contains fields to filter the tags. It can include:
+  - **name** (string): Filter tags matching the provided name.
+- **order** (string): Field by which to order the results. Defaults to "create_time".
+- **asc** (boolean): Whether to sort the results in ascending or descending order. Defaults to true (ascending).
 
-| Field     | Type    | Description                                        |
-|-----------|---------|----------------------------------------------------|
-| page      | Integer | The page number to retrieve (default is 1).        |
-| limit     | Integer | The number of records per page (default is 25).    |
-| filters   | Object  | Key-value pairs to filter tags (e.g., by `name`).  |
-| order     | String  | Field to order the results by (default is 'id').   |
-| asc       | Boolean | Set to `true` for ascending order (default is `true`). |
-
-### Example Request
+Example:
 
 ```json
 {
-    "page": 1,
-    "limit": 25,
     "filters": {
-        "name": "Important"
+        "name": "Priority"
     },
-    "order": "create_time",
-    "asc": false
+    "order": "name",
+    "asc": true
 }
 ```
 
----
-
 ## Update
 
-### Required Fields
+To update an existing tag, the following fields are required:
 
-| Field         | Type    | Description                                      |
-|---------------|---------|--------------------------------------------------|
-| id            | String  | The unique identifier of the tag to update.      |
+- **id** (UUID): The unique identifier of the tag to update.
+- **name** (string): The updated name of the tag.
+- **color_code** (string or symbol): The updated color code of the tag following the same palette guidelines.
 
-### Optional Fields
+Validations include:
+- The tag `id` must exist.
+- Name should be a non-empty string.
+- Name must be less than 255 characters.
+- The `color_code` must be either a symbol or string and should exist in the color palette.
 
-Same as the fields allowed in the **Insert** operation.
-
-### Example Request
+Example:
 
 ```json
 {
-    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "id": "ce8f4180-1022-11ed-861d-0242ac120002",
     "name": "Urgent",
-    "color_code": "yellow"
+    "color_code": ":orange"
+}
+```# Mass::Tag API Documentation
+
+Mass::Tag is a class designed to manage tags within the MassProspecting system. It facilitates the insertion, retrieval, and updating of tag information such as the tag's name and color. It ensures the validation of input data and handles operations like error-checking and normalization. Tags are used to categorize and organize data efficiently.
+
+## Insert
+
+To insert a new tag, the following fields are required:
+
+- **name** (string): The name of the tag.
+- **color_code** (string or symbol): The color code representing the tag's color. It should be a valid key from the pre-defined color palette (e.g., `:red`, `:green`, `:blue`, etc.).
+
+Validations include:
+- Name should be a non-empty string.
+- Name must be less than 255 characters.
+- The `color_code` must be either a symbol or string and should exist in the color palette.
+
+Example:
+
+```json
+{
+    "name": "High Priority",
+    "color_code": ":red"
+}
+```
+
+## Page
+
+To retrieve paginated lists of tags, the following fields can be specified:
+
+Required fields:
+- None
+
+Optional fields:
+- **filters** (object): Contains fields to filter the tags. It can include:
+  - **name** (string): Filter tags matching the provided name.
+- **order** (string): Field by which to order the results. Defaults to "create_time".
+- **asc** (boolean): Whether to sort the results in ascending or descending order. Defaults to true (ascending).
+
+Example:
+
+```json
+{
+    "filters": {
+        "name": "Priority"
+    },
+    "order": "name",
+    "asc": true
+}
+```
+
+## Update
+
+To update an existing tag, the following fields are required:
+
+- **id** (UUID): The unique identifier of the tag to update.
+- **name** (string): The updated name of the tag.
+- **color_code** (string or symbol): The updated color code of the tag following the same palette guidelines.
+
+Validations include:
+- The tag `id` must exist.
+- Name should be a non-empty string.
+- Name must be less than 255 characters.
+- The `color_code` must be either a symbol or string and should exist in the color palette.
+
+Example:
+
+```json
+{
+    "id": "ce8f4180-1022-11ed-861d-0242ac120002",
+    "name": "Urgent",
+    "color_code": ":orange"
 }
 ```
