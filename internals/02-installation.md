@@ -69,7 +69,7 @@ The **installation** is for getting all the software pieces required for running
 
 ```
 cd ~/code1/blackops/cli
-ruby install.rb --root --node=testmaster
+ruby install.rb --root --node=master
 ```
 
 ## 4. Deploy source code in `master`
@@ -81,7 +81,7 @@ The command below will update the version of MassProspecting, including:
 
 ```
 cd ~/code1/blackops/cli
-ruby deploy.rb --node=testmaster
+ruby deploy.rb --node=master
 ```
 
 ## 5. Run SQL migrations in `master`
@@ -89,7 +89,7 @@ ruby deploy.rb --node=testmaster
 You have to run database migrations too:
 
 ```
-ruby migrations.rb --node=testmaster
+ruby migrations.rb --node=master
 ```
 
 ## 6. Starting `master`
@@ -98,13 +98,13 @@ The command below will start the MassProspecting webserver and other backend pro
 
 ```
 cd ~/code1/blackops/cli
-ruby start.rb --node=testmaster --root
+ruby start.rb --node=master --root
 ```
 
 If the website doesn't go online, access to the node via ssh 
 
 ```
-ruby ssh.rb testmaster
+ruby ssh.rb master
 ```
 
 and run the following command:
@@ -117,7 +117,7 @@ sudo journalctl -u mass_master_app.service -f
 
 ```
 cd ~/code1/blackops/cli
-ruby stop.rb --node=testmaster --root
+ruby stop.rb --node=master --root
 ```
 
 ## 8. Setting up `slave`
@@ -126,8 +126,8 @@ For setting up **slave node**, you have to follow the same steps than the master
 
 ```
 cd ~/code1/blackops/cli && \
-	ruby install.rb --root --node=testslave && \
-	ruby deploy.rb --node=testslave && \
-	ruby migrations.rb --node=testslave && \
-	ruby start.rb --node=testslave --root
+	ruby install.rb --root --node=slave && \
+	ruby deploy.rb --node=slave && \
+	ruby migrations.rb --node=slave && \
+	ruby start.rb --node=slave --root
 ```
