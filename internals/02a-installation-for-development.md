@@ -245,12 +245,23 @@ Ask your team leader for the **submit1.rb** script, for initializing:
 ruby submit1.rb
 ```
 
-Then, ask your team leader for the **submit2.rb** script, for initializing:
+Then, ask your team leader for the **submit2.rb** script, for inserting some profiles:
 
-1. profile,
-2. enrichment; and
-3. outreach.
+The **submit2.rb** script requires access to the source code of the different profile types. 
+
+So you need to download the source code of [mass-sdk](https://github.com/massprospecting/mass-sdk) in your local computer:
 
 ```
+mkdir -p ~/code1
+cd ~/code1
+git https://github.com/massprospecting/mass-sdk
+mv ./mass-sdk ./sdk
+```
+
+Then, you have to add such a path in your environment variable `RUBYLIB`:
+
+```
+export RUBYLIB=~/code1/sdk
 ruby submit2.rb
 ```
+
