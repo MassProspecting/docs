@@ -95,7 +95,7 @@ POSTGRES_PASSWORD = '<write here>'
 ```ruby
 # Git password is required for cloning/pulling souce code from your private repositories.
 #
-GIT_OASSWORD = '<write here>'
+GIT_PASSWORD = '<write here>'
 
 # The following keys are about integrations between
 #
@@ -179,7 +179,7 @@ ruby stop.rb --node=localmaster --root
 
 ## 8. Setting up `slave`
 
-For setting up **slave node**, you have to follow the same steps than the master:
+For setting up a **slave node** in your local computer, you have to follow the same steps than the master:
 
 ```
 cd ~/code1/blackops/cli && \
@@ -191,15 +191,27 @@ cd ~/code1/blackops/cli && \
 
 After the command above is done, you should be able to access MassProspecting in the URL [http://127.0.0.1:3001](http://127.0.0.1:3001).
 
-2. Domain and SSL are not configured.
+## 9. Setting up `worker`
 
-## 9. Setting the `.sandbox` Flag
+For setting up a **worker node** in your local computer, you have to follow the same steps than the master except the **migrations** part.
+
+```
+cd ~/code1/blackops/cli && \
+	ruby install.rb --root --node=localworker && \
+	ruby deploy.rb --node=localworker && \
+	ruby start.rb --node=localworker --root
+```
+
+After the command above is done, you should be able to access MassProspecting in the URL [http://127.0.0.1:3001](http://127.0.0.1:3001).
+
+## 10. Setting the `.sandbox` Flag
 
 When you are running a local environment, it is better you set the `.sandbox` flag.
 
 ```
 sudo touch /home/blackstack/code1/master/.sandbox && \
-sudo touch /home/blackstack/code1/slave/.sandbox
+sudo touch /home/blackstack/code1/slave/.sandbox && \
+sudo touch /home/blackstack/code1/sdk/.sandbox
 ```
 
 Remember to restart all services.
@@ -209,11 +221,14 @@ ruby stop.rb --node=* --root && \
 ruby start.rb --node=* --root
 ```
 
-## 10. Differences Between Environments
+## 11. Differences Between Environments
 
 Aside of a **production environment**, in a **development environment**:
 
 1. Both **master** and **slave** run in the same node.
 That is why master and slave are listening different ports (`3000` and `3001`).
 
-and
+2. A **worker** is also running in your local computer.
+
+3. Domain and SSL are not configured.
+

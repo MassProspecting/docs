@@ -120,14 +120,25 @@ cd ~/code1/blackops/cli
 ruby stop.rb --node=master --root
 ```
 
-## 8. Setting up `slave`
+## 8. Setting up slave nodes
 
-For setting up **slave node**, you have to follow the same steps than the master:
+For setting up **slave nodes**, you have to follow the same steps than the master:
 
 ```
 cd ~/code1/blackops/cli && \
-	ruby install.rb --root --node=slave && \
-	ruby deploy.rb --node=slave && \
-	ruby migrations.rb --node=slave && \
-	ruby start.rb --node=slave --root
+	ruby install.rb --root --node=s* && \
+	ruby deploy.rb --node=s* && \
+	ruby migrations.rb --node=s* && \
+	ruby start.rb --node=s* --root
+```
+
+## 9. Setting up worker nodes
+
+For setting up **worker nodes**, you have to follow the same steps than the master, except running migrations.
+
+```
+cd ~/code1/blackops/cli && \
+	ruby install.rb --root --node=w* && \
+	ruby deploy.rb --node=w* && \
+	ruby start.rb --node=w* --root
 ```
