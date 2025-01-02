@@ -232,3 +232,25 @@ That is why master and slave are listening different ports (`3000` and `3001`).
 
 3. Domain and SSL are not configured.
 
+## 12. Initialization
+
+Ask your team leader for the **submit1.rb** script, for initializing:
+
+1. channels,
+2. profile types,
+3. enrichment types; and
+4. outreach types.
+
+```
+ruby submit1.rb
+```
+
+Then, ask your team leader for the **submit2.rb** script, for initializing:
+
+1. profile,
+2. enrichment; and
+3. outreach.
+
+```
+ruby submit2.rb
+```
