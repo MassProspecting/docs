@@ -24,7 +24,7 @@ Step by step tutorials about how to use the user interface of MassProspecting.
 
 1. [Getting Started.](/user/01-getting-started.md)
 2. [Leasing Profiles.](/user/02-leasing-profiles.md)
-3. [Registering Your Profiles.](/user/03-bring-your-own-profiles.md)
+3. [Bring Your Own Profiles.](/user/03-bring-your-own-profiles.md)
 4. [Import Leads.](/user/04-import-leads.md)
 5. [Scraping Leads.](/user/05-scraping-leads.md)
 6. [Leads Management.](/user/06-leads-management.md)

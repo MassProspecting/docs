@@ -1,4 +1,4 @@
-# Registering Your Profiles
+# Bring Your Own Profiles
 
 If you want to connect your own profiles instead of [leasing them](/user/2-leasing-profiles.md), MassPropsecting allows you to do that, as it is explained in this article.
 
