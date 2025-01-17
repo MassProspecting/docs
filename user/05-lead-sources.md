@@ -1,75 +1,77 @@
 # Lead Sources
 
-If you don't want to [import your leads](/user/4-import-leads.md), but scraping leads instead, you can setup a new **source** into one of your [sub-accounts](/user/1-getting-started.md#2-setup-your-sub-account).
+If you'd prefer to scrape leads instead of [importing them](/user/4-import-leads.md), you can set up a new **source** in one of your [sub-accounts](/user/1-getting-started.md#2-setup-your-sub-account).
 
-So you have to access a sub-account first:
+## Accessing a Sub-Account
 
-1. Login to your MassProspecting account [here](https://massprospecting.com/login).
+To create a lead source, follow these steps to access the appropriate sub-account:
 
-2. In the left-bar, click on **subaccounts**.
+1. **Login to your MassProspecting account**: [https://massprospecting.com/login](https://massprospecting.com/login).
+2. In the left menu, click **Subaccounts**.
+3. Select the sub-account where you want to add your lead sources.
 
-3. Click on the sub-account where you want to add your profiles.
+## Adding a New Source
 
-Once in your sub-account:
+1. Inside your sub-account, click on **Sources** in the left menu.
+2. Click the **plus button** in the top bar to create a new source.
+3. On the **New Source** screen, select the type of source you want to scrape.
 
-1. In the left-bar, click on **sources**.
+![Types of Lead Sources](../assets/user/5-1.png)
 
-2. In the top-bar, click on the **plus button**.
+You will be prompted to provide three parameters for the new source:
 
-Once in the **New Source** screen, click on one type of source that you want to scrape.
+1. **Name**: A descriptive name for your source.  
+2. **URLs**: One or more URLs to replicate your search for scraping.  
+3. **Interval**: The time (in seconds) between each job execution.
 
-![Types of Lead Sources](../assets/user/5-1.png).
+![New Source Parameters](../assets/user/5-2.png)
 
-You will be asked by 3 parameters:
+## Source Types
 
-1. A descriptive **name** for your new source.
-2. One or more **URLs** to replicate your search for scraping.
-3. The **interval** (in seconds) between each **jobs** execution.
+### 1. Apollo People Search
 
-![New Source Parameters](../assets/user/5-2.png).
+Apollo People Search allows you to build targeted lead lists based on job positions, locations, company size, industry, and other data points.
 
-Below are described the source types that are available today.
+- **URL Example**:  
+  [https://app.apollo.io/...](https://app.apollo.io/#/people?page=1&sortAscending=false&sortByField=%5Bnone%5D&personTitles[]=Owner&personLocations[]=United%20States&organizationNumEmployeesRanges[]=11%2C20&organizationNumEmployeesRanges[]=21%2C50&organizationIndustryTagIds[]=5567cd467369644d39040000)
 
-## Apollo People Search
+![Apollo Source Parameters](../assets/user/5-3.png)
 
-Scraping Apollo is good to have build a list targeted by job position, location, company size, industry and more data-points.
+#### Notes:
+- Each scraping job processes one page of search results.
+- Set the **interval** to `0` since Apollo automatically moves leads you’ve already scraped to the end of the list.
+- Assign **one Apollo profile** per source to ensure accurate scraping.
 
-URL Example: [https://app.apollo.io/#/people?page=1&sortAscending=false&sortByField=%5Bnone%5D&personTitles[]=Owner&personLocations[]=United%20States&organizationNumEmployeesRanges[]=11%2C20&organizationNumEmployeesRanges[]=21%2C50&organizationIndustryTagIds[]=5567cd467369644d39040000](https://app.apollo.io/#/people?page=1&sortAscending=false&sortByField=%5Bnone%5D&personTitles[]=Owner&personLocations[]=United%20States&organizationNumEmployeesRanges[]=11%2C20&organizationNumEmployeesRanges[]=21%2C50&organizationIndustryTagIds[]=5567cd467369644d39040000).
+### 2. Facebook Group Posts
 
-![New Source Parameters](../assets/user/5-3.png)
+Scrape the latest posts from Facebook groups that the assigned profile has joined.
 
-Each scraping job will process one page of the results.
+![Facebook Source Parameters](../assets/user/5-4.png)
 
-The **interval** makes no sense in this kind of search. So, keep it `0`.
+- **URL Example**:  
+  [https://www.facebook.com/?filter=groups&sk=h_chr](https://www.facebook.com/?filter=groups&sk=h_chr)
 
-It is important you know that Apollo uses to move to the end the leads that you have scraped and picked up their emails. So **Apollo People Search** will always scrape the page `1`. It is important that you assign one and only one **Apollo** profile to each source.
+#### Notes:
+- Ensure the profile used for scraping is joined to the relevant Facebook groups.
+- If you’re leasing Facebook profiles, contact support to have your profiles added to specific groups.
 
-## Facebook Group Posts
+### 3. LinkedIn Public Feed
 
-![New Source Parameters](../assets/user/5-4.png).
+Use the LinkedIn Public Feed to find leads based on specific behaviors or activities, such as posting about their latest projects.
 
-URL Example: [https://www.facebook.com/?filter=groups&sk=h_chr](https://www.facebook.com/?filter=groups&sk=h_chr).
+- **URL Example**:  
+  [https://www.linkedin.com/...](https://www.linkedin.com/search/results/content/?authorIndustry=%5B%2248%22%5D&authorJobTitle=%5B%22owner%20OR%20founder%20OR%20VP%20OR%20CEO%20OR%20president%22%5D&keywords=%22last%20project%22&origin=FACETED_SEARCH&sid=quM&sortBy=%5B%22date_posted%22%5D)
 
-Our **Facebook Group Posts** scrape the latest posts of all the Facebook groups joined by the **profile** that it is using for scraping.
+![LinkedIn Source Parameters](../assets/user/5-5.png)
 
-So, it is important that you have your **profiles** joined to the right groups you want to scrape.
+#### Key Features:
+- Filter by:
+  - **Latest posts**: Focuses on recent behavior.
+  - **Author keywords**: Targets specific job titles.
+  - **Industry**: Narrow your audience by field of work.
 
-If you are leasing Facebook profiles, you can contact support and request to join your Facebook profiles to a list of specific groups.
+#### Notes:
+- Set the **interval** based on the frequency of new matching posts in the feed.
+- LinkedIn Public Feed does not support filters for **location**, **country**, or **company size**. Use enrichment rules in your workflow to append this information for further filtering.
 
-## LinkedIn Public Feed
-
-Scraping LinkedIn Public Feed is good to find leads with some specific behaviour.
-
-E.g.: You can find Owners in the construction industry who are posting about their last project.
-
-URL Example: [https://www.linkedin.com/search/results/content/?authorIndustry=%5B%2248%22%5D&authorJobTitle=%5B%22owner%20OR%20founder%20OR%20VP%20OR%20CEO%20OR%20president%22%5D&keywords=%22last%20project%22&origin=FACETED_SEARCH&sid=quM&sortBy=%5B%22date_posted%22%5D](https://www.linkedin.com/search/results/content/?authorIndustry=%5B%2248%22%5D&authorJobTitle=%5B%22owner%20OR%20founder%20OR%20VP%20OR%20CEO%20OR%20president%22%5D&keywords=%22last%20project%22&origin=FACETED_SEARCH&sid=quM&sortBy=%5B%22date_posted%22%5D)
-
-![New Source Parameters](../assets/user/5-5.png).
-
-Depending on how often new posts that matching with your filter appear in the feed, you will set the **interval** of your source.
-
-Also, note that the **LinkedIn Public Feed** allows you to sort by **latest posts** (recommended to find leads based on a recent behaviour) and other filters like **author keywords** (useful to target by job positions) and **industry**.
-
-![New Source Parameters](../assets/user/5-5.png).
-
-The **LinkedIn Public Feed** doesn't support to filter by **locaction**, **country** or **company size**. So, in your workflow you will have to add an enrichment rule for appending such records for a further filtering.
+By following these steps and recommendations, you can efficiently set up and manage lead sources tailored to your prospecting needs.
