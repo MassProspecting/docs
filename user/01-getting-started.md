@@ -141,7 +141,7 @@ Profiles fall into three categories:
 
 ![Profile Categories](../assets/user/1-7b.png)  
 
-Learn more here: [Profile Setup Guide](https://github.com/MassProspecting/docs/blob/main/user/03-registering-your-profiles.md).  
+Learn more here: [Profile Setup Guide](./03-registering-your-profiles.md).  
 
 ### Benefits  
 
