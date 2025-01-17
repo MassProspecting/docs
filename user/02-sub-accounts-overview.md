@@ -35,8 +35,6 @@ It is divided into several sections:
 
 In the next chapter, you'll learn how to set up and optimize workflows to improve your outreach and enrichment performance.
 
----
-
 ## Sources Screen
 
 The **Sources Screen** allows you to manage and track all the data sources connected to your sub-account.
@@ -55,8 +53,6 @@ The **Sources Screen** allows you to manage and track all the data sources conne
    - Displays a timeline of performance metrics like jobs, events, and leads.  
    - Provides an overview of historical and real-time activity for each source.  
 
----
-
 ## Leads Screen
 
 The **Leads Screen** is where you can view, edit, and manage the leads generated from your workflows.
@@ -73,8 +69,6 @@ The **Leads Screen** is where you can view, edit, and manage the leads generated
 3. **Details and Interaction Options**  
    - Shows additional lead data like company headcount and revenue (if available).  
    - Provides quick links for email, phone, and LinkedIn interactions.  
-
----
 
 ## Profiles Screen
 
@@ -96,6 +90,3 @@ The **Profiles Screen** helps you manage user profiles and connections from vari
 4. **Developer Tools**  
    - Access advanced options for developers, enabling deeper integration with external APIs or scripts.  
 
----
-
-With these tools and features, you can efficiently manage your workflows, data sources, and leads to achieve your prospecting goals. For more detailed guidance, refer to the [Workflows Setup Guide](./workflows-setup.md).
