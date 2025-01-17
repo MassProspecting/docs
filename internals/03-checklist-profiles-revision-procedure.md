@@ -2,7 +2,7 @@
 
 ## 1. Enable Browser to Download Multiple Files
 
-Any [RPA integration](/user//03-registering-your-profiles.md#6-rpa-access) that runs over our [MassProspecting SDK](https://github.com/MassProspecting/mass-sdk) can execute a javascript function `downloadImage`.
+Any [RPA integration](/user//03-bring-your-own-profiles.md#6-rpa-access) that runs over our [MassProspecting SDK](https://github.com/MassProspecting/mass-sdk) can execute a javascript function `downloadImage`.
 
 Such a `downloadImage` function is for downloading images from a website without perofrming an HTTP request to that website, and without raising any red-flag in that website in consequence.
 

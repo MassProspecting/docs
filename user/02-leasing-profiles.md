@@ -16,5 +16,5 @@ In the marketplace you can find:
 
 4. leads data source like Apollo.
 
-If you still want to connect your own profiles, MassPropsecting allows you to connect them, as it is explained [here](/user/3-registering-your-profiles.md).
+If you still want to connect your own profiles, MassPropsecting allows you to connect them, as it is explained [here](./03-bring-your-own-profiles.md).
 
