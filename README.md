@@ -26,7 +26,7 @@ Step by step tutorials about how to use the user interface of MassProspecting.
 2. [SubAccounts Overview](/user/02-sub-accounts-overview.md)
 3. [Bring Your Own Profiles.](/user/03-bring-your-own-profiles.md)
 4. [Import Leads.](/user/04-import-leads.md)
-5. [Scraping Leads.](/user/05-scraping-leads.md)
+5. [Lead Sources.](/user/05-lead-sources.md)
 6. [Leads Management.](/user/06-leads-management.md)
 7. [Tags Management.](/user/07-tags-management.md)
 8. [Leads Enrichment.](/user/08-leads-enrichment.md)
