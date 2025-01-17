@@ -1,23 +1,5 @@
 # Getting Started
 
-## Topics Covered
-
-- Signing Up  
-- Sub-Account Management  
-- Reference Workflows  
-- Profiles Leasing  
-- Adding Your Own Profiles  
-
-## Tutorial Outline
-
-1. Signing Up  
-2. Choosing a Plan or Going for Free  
-3. Creating a Sub-Account  
-4. Selecting Profiles from the Marketplace  
-5. Accessing Your Sub-Account  
-6. Assigning Profiles  
-7. Adding Your Own Profiles  
-
 ## Abstract
 
 Welcome to MassProspecting! This platform integrates tools to create powerful prospecting workflows.  
@@ -28,7 +10,25 @@ But that’s not all. You can integrate third-party tools like Apollo for lead e
 
 This tutorial will guide you through the first steps to master MassProspecting.  
 
----  
+### Topics Covered
+
+- Signing Up  
+- Sub-Account Management  
+- Reference Workflows  
+- Profiles Leasing  
+- Adding Your Own Profiles  
+
+### Tutorial Outline
+
+1. Signing Up  
+2. Choosing a Plan or Going for Free  
+3. Creating a Sub-Account  
+4. Selecting Profiles from the Marketplace  
+5. Accessing Your Sub-Account  
+6. Assigning Profiles  
+7. Adding Your Own Profiles  
+
+  
 
 ## 1. Signing Up  
 
@@ -40,7 +40,7 @@ Start your journey here: [Sign Up](https://massprospecting.com/signup)
 
 Signing up gives you access to a world of automation and prospecting opportunities. The next step explains how to select a plan that fits your needs.  
 
----  
+  
 
 ## 2. Choosing a Plan or Going for Free  
 
@@ -56,7 +56,7 @@ A free plan is also available if you want to start without a subscription.
 
 Choose a plan that matches your business size and goals. The free plan lets you test the platform without commitment. In the next step, you'll learn to create sub-accounts.  
 
----  
+  
 
 ## 3. Creating a Sub-Account  
 
@@ -70,7 +70,7 @@ Each sub-account is tied to one plan. With the free plan, you can create one sub
 
 Sub-accounts help you manage different clients or business sectors. In the next step, discover how to find profiles in the marketplace.  
 
----  
+  
 
 ## 4. Selecting Profiles from the Marketplace  
 
@@ -92,7 +92,7 @@ Click "Add" on the profiles you need, then "Checkout".
 
 Renting pre-configured profiles saves time and boosts efficiency. Next, you’ll learn how to access your sub-account.  
 
----  
+  
 
 ## 5. Accessing Your Sub-Account  
 
@@ -108,7 +108,7 @@ For advanced workflow setup, check our guide: [Workflow Tutorial](...).
 
 Accessing sub-accounts ensures easy profile management. In the next step, learn about assigning profiles.  
 
----  
+  
 
 ## 6. Assigning Profiles  
 
@@ -120,7 +120,7 @@ Assign the rented or created profiles to your workflows.
 
 Assigning profiles links resources to tasks seamlessly. Next, we’ll explore how to add your own profiles.  
 
----  
+  
 
 ## 7. Adding Your Own Profiles  
 
