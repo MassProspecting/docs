@@ -1,71 +1,148 @@
 # Getting Started
 
-In this article we are going to:
+## Topics Covered
 
-1. signup to [MassProspecting](https://massprospecting.com); 
+- Signing Up  
+- Sub-Account Management  
+- Reference Workflows  
+- Profiles Leasing  
+- Adding Your Own Profiles  
 
-2. connect to [Apollo](https://www.apollo.io/) as a source of leads; 
+## Tutorial Outline
 
-3. connect ro [Reoon](https://emailverifier.reoon.com/) for email verification; and 
+1. Signing Up  
+2. Choosing a Plan or Going for Free  
+3. Creating a Sub-Account  
+4. Selecting Profiles from the Marketplace  
+5. Accessing Your Sub-Account  
+6. Assigning Profiles  
+7. Adding Your Own Profiles  
 
-4. connect to [GMail](https://gmail.com) and [LinkedIn](https://linkedin.com) for reaching out our leads.
+## Abstract
 
-## 1. Sign Up
+Welcome to MassProspecting! This platform integrates tools to create powerful prospecting workflows.  
 
-Create a new **MassProspecting** account [here](https://massprospecting.com/signup).
+MassProspecting is not just a multichannel outreach tool. It lets you connect with leads on LinkedIn, Facebook, and via email. You can scrape leads, analyze their behavior, and use AI to send tailored messages.  
 
-![MassProspecting SignUp](/assets/user/1-1.png)
+But that’s not all. You can integrate third-party tools like Apollo for lead enrichment or Reoon for email verification. With these integrations, MassProspecting acts more like an advanced integration tool, similar to Zapier.  
 
-After you signed up, you will be asked to create your first **sub-account**.
+This tutorial will guide you through the first steps to master MassProspecting.  
 
-## 2. Setup Your Sub-Account
+---  
 
-Sub-accounts are a great way keep your campaigns divided and isolated.
+## 1. Signing Up  
 
-- If you are an Agency, create one sub-account for each client you have.
+Start your journey here: [Sign Up](https://massprospecting.com/signup)  
 
-- If you are a Company, create one sub-account for each sector in your organization.
+![Sign-Up Page](../assets/user/1-1.png)  
 
-You can create a new sub-account [here](https://massprospecting.com/subaccounts/new).
+### Benefits  
 
-![MassProspecting Sub-Account Creation](/assets/user/1-2.png)
+Signing up gives you access to a world of automation and prospecting opportunities. The next step explains how to select a plan that fits your needs.  
 
-In the picture above, you are creating a **free** sub-account.
+---  
 
-- You can create no more than one free sub-accounts.
+## 2. Choosing a Plan or Going for Free  
 
-- Any more sub-account must be assigned to an active **subscription** to any of [MassProspecting plans](https://massprospecting.com/plans).
+After signing up, you’ll find different plans. Visit [Plans Page](https://massprospecting.com/plans).  
 
-- A subscription cannot be assigned to more than one sub-account. 
+![Plans Overview](../assets/user/1-2a.png)  
 
-After you have created your subaccount, you will be redirected to the **marketplace**.
+A free plan is also available if you want to start without a subscription.  
 
-## 3. Connect Apollo, Reoon and GMail
+![Free Plan Option](../assets/user/1-2b.png)  
 
-In order to start your outreach campaing in a matter of minutes, MassProspecting provides you with a **marketplace** of other people's profiles that you can use for a monthly fee.
+### Benefits  
 
-You can find the marketplace [here](https://massprospecting.com/marketplace).
+Choose a plan that matches your business size and goals. The free plan lets you test the platform without commitment. In the next step, you'll learn to create sub-accounts.  
 
-![MassProspecting Marketplace](/assets/user/1-3.jpeg)
+---  
 
-In the marketplace you can find:
+## 3. Creating a Sub-Account  
 
-1. social profiles like LinkedIn or Facebook that you can use for scraping leads or sending outreach either;
+After selecting a plan, you’ll be redirected to create a sub-account. Or visit [Create Sub-Account](https://massprospecting.com/subaccounts/new).  
 
-2. LTDs (_life-time deals_) for email verifiers like Reoon and ZeroBounce;
+![Sub-Account Creation](../assets/user/1-3.png)  
 
-3. pre-warmed email accounts like GMail and GSuite; and
+Each sub-account is tied to one plan. With the free plan, you can create one sub-account.  
 
-4. leads data source like Apollo.
+### Benefits  
 
-If you still want to connect your own profiles, MassPropsecting allows you to connect them, as it is explained [here](/user/3-registering-your-profiles.md).
+Sub-accounts help you manage different clients or business sectors. In the next step, discover how to find profiles in the marketplace.  
 
-## 4. Accessing Your Sub-Account
+---  
 
-After you have created a sub-account and leased some profiles to work, you can find your subaccounts [here](https://massprospecting.com/subaccounts)
+## 4. Selecting Profiles from the Marketplace  
 
-_picture pending_
+Once a sub-account is created, you’ll reach the marketplace. Here, pick the profiles you need for outreach and scraping.  
 
-Click on the link to access your subaccount in a new tab of the browser.
+![Marketplace Overview](../assets/user/1-4.png)  
 
-Sub-accounts are hosted in a sub-domain of `massprospecting.com` (e.g.: [my-company-name.massprospecting.com](https://s01.massprospecting.com))
+The marketplace offers:  
+
+- Pre-warmed LinkedIn and Facebook profiles.  
+- GMail/GSuite profiles for cold emails.  
+- Apollo profiles for bulk scraping and lead enrichment.  
+- Reoon profiles for email verification.  
+- PostMark profiles for warm email campaigns.  
+
+Click "Add" on the profiles you need, then "Checkout".  
+
+### Benefits  
+
+Renting pre-configured profiles saves time and boosts efficiency. Next, you’ll learn how to access your sub-account.  
+
+---  
+
+## 5. Accessing Your Sub-Account  
+
+After picking profiles, access your sub-account here: [Sub-Accounts](https://massprospecting.com/subaccounts).  
+
+![Sub-Account Access](../assets/user/1-5.png)  
+
+Inside your sub-account, set up custom workflows.  
+
+For advanced workflow setup, check our guide: [Workflow Tutorial](...).  
+
+### Benefits  
+
+Accessing sub-accounts ensures easy profile management. In the next step, learn about assigning profiles.  
+
+---  
+
+## 6. Assigning Profiles  
+
+Assign the rented or created profiles to your workflows.  
+
+![Profile Assignment](../assets/user/1-6.png)  
+
+### Benefits  
+
+Assigning profiles links resources to tasks seamlessly. Next, we’ll explore how to add your own profiles.  
+
+---  
+
+## 7. Adding Your Own Profiles  
+
+Bring your own profiles to customize your workflows.  
+
+![Bring Your Own Profiles](../assets/user/1-7a.png)  
+
+Profiles fall into three categories:  
+
+- **API (Application Programming Interface)**  
+  Examples: Apollo, Reoon. Ideal for enrichment and verification.  
+
+- **MTA (Mail Transfer Agent)**  
+  Examples: GMail, PostMark. Use for cold or warm email campaigns.  
+
+- **RPA (Robotic Process Automation)**  
+  Examples: LinkedIn, Facebook. Automate actions unavailable via APIs.  
+
+![Profile Categories](../assets/user/1-7b.png)  
+
+Learn more here: [Profile Setup Guide](https://github.com/MassProspecting/docs/blob/main/user/03-registering-your-profiles.md).  
+
+### Benefits  
+
+Adding your own profiles enhances flexibility. In the next tutorial, explore building workflows and leveraging AI.  
