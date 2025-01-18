@@ -1,51 +1,62 @@
-## Leads Enrichment
+# Leads Enrichment
 
-Leads Enrichment is a critical feature of MassProspecting that enhances your lead data by adding missing details and refining existing information. 
+Leads Enrichment is a powerful feature of MassProspecting that enhances your lead data by filling in missing details and refining existing information. 
 
-By defining automated rules and enrichment actions, users can augment leads with attributes like email addresses, phone numbers, company details, and more. 
-
-This feature leverages integration with external data providers (e.g., Apollo API, Apollo RPA or FindyMail API) to transform basic lead profiles into enriched, actionable insights, ensuring that users have all the information needed to engage effectively with prospects.
+With automated rules and enrichment actions, you can augment leads with valuable attributes such as email addresses, phone numbers, company details, and more. This feature integrates with external data providers (e.g., Apollo API, Apollo RPA, FindyMail API) to transform basic lead profiles into enriched and actionable insights, ensuring you have the information needed to effectively engage with prospects.
 
 ## Accessing a Sub-Account
 
-You have to access a sub-account first:
+To start enriching your leads, access the relevant sub-account:
 
-1. Login to your MassProspecting account [here](https://massprospecting.com/login).
+1. Log in to your MassProspecting account [here](https://massprospecting.com/login).
+2. In the left sidebar, click on **Subaccounts**.
+3. Select the sub-account where your leads are stored.
 
-2. In the left-bar, click on **subaccounts**.
+## Creating a New Rule for Leads Enrichment
 
-3. Click on the sub-account where you want to add your profiles.
-
-### Creating a New Rule
+Follow these steps to set up a new rule for enriching your leads:
 
 1. Inside your sub-account, click on **Rules** in the left menu.
+2. Click the **blue button** in the top-left corner to create a new rule.
 
-2. Click on the blue button in the top-left corner.
+   ![Rules Screen](../assets/user/8-1.png)
 
-![Rules Screen](../assets/user/8-1.png)
+3. In the **Trigger** section:
+   - Select **Tag Added** as the **Trigger Type**.
+   - Choose the tag you want to reference.
 
-3. In the Trigger section, chosse "Tag Added" in the **Trigger Type**, and the tag you want to reference.
+   ![Defining Rule Trigger](../assets/user/8-2.png)
 
-![Defining Rule Trigger](../assets/user/8-2.png)
+### Filtering Leads for Enrichment
 
-4.a. In the Filters section, choose "Lead" in the **Apply to** field and define parameters to filter the leads scraped, like job position, location, industry or company headcount.
+4. In the **Filters** section, you have two options:
 
-![Filtering by Leads Attributes](../assets/user/7-5.png)
+   **Option 1: Filtering Leads by Attributes**
+   - Select **Lead** in the **Apply to** field.
+   - Define parameters such as job position, location, industry, or company headcount.
 
-**Important:** Remember to filter by parameters that you know are provided by the source. E.g.: If you are scraping the LinkedIn Public Feed, you have the job position of the leads that appear in the headline of such leads, but you don't have their company size yet.
+     ![Filtering by Leads Attributes](../assets/user/7-5.png)
 
-![Scraping LinkedIn Public Feed](../assets/user/7-6.png)
+   **Important:** Ensure the filter criteria match the data provided by the source. For example, if you are scraping the LinkedIn Public Feed, you can filter by job position (available in the headline) but not by company size (not provided by the source).
 
-4.b. Another choice is to choose "Event" in the **Apply to** field in order to filter by some keywords into the content of the posts scraped.
+     ![Scraping LinkedIn Public Feed](../assets/user/7-6.png)
 
-![Filtering by Events Content](../assets/user/7-7.png)
+   **Option 2: Filtering by Event Content**
+   - Select **Event** in the **Apply to** field to filter leads based on specific keywords found in the content of scraped posts.
 
-**Note:** Filters are not mandatory. You can click on the close icon in the top-right corner of the filters panel.
+     ![Filtering by Events Content](../assets/user/7-7.png)
 
-5. In the Action section, choose "New Enrichment" in the **Action Type**, and choose "Enrichment Type" to use (e.g.: `ApolloAPI_LinkedInToEmail`)
+   **Note:** Filters are optional. You can skip this step by clicking the close icon in the top-right corner of the filters panel.
 
-![Defining Rule Action](../assets/user/8-3.png)
+### Defining the Enrichment Action
 
-**Important:** Be sure that the triggered leads already have the parameters required by the enrichment type. E.g.: The enrichment type `ApolloAPI_LinkedInToEmail` requires the LinkedIn URL of the lead to get his/her email address. If you scraped the lead from the LinkedIn Public Feed, you have such a field for sure.
+5. In the **Action** section:
+   - Select **New Enrichment** as the **Action Type**.
+   - Choose the **Enrichment Type** to use (e.g., `ApolloAPI_LinkedInToEmail`).
 
+     ![Defining Rule Action](../assets/user/8-3.png)
 
+   **Important:** Ensure the leads meet the requirements for the selected enrichment type.  
+   For example, `ApolloAPI_LinkedInToEmail` requires the LinkedIn URL of the lead to fetch their email address. If you scraped the lead from LinkedIn Public Feed, this field will already be available.
+
+By setting up rules and enrichment actions, you can automate and streamline the process of enhancing your lead data for more effective prospecting.

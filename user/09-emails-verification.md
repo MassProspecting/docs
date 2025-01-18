@@ -1,41 +1,52 @@
-## Emails Verification
+# Emails Verification
 
-_abstract_
+Email verification is an essential feature in MassProspecting that ensures the accuracy of email addresses associated with your leads. This process helps improve email deliverability and maintain the quality of your contact lists.
 
 ## Accessing a Sub-Account
 
-You have to access a sub-account first:
+To begin verifying emails, you need to access a sub-account:
 
-1. Login to your MassProspecting account [here](https://massprospecting.com/login).
+1. Log in to your MassProspecting account [here](https://massprospecting.com/login).
+2. In the left menu, click on **Subaccounts**.
+3. Select the sub-account where you want to manage your leads.
 
-2. In the left-bar, click on **subaccounts**.
+## Creating a New Rule for Email Verification
 
-3. Click on the sub-account where you want to add your profiles.
-
-### Creating a New Rule
+Follow these steps to set up a rule for verifying email addresses:
 
 1. Inside your sub-account, click on **Rules** in the left menu.
+2. Click the **blue button** in the top-left corner to create a new rule.
 
-2. Click on the blue button in the top-left corner.
+   ![Rules Screen](../assets/user/9-1.png)
 
-![Rules Screen](../assets/user/9-1.png)
+### Defining the Rule Trigger
 
-3. In the Trigger section, chosse "Rule Perfomed" in the **Trigger Type**, and the the rule what you to chain this new rule after. E.g.: You can verify the emails appened with the rule explained in the [previous chapter](./08-leads-enrichment.md)
+3. In the **Trigger** section:
+   - Select **Rule Performed** as the **Trigger Type**.
+   - Choose the rule that this new rule should follow.  
+     Example: You can verify emails appended by the rule explained in the [previous chapter](./08-leads-enrichment.md).
 
-![Defining Rule Trigger](../assets/user/9-2.png)
+   ![Defining Rule Trigger](../assets/user/9-2.png)
 
-4. In the Filters section, choose "Lead" in the **Apply to** field and define parameters like job position, location, industry or company headcount.
+### Filtering Leads for Email Verification
 
-In this example, you need the lead has an email, so set "Yes" in the "Must Have an Email" field.
+4. In the **Filters** section:
+   - Select **Lead** in the **Apply to** field.
+   - Define filter parameters such as job position, location, industry, or company headcount.
+   - Set **Must Have an Email** to **Yes** to ensure only leads with email addresses are processed.
 
-![Filtering by Leads Attributes](../assets/user/9-3.png)
+   ![Filtering by Leads Attributes](../assets/user/9-3.png)
 
-**Note:** Even if filters are not mandatory, it is highly recommende you use them in this kind if rules to avoid processing a so many leads that are unnecessary.
+   **Note:** While filters are not mandatory, it is highly recommended to use them to avoid processing unnecessary leads and optimize your workflow.
 
-5. In the Action section, choose "New Enrichment" in the **Action Type**, and choose "Enrichment Type" to use (e.g.: `Reoon_EmailVerification`)
+### Defining the Email Verification Action
 
-![Defining Rule Action](../assets/user/9-4.png)
+5. In the **Action** section:
+   - Select **New Enrichment** as the **Action Type**.
+   - Choose the **Enrichment Type**, such as `Reoon_EmailVerification`.
 
-**Important:** Be sure that the triggered leads already have the parameters required by the enrichment type. E.g.: The enrichment type `Reoon_EmailVerification` requires the email address of the lead. That is why it is important to apply the filter.
+   ![Defining Rule Action](../assets/user/9-4.png)
 
+   **Important:** Ensure the leads have the required parameters for the selected enrichment type. For example, `Reoon_EmailVerification` requires an email address. This is why applying the appropriate filter is crucial.
 
+By following these steps, you can efficiently verify email addresses and maintain the quality and deliverability of your email campaigns.
