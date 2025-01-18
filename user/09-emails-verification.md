@@ -24,7 +24,7 @@ You have to access a sub-account first:
 
 ![Defining Rule Trigger](../assets/user/9-2.png)
 
-4. In the Filters section, choose "Lead" in the **Apply to** field and define parameters to filter the leads scraped, like job position, location, industry or company headcount.
+4. In the Filters section, choose "Lead" in the **Apply to** field and define parameters like job position, location, industry or company headcount.
 
 In this example, you need the lead has an email, so set "Yes" in the "Must Have an Email" field.
 
