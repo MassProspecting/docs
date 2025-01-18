@@ -31,11 +31,7 @@ Step by step tutorials about how to use the user interface of MassProspecting.
 7. [Tags Management.](/user/07-tags-management.md)
 8. [Leads Enrichment.](/user/08-leads-enrichment.md)
 9. [Emails Verification.](/user/09-emails-verification.md)
-10. [Setting up Cold Emails.](/user/10-setting-up-cold-emails.md)
-11. [Setting up LinkedIn Connection Requests.](/user/11-setting-up-linkedin-connection-requests.md)
-12. [Setting up Facebook Friend Requests.](/user/12-setting-up-facebook-friend-requests.md)
-13. [Setting up a LinkedIn Follow Up Series.](/user/13-setting-up-a-linkedin-follow-up-series.md)
-14. [Setting up a Facebook Follow Up Series.](/user/14-setting-up-a-facebook-follow-up-series.md)
+10. [Leads Outreach.](/user/10-leads-outreach.md)
 
 **Advanced:**
 
