@@ -24,7 +24,7 @@ You have to access a sub-account first:
 
 ![Rules Screen](../assets/user/8-1.png)
 
-3. In the Trigger section, chosse "Tag Added" in the **Trigger Type**, and the source you want to pick leads from.
+3. In the Trigger section, chosse "Tag Added" in the **Trigger Type**, and the tag you want to reference.
 
 ![Defining Rule Trigger](../assets/user/8-2.png)
 
