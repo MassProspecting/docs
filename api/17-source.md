@@ -39,7 +39,7 @@ Typically greater than zero (unless a special value like -1 indicates a one-time
 ### tag
 - **Type:** String (Identifier)
 - **Usage & Meaning:**
-The id_tag field represents the identifier of a tag associated with the source. It is used to group or filter sources (and corresponding profiles) by certain categories or labels. In job assignment, for example, profiles are considered only if they share the same id_tag as the source.
+The tag field represents the identifier of a tag associated with the source. It is used to group or filter sources (and corresponding profiles) by certain categories or labels. In job assignment, for example, profiles are considered only if they share the same tag as the source.
 
 ### max_jobs
 - **Type:** Integer
@@ -89,12 +89,16 @@ In conjunction with delay_base, this field provides an additional random delay (
 ### total_results
 - **Type:** Integer
 - **Usage & Meaning:**
-This optional field can be used to denote an overall cap on the number of event results or data entries that the source should return or process. In contexts where the source supports pagination or dynamic loading, total_results can serve as a target for the maximum number of items to retrieve in total. (Note: In the provided code, this field is not directly referenced, so its interpretation may be determined by further business logic or future functionality.)
+This field represents the total number of search results or data entries available from a source query. In a scraping scenario, for example, the system might determine that there are 1,200 results in total. This value is crucial for calculating pagination (by dividing the total by the number of results per page) and for deciding whether additional jobs need to be created to process subsequent pages.
+- **Example:**
+In the Apollo_PeopleSearch source type, the total number of people retrieved in the search is obtained via an API call or page element (e.g., job.profile.people_search_total), and the value is stored in total_results.
 
 ### page_results
 - **Type:** Integer
 - **Usage & Meaning:**
-Similar to total_results, the page_results field is used in sources that support pagination. It defines the number of results (items/events) expected or permitted per page when paginating through results. This allows the system to better control data chunks during processing. (Again, the exact usage depends on how pagination is implemented in specific source types.)
+This field indicates the number of result rows or entries displayed on the current page. It reflects the count of individual records that can be processed in a single job cycle. Together with total_results, it helps in computing the total number of pages and in controlling the pagination logic when generating additional jobs.
+- **Example:**
+In the Apollo_PeopleSearch source type, the number of results shown on a single page is determined (for instance, by evaluating the list size via job.profile.people_search_rows), and the count is stored in page_results.
 
 ### paginable
 - **Type:** Boolean
