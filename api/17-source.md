@@ -7,7 +7,7 @@ The `Mass::Source` class serves as a fundamental component within the MassProspe
 ### source_type
 - **Type:** String
 - **Usage & Meaning:**
-The source_type field indicates the type or category of the data source. It determines which child class or API handler should be used to interact with the source. For example, a value like "LinkedIn" or "Facebook_GroupPosts" is used to dynamically instantiate the corresponding class (e.g., Mass::LinkedIn or Mass::Facebook_GroupPosts). The value of source_type must match one of the registered source types in the application’s database.
+The source_type field indicates the type or category of the data source. It determines which child class or API handler should be used to interact with the source. For example, a value like "LinkedInPublicFeed" or "Facebook_GroupPosts" is used to dynamically instantiate the corresponding class (e.g., Mass::LinkedInPublicFeed or Mass::Facebook_GroupPosts). The value of source_type must match one of the registered source types in the application’s database.
 - **Validations:**
 Must be a recognized type (i.e., an existing source type registered in the system).
 Must correctly map to the corresponding Ruby class for processing.
