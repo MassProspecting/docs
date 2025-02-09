@@ -1,10 +1,10 @@
-# 🔄 Reference Workflows  
+## 🔄 Reference Workflows  
 
 A **reference workflow** is a pre-built workflow that you can deploy with just one click. These workflows help you automate complex tasks and streamline your prospecting process. Below are some great examples of our reference workflows:
 
 ---
 
-## 🌐 LinkedIn Posts Signals Workflow  
+### 🌐 LinkedIn Posts Signals Workflow  
 Automatically monitor LinkedIn for intent signals and engage with potential leads effectively.  
 
 **Workflow Steps:**  
@@ -17,7 +17,7 @@ Automatically monitor LinkedIn for intent signals and engage with potential lead
 
 ---
 
-## 📘 Facebook Posts Signals Workflow  
+### 📘 Facebook Posts Signals Workflow  
 Leverage Facebook public posts to discover leads and engage with them at the right time.  
 
 **Workflow Steps:**  
@@ -28,7 +28,7 @@ Leverage Facebook public posts to discover leads and engage with them at the rig
 
 ---
 
-## 📢 Facebook Group Requests Workflow  
+### 📢 Facebook Group Requests Workflow  
 Find highly targeted leads by monitoring Facebook Groups for people actively seeking recommendations or solutions.  
 
 **Workflow Steps:**  
@@ -39,7 +39,7 @@ Find highly targeted leads by monitoring Facebook Groups for people actively see
 
 ---
 
-## 🔍 Apollo Intent Signals Workflow  
+### 🔍 Apollo Intent Signals Workflow  
 Identify high-intent leads from **Apollo** and automate personalized outreach.  
 
 **Workflow Steps:**  
