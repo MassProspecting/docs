@@ -20,7 +20,7 @@ We collect several types of information from and about users of our Service, inc
 - **Device Information:** We collect information about the device you use to access the Service, including IP address, browser type, and operating system.
 
 ### Information from Third Parties
-- **Profiles Data:** To perform actions on your behalf, we access your social profiles, email accounts and/or other software services information, including your contats list, group memberships, conversations and other relevant data.
+To perform actions on your behalf, we access your social profiles, email accounts and/or other software services information, including your contats list, group memberships, conversations and other relevant data.
 
 ### How We Use Your Information
 We use the information we collect to:
