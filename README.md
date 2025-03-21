@@ -12,13 +12,20 @@ The picture below is an example of a very simple workflow that scrapes emails fr
 
 **Documentation Outline:**
 
-- [User Documentation](#user-documentation)
+- [Basic User Documentation](#basic-user-documentation)
+- [Advanced User Documentation](#advanced-user-documentation)
 - [Integrations](#integrations)
 - [API](#api)
 - [Case Studies](#case-studies)
 - [Internals](#internals)
 
-## User Documentation
+
+## Basic User Documentation
+
+1. Getting Started
+2. 
+
+## Advanced User Documentation
 
 Step by step tutorials about how to use the user interface of MassProspecting.
 
