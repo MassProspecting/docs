@@ -28,21 +28,27 @@ PermitRootLogin yes
 sudo systemctl restart ssh
 ```
 
-## 1. Download BlackOps scripts in your computer
+## 1. Download the `saas` command:
 
-For installing [MassProspecting](https://github.com/massprospecting) in any server, you need the [BlackOps](https://github.com/leandrosardi/blackops) scripts:
+BlackOps works on 
 
-```
-mkdir -p ~/code1
-cd ~/code1
-git clone https://github.com/leandrosardi/blackops
-```
+1. Ubuntu 20.04,
+2. Ubuntu 22.04.
 
-You should update required gems too:
+**Ubuntu 20.04**
 
 ```
-cd ~/code1/blackops
-bundler update
+wget https://github.com/leandrosardi/blackops/raw/refs/heads/main/bin/saas--ubuntu-20.04
+sudo mv ./saas--ubuntu-20.04 /usr/bin/saas
+sudo chmod 777 /usr/bin/saas
+```
+
+**Ubuntu 22.04**
+
+```
+wget https://github.com/leandrosardi/blackops/raw/refs/heads/main/bin/saas--ubuntu-22.04
+sudo mv ./saas--ubuntu-22.04 /usr/bin/saas
+sudo chmod 777 /usr/bin/saas
 ```
 
 ## 2. Create your `BlackOpsFile`
@@ -128,8 +134,7 @@ The **installation** is for getting all the software pieces required for running
 - The installation will create a new Linux user `blackstack` who is the user you will work with furtherly.
 
 ```
-cd ~/code1/blackops/cli
-ruby install.rb --root --node=localmaster
+saas install --root --node=localmaster
 ```
 
 ## 4. Deploy source code in `master`
@@ -140,8 +145,7 @@ The command below will update the version of MassProspecting, including:
 - Ruby gems.
 
 ```
-cd ~/code1/blackops/cli
-ruby deploy.rb --node=localmaster
+saas deploy --node=localmaster
 ```
 
 ## 5. Run SQL migrations in `master`
@@ -149,8 +153,7 @@ ruby deploy.rb --node=localmaster
 You have to run database migrations too:
 
 ```
-cd ~/code1/blackops/cli
-ruby migrations.rb --node=localmaster
+saas migrations --node=localmaster
 ```
 
 ## 6. Starting `master`
@@ -158,8 +161,7 @@ ruby migrations.rb --node=localmaster
 The command below will start the MassProspecting webserver and other backend processes.
 
 ```
-cd ~/code1/blackops/cli
-ruby start.rb --node=localmaster --root
+saas start --node=localmaster --root
 ```
 
 After the command above is done, you should be able to access MassProspecting in the URL [http://127.0.0.1:3000](http://127.0.0.1:3000).
@@ -173,8 +175,7 @@ sudo journalctl -u mass_master_app.service -f
 ## 7. Stopping `master`
 
 ```
-cd ~/code1/blackops/cli
-ruby stop.rb --node=localmaster --root
+saas stop --node=localmaster --root
 ```
 
 ## 8. Setting up `slave`
@@ -182,11 +183,10 @@ ruby stop.rb --node=localmaster --root
 For setting up a **slave node** in your local computer, you have to follow the same steps than the master:
 
 ```
-cd ~/code1/blackops/cli && \
-	ruby install.rb --root --node=localslave && \
-	ruby deploy.rb --node=localslave && \
-	ruby migrations.rb --node=localslave && \
-	ruby start.rb --node=localslave --root
+saas install --root --node=localslave && \
+saas deploy --node=localslave && \
+saas migrations --node=localslave && \
+saas start --node=localslave --root
 ```
 
 After the command above is done, you should be able to access MassProspecting in the URL [http://127.0.0.1:3001](http://127.0.0.1:3001).
@@ -196,10 +196,9 @@ After the command above is done, you should be able to access MassProspecting in
 For setting up a **worker node** in your local computer, you have to follow the same steps than the master except the **migrations** part.
 
 ```
-cd ~/code1/blackops/cli && \
-	ruby install.rb --root --node=localworker && \
-	ruby deploy.rb --node=localworker && \
-	ruby start.rb --node=localworker --root
+saas install --root --node=localworker && \
+saas deploy --node=localworker && \
+saas start --node=localworker --root
 ```
 
 After the command above is done, you should be able to access MassProspecting in the URL [http://127.0.0.1:3001](http://127.0.0.1:3001).
@@ -217,8 +216,8 @@ sudo touch /home/blackstack/code1/sdk/.sandbox
 Remember to restart all services.
 
 ```
-ruby stop.rb --node=* --root && \
-ruby start.rb --node=* --root
+saas stop --node=* --root && \
+saas start --node=* --root
 ```
 
 ## 11. Differences Between Environments
