@@ -66,78 +66,59 @@ Go to the type of jobs you want to work with (e.g: **scraping**)
 
 8. Optionally, find the **backtrace** of the exception that generated such a failure.
 
+## 4. Stopping the Profile
 
----
+In the previous chapter, you foud a job that failed (step 5), and you grabbed the **command** to run such a job in your local computer (step 6).
 
-2. Access the subaccount "Selling MassProspecting".
+For running any job in your local computer, you must stop the **profile** running on production servers.
 
-3. Find the only one `ApolloRPA` that such a subaccount has.
+( In other workds: One profile can't be running in more than one computer at the same time )
 
-**Important:** Don't mess between `ApolloRPA` and `ApolloAPI` profiles.
+In the screenshot below, the choosen **job** is assigned to a **profile** called _Amiria_
 
-![Image](https://github.com/user-attachments/assets/361d993d-de5e-49aa-a749-1449196bb157)
+![MassProspecting Jobs Screen](../assets/internals/6-4.png)
 
-4. Stop such a profile.
+For stopping a profile, follow the steps below:
 
-If you are going to run such a profile in your local computer, you need it is not running at any other server / computer. 
+1. Find the **profiles** icon in the left-side bar, and click on it.
 
-![Image](https://github.com/user-attachments/assets/60f3b317-3a2b-4612-a0b1-ecd3f1706d43)
+![MassProspecting Profiles Icon](../assets/internals/6-5.png)
 
-5. Find failed enrichment jobs.
+2. In the **profiles screen**, click on the **filters tab** 
 
-Search by `apollo.01f` and `failed` status. 
-Grab the command from the right-side panel.
-Replicate the job in your local computer. Debug. Fix.
+![MassProspecting Profiles Screen](../assets/internals/6-6.png)
 
-![Image](https://github.com/user-attachments/assets/266e86f9-4142-4c1a-b0cf-004bb01c2866)
+3. Write the name of the profile you are looking for in the filter text-field, and press ENTER.
 
-6.
+4. Once you found such a profile, click on the **stop button**.
 
----
+## 5. Replicating the Glitch
 
-### 1. Reproducing the Issue
+Once in you found the job and you stopped its assigned profile, you can run it in your local computer.
 
-First, I replicated the glitch by running the `profile` command locally. This revealed that there were actually three separate issues. The first and most immediate problem was that the Apollo account had been logged out.
+1. Remember to switch to your Linux `blackstack` user.
 
-[[Video Demo](https://youtu.be/-0YkSat5nvo)](https://youtu.be/-0YkSat5nvo)
+```
+su - blackstack
+```
 
-## 2. Fixing the Apollo Login Issue
+2. Setup your `RUBYLIB` environment variable.
 
-In this step, I manually logged into the Apollo account and verified that the login persists correctly even after restarting the browser.
+```
+export RUBYLIB=~/code1/sdk
+```
 
-[[Video Demo](https://youtu.be/8-hQGGvirRk)](https://youtu.be/8-hQGGvirRk)
+3. Go to the folder `~/code1/sdk/p`
 
-## 3. Confirming Additional Issues
+```
+cd ~/code1/sdk/p
+```
 
-Running the `profile` command again revealed two more problems:
+4. Execute the **command**.
 
-- Our scraper was fetching email addresses from Apollo, which we no longer want because Apollo now charges for accessing emails. Instead, we should only scrape publicly available data (lead name, LinkedIn URL, company name, headcount, etc.).
-- A new issue was detected related to scraping Apollo company URLs.
+```
+ruby profile.rb 
+api_key=dceea9de-****-****-****-******a6376 api_url=https://hg1654.massprospecting.com:443 id=b5d8d7b6-1841-4683-92ad-bbbd47c79165 ignore-hostname=yes force-profile-run=yes headless=no run-once=yes inboxcheck=no connectioncheck=no scraping=yes id_job=0e513ab3-cabf-4823-bea3-41d306912148 enrichment=no outreach=no 
+```
 
-[[Video Demo](https://youtu.be/YbtrXtJrtYE)](https://youtu.be/YbtrXtJrtYE)
 
-## 4. Disabling Email Scraping
-
-Here, I demonstrate how to disable email scraping to avoid charges from Apollo. Also, the previously mentioned company URL glitch surfaced again.
-
-[[Video Demo](https://youtu.be/6zRsaqbQ5D4)](https://youtu.be/6zRsaqbQ5D4)
-
-## 5. Clarifying the Apollo Company URL Issue
-
-We identified that Apollo company URLs must match the `/organization/` pattern as required by MassProspecting validation. When users fetch email addresses, leads are added to Apollo's CRM, converting public URLs into private URLs visible only to logged-in users.
-
-Thus, the company URL issue is not actually a bug but expected behavior. Once email scraping is disabled, future URLs will remain publicly accessible and valid.
-
-[[Video Demo](https://youtu.be/aJki6QBstW8)](https://youtu.be/aJki6QBstW8)
-
-## 6. Addressing Scraping Issues Due to New UI
-
-Finally, I illustrate preliminary steps to resolve incorrect scraping of fields such as industry and company headcount, caused by recent Apollo UI changes.
-
-[[Video Demo](https://youtu.be/FwMCzJhHGXA)](https://youtu.be/FwMCzJhHGXA)
-
----
-
-@alirazasabir94 , here is another video about how to inspect the HTML code of a website, so you can build your `xpath` queries.
-
-[How to Inspect HTML](https://youtu.be/MEZhI2_q3Lo)
