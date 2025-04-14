@@ -1,6 +1,6 @@
 # Working with SDK
 
-Every time you run a scraping job, or an enrichment, or outreach from [MassProspecting](https://massprospecting.com); such a job is performed by SDK.
+Every time you run a scraping job, or an enrichment, or an outreach from [MassProspecting](https://massprospecting.com); such a job is performed by the [**SDK**](https://github.com/massprospecting/mass-sdk).
 
 Every single step in your [MassProspecting Workflow](https://github.com/MassProspecting/docs) is perfrmed by the [**MassProspecting SDK**](https://github.com/MassProspecting/mass-sdk).
 
@@ -10,7 +10,7 @@ The **MassProspecting SDK** is executed by the [worker nodes of our architecture
 
 ## 1. Abstract 
 
-This document explain how to find failed job (scraping, enrochment, outreach, etc.) and replicate them in out local computer for debugging and fixing.
+This document explain how to find failed jobs (scraping, enrochment, outreach, etc.) and replicate them in out local computer for debugging and fixing.
 
 ## 2. Accessing User's Accounts
 
@@ -37,6 +37,35 @@ Such a link is for accessing the user's account in another browser, with out the
 6. Since you can't loging to 2 MassProspecting accounts in the same browser; open a new browser in **incognito mode** in order to access the user's account.
 
 In the new **incognito browser**, paste the link you copied in the previous step.
+
+7. Once you accessed the user's account, go to the [**sub-accounts screen**](https://massprospecting.com/subaccounts), access the user's subaccount. 
+
+![MassProspecting User Sub-Accounts](../assets/internals/6-1.png)
+
+## 3. Finding Failed Jobs
+
+1. Once you have accessed the user's subaccount, find the **jobs** icon in the left-bar and click on it.
+
+![MassProspecting Jobs Icon](../assets/internals/6-2.png)
+
+2. In the jobs screen, you can choose beetween the diffent tye of jobs (scraping, enrichment, outreach, etc.)
+
+Go to the type of jobs you want to work with (e.g: **scraping**)
+
+![MassProspecting Jobs Screen](../assets/internals/6-3.png)
+
+3. Filter the jobs with status **failed**.
+
+4. Optionally, you can write the name of the **profile** you want to work with or even the name of the **lead** (if you are working on enrichment jobs or outreach jobs).
+
+5. Click on one of the results to see such a result's details in the right-side panel.
+
+6. Find the **command** to execute such a job in your computer.
+
+7. Optinonally, click on the **snapshot** icon to get the exact HTML code of the website at the moment the failure happened.
+
+8. Optionally, find the **backtrace** of the exception that generated such a failure.
+
 
 ---
 
@@ -66,7 +95,7 @@ Replicate the job in your local computer. Debug. Fix.
 
 ---
 
-## 1. Reproducing the Issue
+### 1. Reproducing the Issue
 
 First, I replicated the glitch by running the `profile` command locally. This revealed that there were actually three separate issues. The first and most immediate problem was that the Apollo account had been logged out.
 
