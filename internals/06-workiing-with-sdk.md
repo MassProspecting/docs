@@ -114,7 +114,13 @@ export RUBYLIB=~/code1/sdk
 cd ~/code1/sdk/p
 ```
 
-4. Execute the **command**.
+4. Optionally, you can create the `.sandbox` flag in order to place **brackpoints** in your source code, by placing the Ruby line `binding.pry`.
+
+```
+touch .sandbox
+```
+
+5. Execute the **command**.
 
 ```
 ruby profile.rb 
