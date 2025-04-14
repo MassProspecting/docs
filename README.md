@@ -83,9 +83,7 @@ How does MassPropspecting work internally.
 
 1. [Architecture](./internals/01-architecture.md)
 2. [Installation](./internals/02-installation.md)
-3. [Checklist: Profiles Revision Procedure](./internals/03-checklist-profiles-revision-procedure.md)
-4. [Data Model](./internals/04-data-model.md)
-
-**Other Documents:**
-
-- [Installation (Legacy Procedure)](./internals/02-installation-legacy.md)
+3. [Data Model](./internals/03-data-model.md)
+4. [QA Operations](./internals/04-qa-operations.md)
+5. [Checklist: Profiles Revision Procedure](./internals/05-checklist-profiles-revision-procedure.md)
+6. [Working with SDK](./internals/06-workiing-with-sdk.md)
